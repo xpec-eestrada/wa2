@@ -1,0 +1,49 @@
+<?php
+$result = $this->getPaidConnect();
+
+$wurl = isset($result['url']) ? $block->escapeHtml($result['url']) : '';
+$token = isset($result ['token_ws']) ? $block->escapeHtml($result ['token_ws']) : '';
+
+if (isset($result['error']) && !empty($result['error'])) :?>
+    <style>
+        .causas li{
+            list-style-type: circle;
+            margin-left: 16px;
+        }
+        .causas{
+            margin-bottom:30px;
+        }
+        .data-table{
+            margin-bottom:20px;
+        }
+    </style>
+    <h1 class="page-title">
+        <span class="base" data-ui-id="page-title-wrapper">Transacción Rechazada!</span>
+    </h1>
+    <table class="data-table">
+        <tbody>
+            <tr>
+                <td><b><?php echo $block->escapeHtml(__('Nro Orden:')); ?></b></td>
+                <td><?php echo $block->getRealOrderId(); ?></td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 class="sub-title">Las posibles causas de este rechazo son:</h2>
+    <ul class="causas">
+        <li>Error en el ingreso de los datos de Cr&eacute;dito o Debito (fecha y/o c&oacute;digo de seguridad).</li>
+        <li>Su tarjeta de de Cr&eacute;dito o Debito no cuenta con el cupo necesario para cancelar la compra.</li>
+        <li>Tarjeta a&uacute;n no habilitada en el sisema financiero.</li>
+    </ul>
+<?php else :?>
+    <h2>
+        <center>
+            <?php echo $block->escapeHtml(__('En este momento estás siendo redirigido a la página de pago...')); ?>
+        </center>
+    </h2>
+    <form name="webpayform" method="post" action="<?php echo $wurl ?>">
+        <input type="hidden" name="token_ws" value="<?php echo $token ?>">
+    </form>  
+    <script type="text/javascript">
+        document.webpayform.submit();
+    </script>
+<?php endif;

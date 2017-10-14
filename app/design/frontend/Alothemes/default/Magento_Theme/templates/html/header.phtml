@@ -1,0 +1,76 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+$isLoggedIn = $customerSession->isLoggedIn();
+$msg = $isLoggedIn ? __('Welcome') .', '. $customerSession->getCustomer()->getName() : $this->getWelcome() 
+?>
+<link href='//fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Crimson+Text:400,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Condiment' rel='stylesheet' type='text/css'>
+<header class="page-header alothemes">
+    <div class="header">
+		<div class="header-top">
+			<div class="container">
+				<div class="top-left">
+					<div class="header-top-link">
+						<?php echo $this->getChildHtml('header.links'); ?>
+					</div>
+				</div>
+				<div class="top-right">
+					<?php echo $this->getChildHtml('currency'); ?>
+				    <?php echo $this->getChildHtml('store_language'); ?>
+				</div>
+			</div>
+		</div>
+		<div class="header-content header-sticker">
+			<div class="container">
+				<div class="row">
+					<div class="content-logo col-md-3 col-sm-3 col-xs-12">
+						<div class="header-logo">
+							<?php echo $this->getChildHtml('logo'); ?>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<?php echo $this->getChildHtml('navigation.sections'); ?>
+						<?php echo $this->getChildHtml('catalog.topnav'); ?>
+					</div>
+					<div class="position-right">
+						<div class="header-search">
+							<div class="search-switcher">
+								<div class="icon-search toggle-tab-search">
+									<i class="fa fa-search"></i>
+								</div>
+								<div class="dropdown-switcher toggle-content">
+									<div class="top-search-alo container">
+										<?php echo $this->getChildHtml('top.search'); ?>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="header-setting tool-header">
+							 <a title="My wishlist" href="<?php echo $this->getUrl('wishlist') ?>" target="_blank" class="wishlist icon fa fa-heart-o">
+						    </a>
+						</div>
+						<div class="content-cart">
+							<?php echo $this->getChildHtml('minicart'); ?>
+						</div>
+						<div class="menu-mobile">
+						<span data-action="toggle-nav" class="action nav-toggle"><span><?php /* @escapeNotVerified */ echo __('Toggle Nav') ?></span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

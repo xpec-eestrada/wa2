@@ -1,0 +1,26 @@
+<?php
+$result = $this->getXml1();
+
+$url = $block->escapeHtml($result['url']);
+$xml1 = $result['xml'];
+
+if ($result['error']) :?>
+    <h2>
+        <center>
+            <?php echo $block->escapeHtml(__('Ocurrió un error de comunicación con Servipag, por favor intente más tarde')); ?>
+        </center>
+    </h2>    
+<?php else :?>
+    <h2>
+        <center>
+            <?php echo $block->escapeHtml(__('En este momento estás siendo redirigido a la página de pago...')); ?>
+        </center>
+    </h2>
+    
+    <form name="servipagform" method="post" action="<?php echo $url ?>">
+        <input type="hidden" name="xml" value="<?php echo $xml1 ?>">
+    </form>
+    <script type="text/javascript">
+        document.servipagform.submit();
+    </script>
+<?php endif;

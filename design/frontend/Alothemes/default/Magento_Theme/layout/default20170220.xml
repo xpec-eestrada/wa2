@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+	    <referenceBlock name="header.links">
+			<block class="Magento\Customer\Block\Account\Link" name="wish-list-link" after="catalog.compare.link">
+				<arguments>
+					<argument name="label" xsi:type="string" translate="true">My Wish List</argument>
+				</arguments>
+			</block>
+			<block class="Magento\Customer\Block\Account\Link" name="my-account-link">
+				<arguments>
+					<argument name="label" xsi:type="string" translate="true">My Account</argument>
+				</arguments>
+			</block>
+			<block class="Magento\Customer\Block\Account\RegisterLink" name="register-link">
+				<arguments>
+					<argument name="label" xsi:type="string" translate="true">Create an Account</argument>
+				</arguments>
+			</block>
+		    <block class="Magento\Customer\Block\Account\AuthorizationLink" name="authorization-link"
+           template="account/link/authorization.phtml"/>
+			
+		 </referenceBlock>
+		
+		<referenceContainer name="page.wrapper">
+			<block class="Magento\Theme\Block\Html\Header" name="alothemes_header" template="html/header.phtml" before="-">
+				<block class="Magento\Framework\View\Element\Html\Links" name="header.links">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">links</argument>
+                    </arguments>
+                </block>
+				<block class="Magento\Theme\Block\Html\Header\Logo" name="logo">
+                    <arguments>
+					    <!--<argument name="logo_file" xsi:type="string">images/logo.png</argument>-->
+                        <argument name="logo_img_width" xsi:type="number">178</argument>
+                        <argument name="logo_img_height" xsi:type="number">43</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Framework\View\Element\Template" name="top.search" as="topSearch" template="Magento_Search::form.mini.phtml"/>
+            </block>
+		</referenceContainer>
+
+		<move element="minicart" destination="alothemes_header"/>
+		<move element="top.search" destination="alothemes_header"/>
+		<move element="logo" destination="alothemes_header"/>
+		<move element="store_language" destination="alothemes_header"/>
+        <move element="currency" destination="alothemes_header"/>
+		<move element="navigation.sections" destination="alothemes_header"/>
+		<move element="skip_to_content" destination="alothemes_header"/>
+		
+		<container name="page.wrapper" as="page_wrapper" htmlTag="div" htmlClass="page-wrapper">
+            <container name="global.notices" as="global_notices" before="-"/>
+            <container name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="page-main-pal main-container">
+                <container name="main.container" htmlTag="div" htmlClass="container">
+                    <container name="columns.top" label="Before Main Columns"/>
+                    <container name="columns" htmlTag="div" htmlClass="alocolumns">
+                        <container name="main" label="Main Content Container" htmlTag="div" htmlClass="column main"/>
+                    </container>
+                </container>   
+            </container>
+            <container name="page.bottom.container" as="page_bottom_container" label="Before Page Footer Container" after="main.content" htmlTag="div" htmlClass="page-bottom"/>
+            <container name="before.body.end" as="before_body_end" after="-" label="Page Bottom"/>
+        </container>
+		
+		<referenceContainer name="sections.page.bottom">
+            <container name="sections.panel" label="Before Page Footer" htmlTag="div" htmlClass="sections">
+               <block class="Magento\Cms\Block\Block" name="cms-static-main-final">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">cms-static-main-final</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+		<referenceContainer name="footer-container">
+			<container name="footer-top" label="Footer Top" htmlTag="div" htmlClass="block-footer-top" before="-">
+                <block class="Magento\Cms\Block\Block" name="block-footer-top">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">block-footer-top</argument>
+                    </arguments>
+                </block>
+            </container>
+			<container name="footer-bottom" label="Footer Bottom" htmlTag="div" htmlClass="block-footer-bottom" after="footer-top">
+			    <container name="main.wrap" label="Page Footer Wrap" htmlTag="div" htmlClass="main-wrap">
+					<block class="Magento\Cms\Block\Block" name="cms-static-main-footer">
+						<arguments>
+							<argument name="block_id" xsi:type="string">cms-static-main-footer</argument>
+						</arguments>
+					</block>
+					<container name="main.wrap.copyright" label="Page Footer Wrap Copyright" htmlTag="div" htmlClass="main-wrap-copyright" after="cms-static-main-footer">
+						<container name="main.wrap.content" label="Page Footer Wrap Content" htmlTag="div" htmlClass="container">
+							<container name="main.wrap.container" label="Page Footer Wrap Container" htmlTag="div" htmlClass="container-main clearfix">
+								<block class="Magento\Theme\Block\Html\Footer" name="copyright" template="html/copyright.phtml" />
+								<block class="Magento\Cms\Block\Block" name="payment-logo">
+									<arguments>
+										<argument name="block_id" xsi:type="string">cms-static-paypal</argument>
+									</arguments>
+								</block>
+							</container>
+						</container>
+					</container>
+				</container>
+            </container>
+			<!--<container name="footer-links-company" label="Footer Links" htmlTag="div" htmlClass="footer-links-company" after="footer-bottom">
+                <block class="Magento\Cms\Block\Block" name="footer_links_company">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_links_company</argument>
+                    </arguments>
+                </block>
+            </container>-->
+        </referenceContainer>
+		<referenceContainer name="header.container" remove="true"/>
+        <referenceContainer name="header.panel" remove="true"/>
+        <referenceContainer name="header-wrapper" remove="true"/>
+		<referenceBlock name="report.bugs" remove="true"/>
+		<referenceBlock name="footer_links" remove="true"/>
+		<referenceBlock name="form.subscribe" remove="true"/>
+		<referenceBlock name="store_switcher" remove="true"/>
+		<!--<referenceContainer name="footer" remove="true"/>-->
+    </body>
+</page>

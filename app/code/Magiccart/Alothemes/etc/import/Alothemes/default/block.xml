@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <block>
+    <item>
+      <title><![CDATA[block-footer-top]]></title>
+      <identifier><![CDATA[block-footer-top]]></identifier>
+      <content><![CDATA[<div class="block-newletter"><div class="container">{{block class="Magento\Newsletter\Block\Subscribe" template="subscribe.phtml"}}</div></div>
+<div class="footer-featured policy">
+	<div class="container">
+		<div class="row">
+		    <div class="policy-box clearfix">
+				<div class="footer-featured-col col-md-4 col-sm-6 col-xs-6">
+				   <div class="box-content">
+						<div class="service-content">
+							<h4 class="footer-featured-title info-title">100% <br> return money</h4>
+							<p class="sub-title">free return standard order in 30 days </p>
+						</div>
+						<div class="icon-service">
+							<i class="fa fa-money"><span class="hidden">hidden</span></i>
+						</div>
+					</div>
+				</div>
+				<div class="footer-featured-col col-md-4 col-sm-6 col-xs-6">
+				   <div class="box-content">
+						<div class="service-content">
+							<h4 class="footer-featured-title info-title">world wide <br> delivery</h4>
+						   <p class="sub-title">free ship for payment over $100</p>
+						</div>
+						<div class="icon-service">
+							<i class="fa fa-globe"><span class="hidden">hidden</span></i>
+						</div>
+					</div>
+				</div>
+				<div class="footer-featured-col col-md-4 col-sm-12 col-xs-12">
+					<div class="box-content">
+						<div class="service-content">
+							<h4 class="footer-featured-title info-title">24h <br> shipment </h4>
+							<p class="sub-title">for standard package</p>
+						</div>
+						<div class="icon-service">
+							<i class="fa fa-clock-o"><span class="hidden">hidden</span></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>]]></content>
+      <is_active><![CDATA[1]]></is_active>
+    </item>
+    <item>
+      <title><![CDATA[cms-static-main-footer]]></title>
+      <identifier><![CDATA[cms-static-main-footer]]></identifier>
+      <content><![CDATA[<div class="container">
+	<div class="row">
+		<div class="footer-item item-phone col-lg-3 col-md-3 col-sm-6 col-xs-6 col-mobile-12">
+			<div class="box-content">
+			<h3 class="title">Contact us</h3>
+			<span class="toggle-tab mobile"><em class="hidden">hidden</em></span>
+				<div class="content toggle-content">
+					<ul>
+						<li><span class="sub-title icon fa fa-map-marker"><em class="hidden">hidden</em></span>
+						<div class="info"><h4>Address:</h4> <p>132 Jefferson Avenue, Suite 22, Redwood City, CA 94872, USA</p></div>
+						</li>
+						<li><span class="sub-title icon fa fa-mobile"><em class="hidden">hidden</em></span>
+						<div class="info"><h4>Phone:</h4><p>(00) 123 456 789</p></div>
+						</li>
+						<li><span class="sub-title icon fa fa-envelope"><em class="hidden">hidden</em></span>
+						<div class="info"><h4>Email:</h4><span>emailsupport@gmail.com</span></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-item col-lg-3 col-md-3 col-sm-6 col-xs-6 col-mobile-12">
+			<div class="box-content">
+			<h3 class="title">infomation</h3>
+			<span class="toggle-tab mobile"><em class="hidden">hidden</em></span>
+				<div class="content toggle-content">
+					<ul class="link-list">
+						<li><a href="{{store url=""}}about-us/">About Us</a></li>
+						<li><a href="#">Contact Us</a></li>
+						<li><a href="#">Term & Conditions</a></li>
+						<li><a href="#">Gift Voucher</a></li>
+						<li><a href="#">BestSellers</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-item col-lg-3 col-md-3 col-sm-6 col-xs-6 col-mobile-12">
+			<div class="box-content">
+			<h3 class="title">Customer Care</h3>
+			<span class="toggle-tab mobile"><em class="hidden">hidden</em></span>
+				<div class="content toggle-content">
+					<ul class="link-list">
+						<li><a href="#">Support</a></li>
+						<li><a href="#">Sitemap</a></li>
+						<li><a href="{{store url=""}}faq/">FAQ</a></li>
+						<li><a href="#">Shipping</a></li>
+						<li><a href="#">Returns</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-item col-lg-3 col-md-3 col-sm-6 col-xs-6 col-mobile-12">
+			<div class="box-content">
+			<h3 class="title">Open house</h3>
+			<span class="toggle-tab mobile"><em class="hidden">hidden</em></span>
+				<div class="content toggle-content">
+					<ul class="link-list open-time">
+						<li><span>Mon - Fri:</span><span>8am - 5pm</span> </li>
+						<li><span>Sat:</span><span>8am - 11am</span> </li>
+						<li><span>Sun: </span><span>Closed</span></li>
+					</ul>
+					<h3 class="title">payment Menthod</h3>
+					<div class="payment">
+						<a href="#"><i class="fa fa-cc-mastercard"><span class="hidden">hidden</span></i></a>
+						<a href="#"><i class="fa fa-cc-visa"><span class="hidden">hidden</span></i></a>
+						<a href="#"><i class="fa fa-cc-paypal"><span class="hidden">hidden</span></i></a>
+						<a href="#"><i class="fa fa-cc-discover"><span class="hidden">hidden</span></i></a>
+						<a href="#"><i class="fa fa-credit-card"><span class="hidden">hidden</span></i></a>
+						<a href="#"><i class="fa fa-cc-amex"><span class="hidden">hidden</span></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>]]></content>
+      <is_active><![CDATA[1]]></is_active>
+    </item>
+    <item>
+      <title><![CDATA[home-slide1]]></title>
+      <identifier><![CDATA[home-slide1]]></identifier>
+      <content><![CDATA[<div class="home-slider home-slider-index" data-slides-to-show="1" data-slides-to-scroll="1" data-fade="false" data-dots="true" data-arrows="true" data-easing="linear" data-autoplay="true" >
+	<div class="item"> 
+		<a href="#"> <img class="img-responsive-normal" src="{{media url="wysiwyg/alothemes/static/demo1/slide1-1.jpg"}}" alt="magicslider" /></a>
+		<div class="container figcaption">
+			<div class="text-slide">
+			    <h3 class="caption1">F/W New York 2016</h3>
+				<h3 class="caption2">New Fashion Week</h3>
+				<h3 class="caption3">[Discover The Collection]</h3>
+			</div>
+		</div>
+	</div>
+	<div class="item"> 
+		<a href="#"><img class="img-responsive-normal" src="{{media url="wysiwyg/alothemes/static/demo1/slide1-2.jpg"}}" alt="magicslider" /></a>
+		<div class="container figcaption">
+			<div class="text-slide text-slide2">
+				<h3 class="caption1">The Biggest</h3>
+				<h3 class="caption2">Accessorries Collection</h3>
+				<h3 class="caption3">Save Up To 35%</h3>
+			</div>
+		</div>
+	</div>
+	<div class="item"> 
+		<a href="#"><img class="img-responsive-normal" src="{{media url="wysiwyg/alothemes/static/demo1/slide1-3.jpg"}}" alt="magicslider" /></a>
+		<div class="container figcaption">
+			<div class="text-slide text-slide3">
+				<h3 class="caption1">Special For This Season</h3>
+				<h3 class="caption2">New Fashion Week</h3>
+				<h3 class="caption3"><a class="btn-shop shop" href="#">shop now</a></h3>
+			</div>
+		</div>
+	</div>
+</div>]]></content>
+      <is_active><![CDATA[1]]></is_active>
+    </item>
+    <item>
+      <title><![CDATA[cms-static-brand]]></title>
+      <identifier><![CDATA[cms-static-brand]]></identifier>
+      <content><![CDATA[<div class="alo-brand"><div class="container"><div class="row"><div class="col-lg-12">{{widget type="Magiccart\Shopbrand\Block\Widget\Brand" template="brand.phtml"}}</div></div></div></div>]]></content>
+      <is_active><![CDATA[1]]></is_active>
+    </item>
+    <item>
+      <title><![CDATA[cms-static-banner]]></title>
+      <identifier><![CDATA[cms-static-banner]]></identifier>
+      <content><![CDATA[<div class="banner banner-full">
+	<div class="container">
+		<div class="banner-inner-content">
+			<h3 class="custom_heading text-uppercase">the one for you</h3>
+			<p>We offer a range of models to accommodate a variety body shapes and sizes</p>
+			<a href="#" class="button-shop btn-bg-outline btn-align-center"><span>find your leather coats</span></a>
+		</div>
+	</div>
+</div>]]></content>
+      <is_active><![CDATA[1]]></is_active>
+    </item>
+    <item>
+      <title><![CDATA[cms-static-testimonials]]></title>
+      <identifier><![CDATA[cms-static-testimonials]]></identifier>
+      <content><![CDATA[<div class="cms-static-testimonials testimonials"><div class="container">{{widget type="Magiccart\Testimonial\Block\Widget\Testimonial" template="testimonial.phtml"}}</div></div>]]></content>
+      <is_active><![CDATA[1]]></is_active>
+    </item>
+    <item>
+      <title><![CDATA[cms-static-mix-product]]></title>
+      <identifier><![CDATA[cms-static-mix-product]]></identifier>
+      <content><![CDATA[<div class="cms-static-mix-product"><div class="container">{{widget type="Magiccart\Magicproduct\Block\Widget\Product" identifier="new-arrivals" template="product.phtml"}}</div></div>]]></content>
+      <is_active><![CDATA[1]]></is_active>
+    </item>
+    <item>
+      <title><![CDATA[cms-static-blog]]></title>
+      <identifier><![CDATA[cms-static-blog]]></identifier>
+      <content><![CDATA[<div class="alo-blog cms-static-blog">{{widget type="Magefan\Blog\Block\Widget\Slide" title="Latest Posts Blog" limit="2" template="slide.phtml" mobile="1" portrait="1" landscape="1" tablet="1" notebook="1" desktop="1" visible="1"}}</div>]]></content>
+      <is_active><![CDATA[1]]></is_active>
+    </item>
+    <item>
+      <title><![CDATA[category-view-left-custom-block]]></title>
+      <identifier><![CDATA[category-view-left-custom-block]]></identifier>
+      <content><![CDATA[<div class="cms-static-product-sidebar"><div class="magic-product-sidebar custom-product">{{widget type="Magiccart\Magicproduct\Block\Widget\Product" identifier="custom-product-sidebar" template="productcustom.phtml"}}</div></div>]]></content>
+      <is_active><![CDATA[1]]></is_active>
+    </item>
+    <item>
+      <title><![CDATA[Block Product Page]]></title>
+      <identifier><![CDATA[product-page-custom-block]]></identifier>
+      <content><![CDATA[<div class="home-slider-detail">
+	<div class="block-title title">
+			<strong>Featured Categories</strong>
+		</div>
+	<div class="home-slider" data-slides-to-show="4" data-slides-to-scroll="1" data-fade="false" data-dots="false" data-arrows="false" data-easing="linear" data-autoplay="false" 
+	data-responsive='[{"breakpoint": "1201", "settings": {"slidesToShow": "4"}}, {"breakpoint": "1200", "settings": {"slidesToShow": "4"}}, {"breakpoint": "992", "settings": {"slidesToShow": "3"}}, {"breakpoint": "769", "settings": {"slidesToShow": "3"}}, {"breakpoint": "641", "settings": {"slidesToShow": "2"}}, {"breakpoint": "481", "settings": {"slidesToShow": "1"}}, {"breakpoint": "361", "settings": {"slidesToShow": "1"}}, {"breakpoint": "1", "settings": {"slidesToShow": "1"}}]'
+	 >
+		<div class="item"> 
+			<div class="imgslide">
+				<a class="alinkslide" href="#"><span class="hidden">alinkslide</span> </a><img class="img-responsive-normal" src="{{media url="wysiwyg/alothemes/static/product-page/shop-detail_01.jpg"}}" alt="magicslider" />
+			</div>
+			<div class="figcaption">
+				<div class="text-slide">
+					<h3 class="caption1">Women</h3>
+					<h3 class="caption2"><span class="count">11 Items</span></h3>
+					<h3 class="caption3"><a href="#" class="shop-now">shop now</a></h3>
+				</div>
+			</div>
+		</div>
+		<div class="item"> 
+			<div class="imgslide">
+				<a class="alinkslide" href="#"><span class="hidden">alinkslide</span> </a><img class="img-responsive-normal" src="{{media url="wysiwyg/alothemes/static/product-page/shop-detail_02.jpg"}}" alt="magicslider" />
+			</div>
+			<div class="figcaption">
+				<div class="text-slide text-slide2">
+					<h3 class="caption1">Men</h3>
+					<h3 class="caption2"><span class="count">11 Items</span></h3>
+					<h3 class="caption3"><a href="#" class="shop-now">shop now</a></h3>
+				</div>
+			</div>
+		</div>
+		<div class="item"> 
+			<div class="imgslide">
+				<a class="alinkslide" href="#"><span class="hidden">alinkslide</span> </a><img class="img-responsive-normal" src="{{media url="wysiwyg/alothemes/static/product-page/shop-detail_03.jpg"}}" alt="magicslider" />
+			</div>
+			<div class="figcaption">
+				<div class="text-slide text-slide3">
+					<h3 class="caption1">Accessories</h3>
+					<h3 class="caption2"><span class="count">13 Items</span></h3>
+					<h3 class="caption3"><a href="#" class="shop-now">shop now</a></h3>
+				</div>
+			</div>
+		</div>
+		<div class="item"> 
+			<div class="imgslide">
+				<a class="alinkslide" href="#"><span class="hidden">alinkslide</span> </a><img class="img-responsive-normal" src="{{media url="wysiwyg/alothemes/static/product-page/shop-detail_04.jpg"}}" alt="magicslider" />
+			</div>
+			<div class="figcaption">
+				<div class="text-slide text-slide4">
+					<h3 class="caption1">Fashion</h3>
+					<h3 class="caption2"><span class="count">15 Items</span></h3>
+					<h3 class="caption3"><a href="#" class="shop-now">shop now</a></h3>
+				</div>
+			</div>
+		</div>
+		<div class="item"> 
+			<div class="imgslide">
+				<a class="alinkslide" href="#"><span class="hidden">alinkslide</span> </a><img class="img-responsive-normal" src="{{media url="wysiwyg/alothemes/static/product-page/shop-detail_05.jpg"}}" alt="magicslider" />
+			</div>
+			<div class="figcaption">
+				<div class="text-slide text-slide5">
+					<h3 class="caption1">Fashion</h3>
+					<h3 class="caption2"><span class="count">1 Items</span></h3>
+					<h3 class="caption3"><a href="#" class="shop-now">shop now</a></h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>]]></content>
+      <is_active><![CDATA[1]]></is_active>
+    </item>
+    <item>
+      <title><![CDATA[Block Contact Us]]></title>
+      <identifier><![CDATA[contact-address]]></identifier>
+      <content><![CDATA[<div class="detail-info">
+    <div class="product-title">
+		<h3 class="sub-title">Contact us</h3>
+		<p class="text">Sed ac neque massa cursus odio tincidunt volutpat, nibh quisque dapibus ad velit per aliquet taciti, porttitor integer nam condimentum sed curabitur tempus odio ultricies vestibulum</p>
+	</div>
+	<div class="contact-info">
+		<h3 class="sub-title">Our address</h3>
+		<address class="text">132 Jefferson Avenue <br> Suite 22,Redwood City, CA 94872, USA</address>
+	</div>
+	<div class="care">
+		<h3 class="sub-title">Our Contactinfomation</h3>
+		<p class="text"><span class="mail">Hello@gmail.com</span></p>
+	</div>
+</div>]]></content>
+      <is_active><![CDATA[1]]></is_active>
+    </item>
+    <item>
+      <title><![CDATA[Block Right magicmenu ]]></title>
+      <identifier><![CDATA[block-right-magicmenu]]></identifier>
+      <content><![CDATA[<div class="banner-menu"><img class="img-responsive" alt="banner" src="{{media url="wysiwyg/alothemes/static/banner-rightmenu.jpg"}}" /></div>]]></content>
+      <is_active><![CDATA[1]]></is_active>
+    </item>
+  </block>
+</root>

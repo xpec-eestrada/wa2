@@ -1,0 +1,147 @@
+.content-custom-payment{
+	display: table;
+}
+.content-custom-payment > div{
+	display: table-cell;
+	vertical-align: middle;
+}
+.content-custom-payment .content-payment-custom > div{
+	float: left;
+}
+.content-custom-payment .content-payment-custom .title{
+    margin-top: 16px;
+    margin-right: 14px;
+}
+/* =================================== KIVUL ======================================================== */
+.checkout-container .opc-progress-bar-item._active:before,
+.checkout-container .opc-progress-bar-item._active > span:before,
+.checkout-container .opc-progress-bar-item:last-child:before,
+.checkout-container .opc-progress-bar-item:first-child:before{
+    background: #00b9e9 !important;
+    color: #00b9e9 !important;
+}
+.checkout-container .opc-progress-bar-item._complete > span:before,
+.checkout-container .opc-progress-bar-item._complete > span:after{
+    background: #00b9e9 !important;
+    color: #00b9e9;
+}
+.opc-wrapper .shipping-address-item.selected-item{
+    border-color: #00b9e9;
+}
+.opc-wrapper .shipping-address-item.selected-item:after{
+    background: #00b9e9;
+}
+.checkout-container .checkout-payment-method .payment-option-title .action-toggle,
+.checkout-container .opc-block-summary .mark .value,
+.checkout-container .cart-totals tbody .mark, 
+.checkout-container .cart-totals tfoot .mark, 
+.checkout-container .opc-block-summary .table-totals tbody .mark, 
+.checkout-container .opc-block-summary .table-totals tfoot .mark,
+.checkout-container .opc-block-summary .items-in-cart > .title strong,
+.checkout-container .opc-block-summary > .title,
+.checkout-container .opc-wrapper .step-title, 
+.checkout-container .opc-block-shipping-information .shipping-information-title, 
+.checkout-container .opc-block-summary > .title, 
+.checkout-container .checkout-agreements-items .checkout-agreements-item-title,
+.checkout-container .opc-block-summary .items-in-cart > .title strong,
+.checkout-container .opc-block-shipping-information .shipping-information-content{
+    color: #000;
+}
+.checkout-container .actions-toolbar button.action-apply,
+.checkout-container .actions-toolbar > .primary .action:last-child, 
+.checkout-container .actions-toolbar > .secondary .action:last-child,
+.checkout-container .opc-wrapper .action-select-shipping-item,
+.checkout-container .opc-wrapper .action-show-popup{
+    background-color: #fff;
+    border: 1px solid #c6c6c6;
+    border-radius: initial;
+}
+.checkout-container .actions-toolbar button.action-apply span,
+.checkout-container .actions-toolbar > .primary .action:last-child span, 
+.checkout-container .actions-toolbar > .secondary .action:last-child span,
+.checkout-container .opc-wrapper .action-select-shipping-item span,
+.checkout-container .opc-wrapper .action-show-popup span{
+    color: #cdcdcd;
+}
+.checkout-container .payment-option-inner input::-webkit-input-placeholder,
+.checkout-container .payment-option-inner input:-moz-placeholder,
+.checkout-container .payment-option-inner input::-moz-placeholder,
+.checkout-container .payment-option-inner input:-ms-input-placeholder,
+.checkout-container .payment-option-inner input::-ms-input-placeholder{
+    color: #000;
+}
+.checkout-container .data-table td:first-child{
+    width: 100px;
+}
+.checkout-onepage-success .page-title, 
+.checkout-onepage-success .sub-title, 
+.checkout-onepage-success .data-table{
+    display: none;
+}
+.checkout-onepage-success .page-main .page-title, 
+.checkout-onepage-success .page-main .sub-title, 
+.checkout-onepage-success .page-main .data-table{
+    display: block;
+}
+.checkout-onepage-success .data-table td:first-child {
+    width: 30%;
+    padding: 3px 10px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    color: #565a60;
+}
+.checkout-onepage-success .data-table td:first-child b{
+    font-weight: 400 !important;
+}
+.checkout-onepage-success .data-table td:last-child{
+    width: 70%;
+    padding: 3px 10px;
+    font-family: 'Verdana', sans-serif;
+    font-size: 14px;
+    color: #bdbdbd;
+}
+.checkout-onepage-success .actions-toolbar{
+    margin-bottom: 20px;
+}
+.checkout-onepage-success .det-compra tr td:first-child,
+.checkout-onepage-success .det-compra tr td:first-child b{
+    padding: 3px 0px;
+    font-family: 'Verdana', sans-serif;
+    font-size: 14px;
+    color: #bdbdbd;
+}
+.checkout-onepage-success .det-compra tr td:last-child,
+.checkout-onepage-success .det-compra tr td:last-child b{
+    padding: 3px 0px;
+}
+.checkout-onepage-success .det-compra tr:first-child td,
+.checkout-onepage-success .det-compra tr:first-child td b{
+    padding-left: 0px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 16px;
+    color: #565a60;
+}
+.checkout-success .page-title > h1{
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    color: #000000;
+    text-transform: uppercase;
+}
+.checkout-success .sub-title{
+    font-weight: 500;
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    color: #00b9e9;
+    text-transform: uppercase;
+}
+@media only screen and (max-width: 767px){
+    .checkout-onepage-success .data-table td {
+        width: 50%;
+    }
+}
+/* =================================== KIVUL ======================================================== */

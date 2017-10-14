@@ -1,0 +1,36 @@
+<?php $payResponse = $block->getPaymentDetails(); ?>
+
+<?php if ($payResponse ==! 0) :?> 
+
+    <div class="page-title">
+        <h1><?php echo $block->escapeHtml(__('COMPROBANTE DE  PAGO.')) ?></h1>
+    </div>
+
+    <h2 class="sub-title"><?php echo $block->escapeHtml(__('Operación Finalizada, Antencedentes del Pago')) ?></h2>
+
+    <table class="data-table">
+
+        <tbody>
+            <tr>
+                <td><b><?php echo $block->escapeHtml(__('Respuesta de la Transacción:')); ?></b></td>
+                <td><?php echo $payResponse['id_servipag'] ?> </td>
+            </tr>
+            <tr>
+                <td><b><?php echo $block->escapeHtml(__('Orden de Compra:')); ?></td>
+                <td><?php echo $payResponse['id_pedido'] ?></td>
+            </tr>
+            <tr>
+                <td><b><?php echo $block->escapeHtml(__('Estado de pago:')); ?></b></td>
+                <td><?php echo $payResponse['estado_pago'] ?></td>
+            </tr>
+            <tr>
+                <td><b><?php echo $block->escapeHtml(__('Fecha Transacción:')); ?></b></td>
+                <td><?php echo $payResponse['fecha'] ?></td>
+            </tr>
+            <tr>
+                <td><b><?php echo $block->escapeHtml(__('Monto Compra:')); ?></b></td>
+                <td><?php echo $payResponse['monto'] ?></td>
+            </tr>
+        </tbody>
+    </table>
+<?php endif;

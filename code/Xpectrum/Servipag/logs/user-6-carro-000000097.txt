@@ -1,0 +1,16 @@
+CodigoCanal = 500
+IdTxPago = 000000097
+FechaPago = 20170118
+MontoTotalDeuda = 1
+IdSubTx = 1
+NumeroBoletas = 1
+Identificador = 000000097
+Boleta = 20170118192350
+Monto = 1
+FechaVencimiento = 20170118
+NombreCliente = Prueba uno
+RutCliente = 
+EmailCliente = aortiz@formax.cl
+IdOrderState = 13
+Fecha = 2017-01-18 19:23:50
+XML = <?xml version='1.0' encoding='ISO-8859-1'?><Servipag><Header><FirmaEPS>IP8U6+VQ8ZXtgtNO+Dbk27HnjX/E8XpnYHuh0JweFZL6PO+zHM3oLghseRtpi/7nGj8ieXFWF6HJ8rc9P9OTfokyFo/pje0+Bpz1bu85/q8WmyLynEG0rcuCvlNihhl42wiNxruuzCUpiKbzancIq61jP+K+XleQ8sbAxfhs/EE=</FirmaEPS><CodigoCanalPago>500</CodigoCanalPago><IdTxPago>000000097</IdTxPago><EmailCliente>aortiz@formax.cl</EmailCliente><NombreCliente>Prueba uno</NombreCliente><RutCliente></RutCliente><FechaPago>20170118</FechaPago><MontoTotalDeuda>1</MontoTotalDeuda><NumeroBoletas>1</NumeroBoletas><Version>2</Version></Header><Documentos><IdSubTx>1</IdSubTx><Identificador>000000097</Identificador><Boleta>20170118192350</Boleta><Monto>1</Monto><FechaVencimiento>20170118</FechaVencimiento></Documentos></Servipag>

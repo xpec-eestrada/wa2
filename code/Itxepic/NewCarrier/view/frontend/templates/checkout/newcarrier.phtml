@@ -1,0 +1,12 @@
+<?php $dataHelper = $this->helper('Itxepic\NewCarrier\Helper\Data');?>
+<?php if($dataHelper->isActive() == 1):?>
+    <script type="text/javascript">
+        window.storeList = <?php echo $this->getPickupCollection()?>;
+        require([
+            'jquery',
+            'Itxepic_NewCarrier/js/newcarrier'
+        ],function($){
+
+        });
+    </script>
+<?php endif;?>

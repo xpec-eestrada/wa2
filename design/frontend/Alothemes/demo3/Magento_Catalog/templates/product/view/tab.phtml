@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product view template
+ *
+ * @see \Magento\Catalog\Block\Product\View\Description
+ */
+?>
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();   
+?>
+ 
+
+<div class="description-tab">
+	<h2>descripción del producto <i class="fa fa-plus" aria-hidden="true"></i></h2>
+	<div class="description-desc"> 
+		<?php echo $_product->getData('description'); ?> 
+	</div>
+</div>
+
+<?php /* <div class="description-tab second">
+	<h2>despacho y devoluciones <i class="fa fa-plus" aria-hidden="true"></i></h2>
+	<div class="description-desc">
+		<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('despacho-y-devoluciones')->toHtml() ?>   
+	</div>
+</div> */ ?>
+
+

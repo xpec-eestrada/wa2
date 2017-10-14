@@ -1,0 +1,50 @@
+<?php //echo $this->getThemecfg() ?>
+<?php
+	$cfg = $this->_themeCfg;
+	$html ='';
+	$font 	= $cfg['font'];
+	/* get Lib Font */
+	if($font['google']) $html  = '<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family='.$font['google'].'" media="all" />';
+	$html  .= "\n"; // break line;
+	/* CssGenerator */
+	$html  .= '<style type="text/css">';
+	$html  .= '*, body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{ font-size: '.$font['size'].'; font-family: '.$font['google'].';}';
+
+	$design = $this->_scopeConfig->getValue( 'alodesign', \Magento\Store\Model\ScopeInterface::SCOPE_STORE );
+	foreach ($design as $group => $options) 
+	{
+		foreach ($options as $property => $values) {
+			$values = @unserialize($values);
+			if(!$values) continue;
+			foreach ($values as $value) {
+				if(!$value) continue;
+				$html .= htmlspecialchars_decode($value['selector']) .'{';
+					$html .= $value['color'] 		? 'color:' .$value['color']. ';' 					: '';
+					$html .= $value['background'] 	? ' background-color:' .$value['background']. ';' 	: '';
+					$html .= $value['border'] 		? ' border-color:' .$value['border']. ';' 			: '';
+				$html .= '}';
+			}
+		}
+	}
+	$html  .= '</style>';
+	$html  .= "\n"; // break line;
+	$cfg['general']['baseUrl'] = $this->getBaseUrl();
+	$optRm = array('font', 'grid', 'related', 'upsell', 'crosssell', 'labels', 'timer', 'categorysearch');
+	foreach ($optRm as $opt) { unset($cfg[$opt]); }
+	$html .= '<script type="text/javascript"> Themecfg = '.json_encode($cfg).'</script>';  // json config theme
+	echo $html;
+?>
+<?php
+	$timer = $this->_themeCfg['timer'];
+	// if(!$timer['enabled']) return;
+	$layout = '<span class="day">%%D%%</span><span class class="colon">:</span><span class="hour">%%H%%</span><span class="colon">:</span><span class="min">%%M%%</span><span class="colon">:</span><span class="sec">%%S%%</span>';	
+	if($timer['caption']){
+		$layout = '<div class="timer-box"><span class="day">%%D%%</span><span class="title">' . __('Days') . '</span></div><div class="timer-box"><span class="hour">%%H%%</span><span class="title">' . __('Hrs')  . '</span></div><div class="timer-box"><span class="min">%%M%%</span><span  class="title">' . __('Mins') . '</span></div><div class="timer-box"><span class="sec">%%S%%</span><span  class="title">' . __('Secs') . '</span></div>';
+	}
+?>
+<script type="text/javascript">
+var alo_timer_layout 	= '<?php echo $layout ?>';
+var alo_timer_timeout 	= '<span class="timeout"><?php echo __('Time out!')?></span>';
+require(['alothemes']);
+</script>
+

@@ -1,0 +1,108 @@
+18:12:51 - datos request initTransaction 
+Array
+(
+    [wSTransactionType] => TR_NORMAL_WS
+    [commerceId] => 
+    [buyOrder] => 100000021
+    [sessionId] => 
+    [returnURL] => http://new-wa2.xpectrumtech.com/default/webpay/payment/response
+    [finalURL] => http://new-wa2.xpectrumtech.com/default/webpay/payment/success
+    [transactionDetails] => Array
+        (
+            [commerceCode] => 597032651860
+            [buyOrder] => 100000021
+            [amount] => 61372.58
+        )
+
+)
+
+19:39:57 - datos request initTransaction 
+Array
+(
+    [wSTransactionType] => TR_NORMAL_WS
+    [commerceId] => 
+    [buyOrder] => 100000022
+    [sessionId] => 
+    [returnURL] => http://new-wa2.xpectrumtech.com/default/webpay/payment/response
+    [finalURL] => http://new-wa2.xpectrumtech.com/default/webpay/payment/success
+    [transactionDetails] => Array
+        (
+            [commerceCode] => 597032651860
+            [buyOrder] => 100000022
+            [amount] => 19029.53
+        )
+
+)
+
+19:40:38 - datos request initTransaction 
+Array
+(
+    [wSTransactionType] => TR_NORMAL_WS
+    [commerceId] => 
+    [buyOrder] => 
+    [sessionId] => 
+    [returnURL] => http://new-wa2.xpectrumtech.com/default/webpay/payment/response
+    [finalURL] => 
+    [transactionDetails] => Array
+        (
+            [commerceCode] => 597032651860
+            [buyOrder] => 
+            [amount] => 
+        )
+
+)
+
+19:40:43 - datos request initTransaction 
+Array
+(
+    [wSTransactionType] => TR_NORMAL_WS
+    [commerceId] => 
+    [buyOrder] => 
+    [sessionId] => 
+    [returnURL] => http://new-wa2.xpectrumtech.com/default/webpay/payment/response
+    [finalURL] => 
+    [transactionDetails] => Array
+        (
+            [commerceCode] => 597032651860
+            [buyOrder] => 
+            [amount] => 
+        )
+
+)
+
+19:41:19 - datos request initTransaction 
+Array
+(
+    [wSTransactionType] => TR_NORMAL_WS
+    [commerceId] => 
+    [buyOrder] => 100000023
+    [sessionId] => 
+    [returnURL] => http://new-wa2.xpectrumtech.com/default/webpay/payment/response
+    [finalURL] => http://new-wa2.xpectrumtech.com/default/webpay/payment/success
+    [transactionDetails] => Array
+        (
+            [commerceCode] => 597032651860
+            [buyOrder] => 100000023
+            [amount] => 1428
+        )
+
+)
+
+19:46:35 - datos request initTransaction 
+Array
+(
+    [wSTransactionType] => TR_NORMAL_WS
+    [commerceId] => 
+    [buyOrder] => 100000024
+    [sessionId] => 
+    [returnURL] => http://new-wa2.xpectrumtech.com/default/webpay/payment/response
+    [finalURL] => http://new-wa2.xpectrumtech.com/default/webpay/payment/success
+    [transactionDetails] => Array
+        (
+            [commerceCode] => 597032651860
+            [buyOrder] => 100000024
+            [amount] => 1428
+        )
+
+)
+

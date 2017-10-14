@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<columns name="sales_order_columns">
+		<column name="sku">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="sortable" xsi:type="boolean">false</item>
+					<item name="label" xsi:type="string" translate="true">Sku</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="componentDisabled" xsi:type="boolean">true</item>
+					<item name="sortOrder" xsi:type="number">100</item>
+				</item>
+			</argument>
+		</column>
+		<column name="quantity">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="sortable" xsi:type="boolean">false</item>
+					<item name="label" xsi:type="string" translate="true">Quantity</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="componentDisabled" xsi:type="boolean">true</item>
+					<item name="sortOrder" xsi:type="number">110</item>
+				</item>
+			</argument>
+		</column>
+		<column name="product_id">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="sortable" xsi:type="boolean">false</item>
+					<item name="label" xsi:type="string" translate="true">Product ID</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="componentDisabled" xsi:type="boolean">true</item>
+					<item name="sortOrder" xsi:type="number">120</item>
+				</item>
+			</argument>
+		</column>
+		<column name="name">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="sortable" xsi:type="boolean">false</item>
+					<item name="label" xsi:type="string" translate="true">Product Name</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="componentDisabled" xsi:type="boolean">true</item>
+					<item name="sortOrder" xsi:type="number">130</item>
+				</item>
+			</argument>
+		</column>
+		<column name="dni">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="sortable" xsi:type="boolean">false</item>
+					<item name="label" xsi:type="string" translate="true">DNI</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="componentDisabled" xsi:type="boolean">true</item>
+					<item name="sortOrder" xsi:type="number">140</item>
+				</item>
+			</argument>
+		</column>
+		<column name="phone">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="sortable" xsi:type="boolean">false</item>
+					<item name="label" xsi:type="string" translate="true">Phone</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="componentDisabled" xsi:type="boolean">true</item>
+					<item name="sortOrder" xsi:type="number">150</item>
+				</item>
+			</argument>
+		</column>
+	</columns>
+</listing>

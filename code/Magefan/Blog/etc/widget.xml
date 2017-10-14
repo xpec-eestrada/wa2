@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Magiccart 
+ * @category    Magiccart 
+ * @copyright   Copyright (c) 2014 Magiccart (http://www.magiccart.net/) 
+ * @license     http://www.magiccart.net/license-agreement.html
+ * @Author: DOng NGuyen<nguyen@dvn.com>
+ * @@Create Date: 2016-02-23 18:59:34
+ * @@Modify Date: 2016-07-28 15:05:21
+ * @@Function:
+ */ -->
+ 
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Widget/etc/widget.xsd">
+	<widget id="magiccart_blog" class="Magefan\Blog\Block\Widget\Slide">
+		<label translate="true">Blog Slider Widget</label>
+		<description>Blog Slider Latest Posts</description>
+		<parameters>
+			<parameter name="title" xsi:type="text" visible="true" sort_order="0" >
+				<label translate="true">Title</label>
+				<value>Latest Posts Blog</value>
+			</parameter>
+			<parameter name="limit" required="true" xsi:type="text"  visible="true" sort_order="5">
+				<label translate="true">Limit Posts Display</label>
+				<value>12</value>
+			</parameter>
+			<parameter name="slide" xsi:type="select"  visible="true" sort_order="10" source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Slide</label>
+				<!-- <value>1</value> -->
+			</parameter>
+			<parameter name="vertical" xsi:type="select"  visible="true" sort_order="15" source_model="Magefan\Blog\Model\Widget\Config\Truefalse">
+				<label translate="true">Vertical</label>
+				<depends>
+					<parameter name="slide" value="1" />
+				</depends>
+				<!-- <value>false</value> -->
+			</parameter>
+			<parameter name="infinite" xsi:type="select"  visible="true" sort_order="20" source_model="Magefan\Blog\Model\Widget\Config\Truefalse">
+				<label translate="true">Infinite</label>
+				<depends>
+					<parameter name="slide" value="1" />
+				</depends>
+				<!-- <value>true</value> -->
+			</parameter>
+			<parameter name="autoplay" xsi:type="select"  visible="true" sort_order="25" source_model="Magefan\Blog\Model\Widget\Config\Truefalse">
+				<label translate="true">Auto Play</label>
+				<depends>
+					<parameter name="slide" value="1" />
+				</depends>
+				<!-- <value>true</value> -->
+			</parameter>
+			<parameter name="arrows" xsi:type="select"  visible="true" sort_order="30" source_model="Magefan\Blog\Model\Widget\Config\Truefalse">
+				<label translate="true">Arrows</label>
+				<depends>
+					<parameter name="slide" value="1" />
+				</depends>
+				<!-- <value>true</value> -->
+			</parameter>
+			<parameter name="dots" xsi:type="select"  visible="true" sort_order="35" source_model="Magefan\Blog\Model\Widget\Config\Truefalse">
+				<label translate="true">Dots</label>
+				<depends>
+					<parameter name="slide" value="1" />
+				</depends>
+				<!-- <value>false</value> -->
+			</parameter>
+			<parameter name="speed" required="true" xsi:type="text"  visible="true" sort_order="45">
+				<label translate="true">Speed</label>
+				<depends>
+					<parameter name="slide" value="1" />
+				</depends>
+				<value>300</value>
+			</parameter>
+			<parameter name="autoplay-Speed" required="true" xsi:type="text"  visible="true" sort_order="50">
+				<label translate="true">Autoplay Speed</label>
+				<depends>
+					<parameter name="slide" value="1" />
+				</depends>
+				<!-- <value>3000</value> -->
+			</parameter>
+			<parameter name="padding" required="true" xsi:type="text"  visible="true" sort_order="55">
+				<label translate="true">Padding</label>
+				<value>15</value>
+			</parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="60">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="slide.phtml" selected="true">
+                        <label translate="true">Default</label>
+                    </option>
+                </options>
+            </parameter>
+			<parameter name="rows" xsi:type="select"  visible="true" sort_order="65" source_model="Magiccart\Magicproduct\Model\System\Config\Row">
+				<label translate="true">Rows</label>
+				<depends>
+					<parameter name="slide" value="1" />
+				</depends>
+				<!-- <value>4</value> -->
+			</parameter>
+			<parameter name="mobile" xsi:type="select"  visible="true" sort_order="70" source_model="Magiccart\Magicproduct\Model\System\Config\Col">
+				<label translate="true"><![CDATA[max-width 360: ]]></label>
+				<!-- <value>4</value> -->
+			</parameter>
+			<parameter name="portrait" xsi:type="select"  visible="true" sort_order="75" source_model="Magiccart\Magicproduct\Model\System\Config\Col">
+				<label translate="true"><![CDATA[max-width 480: ]]></label>
+				<!-- <value>4</value> -->
+			</parameter>
+			<parameter name="landscape" xsi:type="select"  visible="true" sort_order="80" source_model="Magiccart\Magicproduct\Model\System\Config\Col">
+				<label translate="true"><![CDATA[max-width 640: ]]></label>
+				<!-- <value>4</value> -->
+			</parameter>
+			<parameter name="tablet" xsi:type="select"  visible="true" sort_order="85" source_model="Magiccart\Magicproduct\Model\System\Config\Col">
+				<label translate="true"><![CDATA[max-width 768: ]]></label>
+				<!-- <value>4</value> -->
+			</parameter>
+			<parameter name="notebook" xsi:type="select"  visible="true" sort_order="90" source_model="Magiccart\Magicproduct\Model\System\Config\Col">
+				<label translate="true"><![CDATA[max-width 991: ]]></label>
+				<!-- <value>4</value> -->
+			</parameter>
+			<parameter name="desktop" xsi:type="select"  visible="true" sort_order="95" source_model="Magiccart\Magicproduct\Model\System\Config\Col">
+				<label translate="true"><![CDATA[max-width 1199: ]]></label>
+				<!-- <value>4</value> -->
+			</parameter>
+			<parameter name="visible" xsi:type="select"  visible="true" sort_order="100" source_model="Magiccart\Magicproduct\Model\System\Config\Col">
+				<label translate="true"><![CDATA[min-width 1200: ]]></label>
+				<!-- <value>4</value> -->
+			</parameter>
+		</parameters>
+	</widget>
+</widgets>

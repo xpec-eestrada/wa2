@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Magiccart 
+ * @category    Magiccart 
+ * @copyright   Copyright (c) 2014 Magiccart (http://www.magiccart.net/) 
+ * @license     http://www.magiccart.net/license-agreement.html
+ * @Author: DOng NGuyen<nguyen@dvn.com>
+ * @@Create Date: 2016-02-23 18:59:34
+ * @@Modify Date: 2016-07-28 14:58:36
+ * @@Function:
+ */ -->
+ 
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Widget/etc/widget.xsd">
+	<widget id="magiccart_socialstream" class="Magiccart\Alothemes\Block\Widget\Socialstream">
+		<label translate="true">Social Stream Widgets</label>
+		<description>Social Stream</description>
+		<parameters>
+            <parameter name="socialnetwork" xsi:type="select"  visible="true" sort_order="5" source_model="Magiccart\Alothemes\Model\Widget\Config\Socialnetwork">
+                <label translate="true">Socialnetwork</label>
+                <!-- <value>instagram</value> -->
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="10">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="socialstream.phtml" selected="true">
+                        <label translate="true">Default</label>
+                    </option>
+                </options>
+            </parameter>
+		</parameters>
+	</widget>
+</widgets>
