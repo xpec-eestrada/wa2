@@ -29,6 +29,12 @@ class Edit extends \Magento\Customer\Block\Form\Edit{
     public function getNumeroContactoCustomer(){
         if(!isset($this->_numero_contacto) || $this->_numero_contacto==null){
             $customer   = $this->loadXpecCustomer();
+            echo '<pre>';
+            print_r($customer);
+            echo '</pre>';
+            echo '<pre>';
+            print_r($customer->getCustomAttribute('numero_contacto'));
+            echo '</pre>';
             $this->_numero_contacto = $customer->getCustomAttribute('numero_contacto')->getValue();
         }
         return $this->_numero_contacto;
