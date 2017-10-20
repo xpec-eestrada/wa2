@@ -22,7 +22,7 @@ class Edit extends \Magento\Customer\Block\Form\Edit{
     public function getRutCustomer(){
         if(!isset($this->_rut) || $this->_rut==null){
             $customer   = $this->loadXpecCustomer();
-            $this->_rut = $customer->getCustomAttribute('rut')->getValue();
+            $this->_rut = ($customer->getCustomAttribute('rut')!==null)?$customer->getCustomAttribute('rut')->getValue():'';
         }
         return $this->_rut;
     }
