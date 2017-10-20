@@ -30,7 +30,7 @@ class Edit extends \Magento\Customer\Block\Form\Edit{
         if(!isset($this->_numero_contacto) || $this->_numero_contacto==null){
             $customer   = $this->loadXpecCustomer();
             echo '<pre>';
-            print_r($customer);
+            print_r($customer->debug());
             echo '</pre>';
             echo '<pre>';
             print_r($customer->getCustomAttribute('numero_contacto'));
