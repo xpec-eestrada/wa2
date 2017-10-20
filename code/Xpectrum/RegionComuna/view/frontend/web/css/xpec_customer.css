@@ -1,0 +1,8 @@
+.field.country,
+.field.zip,
+.field.city,
+.field.additional,
+.field.company,
+.field.fax{
+    display: none !important;
+}

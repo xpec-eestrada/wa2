@@ -20,9 +20,21 @@ class OptionsBlank extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSo
     */
     public function getAllOptions(){
         /* your Attribute options list*/
-        $this->_options=[ 
-        ['label'=>'Seleccione Región', 'value'=>'']
-        ];
-        return $this->_options;
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of object manager
+        $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+        $connection = $resource->getConnection();
+        $tableName = $resource->getTableName('xpec_comunas');
+        $sql='SELECT id,nombre
+                    FROM 
+                        '.$tableName.' 
+                    ORDER BY
+                        nombre ASC';
+        $result = $connection->fetchAll($sql);
+        $data=array();
+        $data[]=array('label' => 'Seleccione','value' => '');
+        foreach($result as $item){
+            $data[]=array('label' => $item['nombre'],'value' => $item['id']);
+        }
+        return $data;
     }
 }
