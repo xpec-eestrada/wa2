@@ -4,27 +4,31 @@ require([
     $(document).ready(function () {
         $("#rut").blur(function(){
             var rut=$(this).val();
+            var objrut = $(this);
             if(rut.length){
                 if( window.Fn.validaRut(rut) ){
-                    $("#rut-error").remove();
-                    $("#rut").removeClass('mage-error');
+                    $(this).parent('.control').find("#rut-error").remove();
+                    $(this).removeClass('mage-error');
                 }else{
-                    $("#rut-error").remove();
-                    $("#rut").addClass('mage-error');
+                    $(this).parent('.control').find("#rut-error").remove();
+                    $(this).addClass('mage-error');
                     $(this).parent('.control').append('<div for="rut" generated="true" class="mage-error" id="rut-error">Rut Invalido.</div>');
                 }
             }
         });
-        $(".form-create-account").submit(function( event ) {
-            var rut=$("#rut").val();
-            if(!window.Fn.validaRut(rut)){
-                event.preventDefault();
-                $("#rut-error").remove();
-                $("#rut").parent('.control').append('<div for="rut" generated="true" class="mage-error" id="rut-error">Rut Invalido.</div>');
-                $("#rut").addClass('mage-error');
-                $("#rut").focus();
-                return false;
-            }        
+        $("form").submit(function( event ) {
+            if( $(this).find("#rut").length )  {
+                var objrut = $(this).find("#rut");
+                var rut    = $(this).find("#rut").val();
+                if(!window.Fn.validaRut(rut)){
+                    event.preventDefault();
+                    $(objrut).parent('.control').find("#rut-error").remove();
+                    $(objrut).addClass('mage-error');
+                    $(objrut).parent('.control').append('<div for="rut" generated="true" class="mage-error" id="rut-error">Rut Invalido.</div>');
+                    $(objrut).focus();
+                    return false;
+                }
+            }
         });
     });
     

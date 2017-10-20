@@ -1,0 +1,10 @@
+div[name='shippingAddress.postcode'],
+div[name='shippingAddress.city'],
+div[name='shippingAddress.country_id'],
+div[name='shippingAddress.company'],
+div[name='shippingAddress.street.1']{
+    display:none;
+}
+.checkout-index-index select{
+    padding: 4px;
+}

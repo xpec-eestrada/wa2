@@ -13,19 +13,21 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 /**
  * @codeCoverageIgnore
  */
-class InstallData implements InstallDataInterface
-{
+class InstallData implements InstallDataInterface{
 
-    /**
-     * {@inheritdoc}
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     */
+    private $customerSetupFactory;
+    public function __construct(
+        \Magento\Customer\Setup\CustomerSetupFactory $customerSetupFactory
+        )
+    {
+        $this->customerSetupFactory = $customerSetupFactory;
+    }
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context){
         /**
         * Install messages
         */
+        $setup->startSetup();
+
         $data = [
             [
                 'region_id'     => '2000',
@@ -552,11 +554,45 @@ class InstallData implements InstallDataInterface
             ['nombre' => 'Isla de Maipo','idregion' => 2006 ],
             ['nombre' => 'Padre Hurtado','idregion' => 2006 ],
             ['nombre' => 'Peñaflor','idregion' => 2006 ]
-
         ];
         foreach ($data as $bind) {
             $setup->getConnection()
             ->insertForce($setup->getTable('xpec_comunas'), $bind);
         }
+
+        /* Attributo Drop Down List Comunas */
+        $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
+        $code_attribute='xpec_comuna';
+        $customerSetup->addAttribute('customer_address', $code_attribute,  array(
+            "type"     => "int",
+            "label"    => "Comunas",
+            "input"    => "select",
+            "visible"  => true,
+            "required" => false,
+            "system"   => 0,
+            'user_defined' => true,
+            'sort_order' => 152,
+            "position" => 152,
+            'backend' => 'Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend',
+            'source' => 'Xpectrum\RegionComuna\Model\Config\Source\OptionsBlank',
+            'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE
+
+        ));
+        $dropdownlist = $customerSetup->getEavConfig()->getAttribute('customer_address', $code_attribute);
+        $used_in_forms=array();
+        $used_in_forms[]="adminhtml_customer_address";
+        $used_in_forms[]="customer_address_edit";
+        $used_in_forms[]="customer_register_address";
+        $used_in_forms[]="customer_address";
+
+        $dropdownlist->setData("used_in_forms", $used_in_forms)
+            ->setData("is_used_for_customer_segment", true)
+            ->setData("is_system", 0)
+            ->setData("is_user_defined", 1)
+            ->setData("is_visible", 1)
+            ->setData("sort_order", 152);
+        $dropdownlist->save();
+        $setup->endSetup();
+        /* Attributo Drop Down List Comunas */
     }
 }
