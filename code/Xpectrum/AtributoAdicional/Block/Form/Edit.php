@@ -35,7 +35,7 @@ class Edit extends \Magento\Customer\Block\Form\Edit{
             echo '<pre>';
             print_r($customer->getCustomAttribute('numero_contacto'));
             echo '</pre>';
-            $this->_numero_contacto = $customer->getCustomAttribute('numero_contacto')->getValue();
+            //$this->_numero_contacto = $customer->getCustomAttribute('numero_contacto')->getValue();
         }
         return $this->_numero_contacto;
     }
