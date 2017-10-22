@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+	<event name="customer_address_save_after"> 
+        <observer name="customer_address" instance="Xpectrum\RegionComuna\Observer\AddressUpdateObserver" /> 
+    </event>
+    <!-- <event name="customer_save_after"> 
+        <observer name="customer_save" instance="Insync\ExtendedApi\Observer\CustomerSaveAfterObserver" /> 
+    </event> -->
+</config>

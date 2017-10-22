@@ -5,7 +5,7 @@ use Magento\Framework\DB\Ddl\Table;
 /**
 * Custom Attribute Renderer
 */
-class OptionsBlank extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource{
+class OptionsComunas extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource{
     /**
     * @var OptionFactory
     */

@@ -9,6 +9,11 @@ namespace Xpectrum\RegionComuna\Setup;
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Magento\Customer\Model\AttributeFactory;
+use Magento\Store\Model\WebsiteFactory;
+use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
+use Magento\Eav\Model\Config;
+
 
 /**
  * @codeCoverageIgnore
@@ -16,10 +21,22 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 class InstallData implements InstallDataInterface{
 
     private $customerSetupFactory;
+    private $_attrFactory;
+    private $websiteFactory;
+    protected $_eavConfig;
+    private $_attrSetFactory;
     public function __construct(
-        \Magento\Customer\Setup\CustomerSetupFactory $customerSetupFactory
+        \Magento\Customer\Setup\CustomerSetupFactory $customerSetupFactory,
+        AttributeFactory $attrFactory,
+        WebsiteFactory $websiteFactory,
+        Config $eavConfig,
+        AttributeSetFactory $attrSetFactory
         )
     {
+        $this->_attrFactory = $attrFactory;
+        $this->_attrSetFactory = $attrSetFactory;
+        $this->websiteFactory = $websiteFactory;
+        $this->_eavConfig = $eavConfig;
         $this->customerSetupFactory = $customerSetupFactory;
     }
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context){
@@ -559,10 +576,20 @@ class InstallData implements InstallDataInterface{
             $setup->getConnection()
             ->insertForce($setup->getTable('xpec_comunas'), $bind);
         }
+        
 
         /* Attributo Drop Down List Comunas */
-        $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
-        $code_attribute='xpec_comuna';
+        $code_attribute     = 'xpec_comuna';
+        $attrSet            = $this->_attrSetFactory->create();
+        $entity_type        = $this->_eavConfig->getEntityType('customer_address');
+        $entity_type_id     = $entity_type->getId();
+        $attribute_set_id   = $entity_type->getDefaultAttributeSetId();
+        $attribute_group_id = $attrSet->getDefaultGroupId($attribute_set_id);
+        $customerSetup      = $this->customerSetupFactory->create(['setup' => $setup]);
+        $order              = 101;
+        
+        
+
         $customerSetup->addAttribute('customer_address', $code_attribute,  array(
             "type"     => "int",
             "label"    => "Comunas",
@@ -571,28 +598,36 @@ class InstallData implements InstallDataInterface{
             "required" => false,
             "system"   => 0,
             'user_defined' => true,
-            'sort_order' => 152,
-            "position" => 152,
+            'sort_order' => $order,
+            "position" => $order,
             'backend' => 'Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend',
-            'source' => 'Xpectrum\RegionComuna\Model\Config\Source\OptionsBlank',
+            'source' => 'Xpectrum\RegionComuna\Model\Config\Source\OptionsComunas',
             'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE
 
         ));
-        $dropdownlist = $customerSetup->getEavConfig()->getAttribute('customer_address', $code_attribute);
-        $used_in_forms=array();
-        $used_in_forms[]="adminhtml_customer_address";
-        $used_in_forms[]="customer_address_edit";
-        $used_in_forms[]="customer_register_address";
-        $used_in_forms[]="customer_address";
+
+        $customerSetup->addAttributeToGroup(
+            $entity_type_id,
+            $attribute_set_id,
+            $attribute_group_id,
+            $code_attribute,
+            '33'
+        );
+
+        $dropdownlist       = $customerSetup->getEavConfig()->getAttribute('customer_address', $code_attribute);$used_in_forms      = array();
+        $used_in_forms[]    = "adminhtml_customer_address";
+        $used_in_forms[]    = "customer_address_edit";
+        $used_in_forms[]    = "customer_register_address";
 
         $dropdownlist->setData("used_in_forms", $used_in_forms)
             ->setData("is_used_for_customer_segment", true)
             ->setData("is_system", 0)
             ->setData("is_user_defined", 1)
             ->setData("is_visible", 1)
-            ->setData("sort_order", 152);
+            ->setData("sort_order", $order);
         $dropdownlist->save();
         $setup->endSetup();
         /* Attributo Drop Down List Comunas */
+
     }
 }

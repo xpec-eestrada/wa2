@@ -77,11 +77,27 @@
                 <input type="text" id="region" name="region" value="<?php echo $block->escapeHtml($block->getRegion()) ?>"  title="<?php /* @escapeNotVerified */ echo __('State/Province') ?>" class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('region') ?>"<?php echo(!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : '';?>/>
             </div>
         </div>
-        <div class="field comuna required">
+        <div class="field xpec_comuna required">
             <label class="label" for="xpec_comuna"><span>Comuna</span></label>
             <div class="control">
+            <?php   ?>
                 <select id="xpec_comuna" name="xpec_comuna" title="Comuna" class="" aria-required="true" defaultvalue="0" style="display: inline-block;">
                     <option value="">Seleccione Región.</option>
+                    <?php 
+                        $options=$block->getComunasByRegion();
+                        $comuna_id=$block->getComunaId();;
+                        foreach($options as $option){
+                            if(isset($comuna_id) && !empty($comuna_id)){
+                                if($option['value']==$comuna_id){
+                                    echo '<option selected=\'selected\' value=\''.$option['value'].'\'>'.$option['label'].'</option>';
+                                }else{
+                                    echo '<option value=\''.$option['value'].'\'>'.$option['label'].'</option>';
+                                }
+                            }else{
+                                echo '<option value=\''.$option['value'].'\'>'.$option['label'].'</option>';
+                            }
+                        }
+                    ?>
                 </select>
             </div>
         </div>

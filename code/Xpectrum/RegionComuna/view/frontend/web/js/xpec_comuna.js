@@ -9,7 +9,7 @@ require([
         $('body').mouseover(function(){
             if(!sw){
                 if($("select[name='region_id']").length){
-                    $("select[name='region_id']").val('');
+                    //$("select[name='region_id']").val('');
                     $(document).off("change","select[name='region_id']");
                     $("select[name='region_id']").change(function(){
                         $("input[name='postcode']").val('0');
