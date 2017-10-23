@@ -1,0 +1,7 @@
+div[data-index='country_id'],
+div[data-index='city'],
+div[data-index='postcode'],
+div[data-index='company'],
+div[data-index='street_1']{
+    display: none;
+}

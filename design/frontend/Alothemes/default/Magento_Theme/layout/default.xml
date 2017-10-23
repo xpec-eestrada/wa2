@@ -69,7 +69,7 @@
 		
 		<container name="page.wrapper" as="page_wrapper" htmlTag="div" htmlClass="page-wrapper">
             <container name="global.notices" as="global_notices" before="-"/>
-            <container name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="page-main-pal main-container">
+            <container name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="page-main-pal page-main main-container">
                 <container name="main.container" htmlTag="div" htmlClass="container">
                     <container name="columns.top" label="Before Main Columns"/>
                     <container name="columns" htmlTag="div" htmlClass="alocolumns">

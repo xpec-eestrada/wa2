@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <link src="Magento_Customer::js/bootstrap/customer-post-action.js"/>
-        
+        <link src="Xpectrum_RegionComuna::js/xpec_comunas.js"/>
+        <css  src="Xpectrum_RegionComuna::css/custom_address.css"/>
     </head>
 </page>
