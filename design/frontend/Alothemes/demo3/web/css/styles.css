@@ -3125,7 +3125,10 @@ transition: all 0.5s ease-in-out;
 .weltpixel-quickview-catalog-product-view.page-layout-1column .action.towishlist:hover i:before{ 
 	    content: "\f004";
 }
-
+.checkout-index-index .minicart-wrapper .action.showcart:before{
+    content:'Resumen del Pedido';
+    font-size: 19px;
+}
 @media screen and (max-width: 767px){
 	.alocolumns .fotorama__wrap--css3 .fotorama__stage:after{
 		content:"" !important;
