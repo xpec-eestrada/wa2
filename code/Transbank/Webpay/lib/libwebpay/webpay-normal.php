@@ -76,6 +76,7 @@ class WebPayNormal
 {
     var $config;
     var $soapClient;
+    private $looger;
     private static $WSDL_URL_NORMAL = array(
             "INTEGRACION"   => "https://webpay3gint.transbank.cl/WSWebpayTransaction/cxf/WSWebpayService?wsdl",
             "CERTIFICACION" => "https://tbk.orangepeople.cl/WSWebpayTransaction/cxf/WSWebpayService?wsdl",
@@ -98,6 +99,9 @@ class WebPayNormal
     
     function __construct($config)
     {       
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/webpay_log_class.log');
+        $this->logger = new \Zend\Log\Logger();
+        $this->logger->addWriter($writer);
 
 		$this->config = $config;
 		$privateKey = $this->config->getParam("PRIVATE_KEY");
@@ -144,6 +148,7 @@ class WebPayNormal
 
     public function initTransaction($amount, $sessionId="", $ordenCompra="0", $urlFinal){
         try{
+
             $tipotrans=$this->config->getParam("TIPO_TRANS");
             $error = array();
             $arraydefi=array();
@@ -172,8 +177,10 @@ class WebPayNormal
             $wsTransactionDetail->amount = $amount;
             $arraydetalle['amount']=$amount;
             $arraydefi['transactionDetails']=$arraydetalle;
-            $this->log(date('H:i:s') . ' - datos request initTransaction ');
-            $this->logArray($arraydefi);
+
+            $this->logger->info(date('H:i:s') . ' - datos request initTransaction ');
+
+            $this->logger->info(date('H:i:s').print_r($arraydefi, true));
 
             
             /*Se agrega al arreglo de tiendas*/
@@ -184,8 +191,8 @@ class WebPayNormal
                 array("wsInitTransactionInput" => $wsInitTransactionInput)
             );
             $xmlResponse = $this->soapClient->__getLastResponse();
-            $this->log(date('H:i:s') . ' - initTransaction request  - ' . $this->soapClient->__getLastResponse());
-            $this->log(date('H:i:s') . ' - initTransaction response - ' . $xmlResponse);
+            $this->logger->info(date('H:i:s') . ' - initTransaction request  - ' . $this->soapClient->__getLastResponse());
+            $this->logger->info(date('H:i:s') . ' - initTransaction response - ' . $xmlResponse);
 
             $soapValidation = new SoapValidation($xmlResponse, $this->config->getParam("WEBPAY_CERT"));
             $validationResult = $soapValidation->getValidationResult();
@@ -203,12 +210,12 @@ class WebPayNormal
             }else{           
                 $error["error"] = "Error validando conexión a Webpay";
                 $error["detail"] = "No se puede validar la respuesta usando certificado " . WebPaySOAP::getConfig("WEBPAY_CERT");
-                $this->logerror(date('H:i:s') . ' - Error - '.$error["detail"]);
+                $this->logger->info(date('H:i:s') . ' - Error - '.$error["detail"]);
             }
         }catch(Exception $err){
             $error["error"] = "Error conectando a Webpay";
             $error["detail"] = $err->getMessage();
-            $this->logerror(date('H:i:s') . ' - Error - '.$err->getMessage());
+            $this->logger->info(date('H:i:s') . ' - Error - '.$err->getMessage());
         }
         return $error;
     }
@@ -221,8 +228,8 @@ class WebPayNormal
 		
 		$xmlResponse = $this->soapClient->__getLastResponse();
         
-        $this->log(date('H:i:s') . ' - transactionResult request  - ' . $this->soapClient->__getLastRequest());
-        $this->log(date('H:i:s') . ' - transactionResult response - ' . $xmlResponse);
+        $this->logger->info(date('H:i:s') . ' - initTransaction request  - ' . $this->soapClient->__getLastResponse());
+        $this->logger->info(date('H:i:s') . ' - transactionResult response - ' . $xmlResponse);
 
 		$soapValidation = new SoapValidation($xmlResponse, $this->config->getParam("WEBPAY_CERT"));
 		$validationResult = $soapValidation->getValidationResult();
@@ -273,35 +280,13 @@ class WebPayNormal
 		$acknowledgeTransaction->tokenInput = $token;
 		$acknowledgeTransactionResponse = $this->_acknowledgeTransaction($acknowledgeTransaction);
 
-		$xmlResponse = $this->soapClient->__getLastResponse();
+        $xmlResponse = $this->soapClient->__getLastResponse();
         
-        $this->log(date('H:i:s') . ' - acknowledgeTransaction request  - ' . $this->soapClient->__getLastRequest());
-        $this->log(date('H:i:s') . ' - acknowledgeTransaction response - ' . $xmlResponse);
-
+        $this->logger->info(date('H:i:s') . ' - acknowledgeTransaction request  - ' . $this->soapClient->__getLastRequest());
+        $this->logger->info(date('H:i:s') . ' - acknowledgeTransaction response - ' . $xmlResponse);
+        
 		$soapValidation = new SoapValidation($xmlResponse, $this->config->getParam("WEBPAY_CERT"));
 		$validationResult = $soapValidation->getValidationResult();
         return $validationResult === TRUE;
 	}
-    
-    public function log($msg, $mode = 'a')
-    {
-        $pathFile = __DIR__ . '/../../logs/webpay-' . date('Y-m-d') . '.txt';
-        $handle = fopen($pathFile, $mode);
-        fwrite($handle, $msg . "\n");
-        fclose($handle);
-    }
-    public function logerror($msg, $mode = 'a')
-    {
-        $pathFile = __DIR__ . '/../../logs/error-' . date('Y-m-d') . '.txt';
-        $handle = fopen($pathFile, $mode);
-        fwrite($handle, $msg . "\n");
-        fclose($handle);
-    }
-    public function logArray($array, $mode = 'a'){
-        $pathFile = __DIR__ . '/../../logs/webpay-' . date('Y-m-d') . '.txt';
-        $handle = fopen($pathFile, $mode);
-        fwrite($handle, print_r($array, true));
-        fwrite($handle, "\n");
-        fclose($handle);
-    }
 }

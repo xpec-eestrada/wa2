@@ -1,0 +1,20 @@
+<?php
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+<div class="checkout-success div-erick">
+    <?php echo $block->getAdditionalInfoHtml() ?>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action secundary continue" href="<?php /* @escapeNotVerified */ echo $block->getUrl() ?>"><span><?php /* @escapeNotVerified */ echo __('Continue Shopping') ?></span></a>
+        </div>
+    </div>
+</div>
+<script>
+   require([
+        'Magento_Customer/js/customer-data'
+    ], function (customerData) {
+        var sections = ['cart'];
+        customerData.invalidate(sections);
+        customerData.reload(sections, true);
+    });
+ </script>

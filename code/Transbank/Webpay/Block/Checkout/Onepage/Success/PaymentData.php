@@ -22,15 +22,17 @@ class PaymentData extends \Magento\Framework\View\Element\Template
     protected function _toHtml()
     {
         $result = $this->checkoutSession->getHasPaidResult();
-        $this->_paidResult=$result;
-        if (isset($result)) {
-            
-            $this->checkoutSession->unsHasPaidResult();
-            
-        } else {
-            
+        $this->_paidResult = $result;
+        
+        if (!isset($result)) {
             $result = 0;
         }
+        
+        /*if (isset($result)) {
+            $this->checkoutSession->unsHasPaidResult();
+        } else {            
+            $result = 0;
+        }*/
         
         $this->addData(
             [

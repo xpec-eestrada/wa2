@@ -3,8 +3,10 @@
     $date_accepted = new \DateTime($payResponse['date_accepted']);
     //$items=json_decode( $payResponse['itemsOrder']->getContent() );
 ?>
+
 <?php if ($payResponse ==! 0) :?> 
     <?php $obj = $payResponse['detalleOrder']; ?>
+    
     <div class="page-title">
         <h1><?php echo $block->escapeHtml(__('Detalles del Pago.')) ?></h1>
     </div>

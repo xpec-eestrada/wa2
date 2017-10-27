@@ -1,6 +1,0 @@
-18:12:52 - Error - null
-19:39:58 - Error - The signature or decryption was invalid
-19:40:39 - Error - Zero length BigInteger
-19:40:44 - Error - Zero length BigInteger
-19:41:20 - Error - Zero length BigInteger
-19:46:35 - Error - Warning: openssl_sign(): supplied key param cannot be coerced into a private key in /home/new-wa2/public_html/app/code/Transbank/Webpay/lib/libwebpay/soap/xmlseclibs.php on line 503

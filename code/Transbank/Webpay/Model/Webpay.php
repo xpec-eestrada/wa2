@@ -45,6 +45,8 @@ class Webpay extends \Magento\Payment\Model\Method\AbstractMethod
 
     private $_detallepagoFactory;
 
+    private $loggerxpec;
+
     public function __construct(
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
@@ -72,6 +74,10 @@ class Webpay extends \Magento\Payment\Model\Method\AbstractMethod
             $resourceCollection,
             $data
         );
+
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/xpec_webpay_order.log');
+        $this->loggerxpec = new \Zend\Log\Logger();
+        $this->loggerxpec->addWriter($writer);
         
         $this->checkoutSession = $checkoutSession;
         $this->_storeManager = $storeManager;        
@@ -161,6 +167,7 @@ class Webpay extends \Magento\Payment\Model\Method\AbstractMethod
      */
     public function getPaidResult($result)
     {
+        $this->loggerxpec->info('antes print');
 
         $paymentTypeCode = $result->detailOutput->paymentTypeCode;
         $paymenCodeResult = $this->config['VENTA_DESC'][$paymentTypeCode];
@@ -175,42 +182,36 @@ class Webpay extends \Magento\Payment\Model\Method\AbstractMethod
                 $tipoPagotildada='Débito';
                 $tipoCuotas='Venta D&eacute;bito';
                 $numeroCuotas='0';
-                $attribadd='CASH';
             break;
             case 'VN':
                 $tipoPago='Cr&eacute;dito';
                 $tipoPagotildada='Crédito';
                 $tipoCuotas='Sin Cuotas';
                 $numeroCuotas='0';
-                $attribadd='TARJETA CR';
             break;
             case 'VC':
                 $tipoPago='Cr&eacute;dito';
                 $tipoPagotildada='Crédito';
                 $tipoCuotas='Cuotas Normales';
                 $numeroCuotas='4-48';
-                $attribadd='TARJETA CR';
             break;
-            case 'S1':
+            case 'SI':
                 $tipoPago='Cr&eacute;dito';
                 $tipoPagotildada='Crédito';
                 $tipoCuotas='Sin Inter&eacute;s';
                 $numeroCuotas='3';
-                $attribadd='TARJETA CR';
             break;
             case 'S2':
                 $tipoPago='Cr&eacute;dito';
                 $tipoPagotildada='Crédito';
                 $tipoCuotas='Sin Inter&eacute;s';
                 $numeroCuotas='2';
-                $attribadd='TARJETA CR';
             break;
             case 'NC':
                 $tipoPago='Cr&eacute;dito';
                 $tipoPagotildada='Crédito';
                 $tipoCuotas='Sin Inter&eacute;s';
                 $numeroCuotas='2-10';
-                $attribadd='TARJETA CR';
             break;
         }
 
@@ -225,16 +226,15 @@ class Webpay extends \Magento\Payment\Model\Method\AbstractMethod
             $emailSender = $objectManager->create('\Magento\Sales\Model\Order\Email\Sender\OrderSender');
             $emailSender->send($order);
         } catch (\Exception $e) {
-            $this->_logger->critical($e);
+            $this->loggerxpec->info($e->getMessage());
+            //$this->_logger->critical($e);
         }
 
-        $payment = $order->getPayment();
-        $payment->setAdditionalInformation('payment', $attribadd);
-        $payment->save();
-        $detorden=$this->obtenerDetalleOrden($order->getId());
+        // $payment = $order->getPayment();
+        // $payment->setAdditionalInformation('payment', 'TARJETA CR');
+        // $payment->save();
+        //$detorden=$this->obtenerDetalleOrden($order->getId());
         
-
-        //$items=$this->obtenerItemsOrden($order->getId());
 
         $payResult = array(
             'description' => $this->title,
@@ -252,13 +252,8 @@ class Webpay extends \Magento\Payment\Model\Method\AbstractMethod
                 'numcuotas' => $numeroCuotas
             ),
             'detalleOrder' => $order,
-            //'itemsOrder' => $items,
             'objpay'=>$order
         );
-        //$this->logArray(array('Orden'=>$order ));
-        //$this->logArray(array('Orden2'=>$$detorden ));
-        $det1   = json_decode($detorden->getContent(), true);
-        //$det2   = json_decode($items->getContent(), true);
         $xpecDetallePago = array(
             'description' => $this->title,
             'paymenCodeResult' => $transactionResponse,
@@ -274,11 +269,11 @@ class Webpay extends \Magento\Payment\Model\Method\AbstractMethod
                 'tipocuotas' => $tipoCuotas,
                 'numcuotas' => $numeroCuotas
             ),
-            'detalleOrder' => $det1
+            'orderID' => $order->getId()
         );
-        //$det = $objectManager->create('\Xpectrum\Detallepago\Model\Detallepago');
-        $json = json_encode( $xpecDetallePago );
-        //$det->grabarDetalle($result->buyOrder,$json);
+        // $det = $objectManager->create('\Xpectrum\Detallepago\Model\Detallepago');
+        // $json = json_encode( $xpecDetallePago );
+        // $det->grabarDetalle($result->buyOrder,$json);
         $arraylog=array(
             'description' => $this->title,
             'paymenCodeResult' => $transactionResponse,
@@ -308,7 +303,7 @@ class Webpay extends \Magento\Payment\Model\Method\AbstractMethod
             WHERE
                 parent_id='.$order->getId();
         $connection->query($sql);
-        //$this->logArray(array('Orden'=>$arraylog ));
+        $this->loggerxpec->info(print_r(array('Orden'=>$arraylog ), true));
         return $payResult;
     }
     private function obtenerDetalleOrden($idorden){
@@ -337,7 +332,7 @@ class Webpay extends \Magento\Payment\Model\Method\AbstractMethod
             $response = $client->send($request);
             return $response;
         }catch(Exception $err){
-            $this->logArray(array('error'=>$err->getMessage(),'idOrden'=>$idorder));
+            $this->loggerxpec->info(print_r(array('error'=>$err->getMessage(),'idOrden'=>$idorder), true));
             throw new Exception($err->getMessage());
         }
     }
@@ -367,15 +362,8 @@ class Webpay extends \Magento\Payment\Model\Method\AbstractMethod
             $response = $client->send($request);
             return $response;
         }catch(Exception $err){
-            $this->logArray(array('error'=>$err->getMessage(),'idOrden'=>$idorder));
+            $this->loggerxpec->info(print_r(array('error'=>$err->getMessage(),'idOrden'=>$idorder), true));
             throw new Exception($err->getMessage());
         }
-    }
-    public function logArray($array, $mode = 'a'){
-        $pathFile = __DIR__ . '/../logs/order-' . date('Y-m-d') . '.txt';
-        $handle = fopen($pathFile, $mode);
-        fwrite($handle, print_r($array, true));
-        fwrite($handle, "\n");
-        fclose($handle);
     }
 }

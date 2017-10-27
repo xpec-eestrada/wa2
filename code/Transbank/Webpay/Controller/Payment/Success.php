@@ -18,7 +18,7 @@ class Success extends \Magento\Framework\App\Action\Action
     /**
      * @var \Transbank\Webpay\Model\Webpay
      */
-    protected $webpay;
+    protected $webpay;    
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,        
@@ -26,7 +26,7 @@ class Success extends \Magento\Framework\App\Action\Action
         \Magento\Sales\Model\Order $salesOrder,
         \Transbank\Webpay\Model\Webpay $webpay
     ){
-        parent::__construct($context);
+        parent::__construct($context);        
         
         $this->checkoutSession = $checkoutSession;
         $this->salesOrder = $salesOrder;
@@ -36,19 +36,21 @@ class Success extends \Magento\Framework\App\Action\Action
     public function execute()
     {        
         $paidFlag = $this->checkoutSession->getPaidFlag();
-        $order = $this->salesOrder->loadByIncrementId($this->checkoutSession->getLastRealOrderId());
+        $result = $this->checkoutSession->getHasPaidResult();
+        $incrementId = trim($this->checkoutSession->getLastRealOrderId());
+        $order = $this->salesOrder->loadByIncrementId($incrementId);
         
-        if (!isset($paidFlag) || $paidFlag == '') {
+        if (!isset($paidFlag) || $paidFlag == '' || !isset($result['buyOrder']) || 
+                (isset($result['buyOrder']) && trim($result['buyOrder']) != $incrementId)) {
 
             $order->cancel()->setState(\Magento\Sales\Model\Order::STATE_CANCELED, true, 'Canceled')->save();
             
             $this->_redirect('checkout/onepage/failure/', array('_secure' => false));
         } else {
             
-            $order->setState('processing')->setStatus('processing'); 
-            $order->save();
-
-//            $this->checkoutSession->unsPaidFlag();
+            //$order->setState('processing')->setStatus('processing'); 
+            //$order->save();
+            //$this->checkoutSession->unsPaidFlag();
             $this->_redirect('checkout/onepage/success/', array('_secure' => false));
         }        
     }

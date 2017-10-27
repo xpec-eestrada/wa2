@@ -371,7 +371,7 @@ p.required{font-size:11px;text-align:right;color:#EB340A}
 .products.wrapper ~ .toolbar .pages{position: relative;}
 .products.wrapper ~ .toolbar .pages:after {background-color: #ededed;content: "";height: 1px;left: 0;position: absolute;top: calc(50%);width: 100%;z-index: 1;}
 /* Data Table */
-.data-table{width:100%;border:1px solid #eeeeee;}
+.data-table{width:60%;border:1px solid #eeeeee;}
 .data-table .odd{background:#ffffff}
 .data-table .even{background:#ffffff}
 /*.data-table tr.odd:hover,.data-table tr.even:hover{background:#ebf1f6}
