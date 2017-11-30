@@ -3144,6 +3144,9 @@ transition: all 0.5s ease-in-out;
 .catalog-product-view .product.media.product-img-box{
     margin-top: -23px;
 }
+.block.box-up-sell.upsell .slick-slide img{
+    height: 326px;
+}
 @media screen and (max-width: 767px){
 	.alocolumns .fotorama__wrap--css3 .fotorama__stage:after{
 		content:"" !important;
