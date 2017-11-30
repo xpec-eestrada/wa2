@@ -3132,7 +3132,18 @@ transition: all 0.5s ease-in-out;
 .opc-block-shipping-information .shipping-information-title .action-edit::before {
     font-size: 0px;
 }
-
+/* .catalog-product-view .fotorama__stage__frame .fotorama__img{
+    top: 47%;
+} */
+.catalog-product-view .fotorama__nav-wrap--vertical.fotorama__nav-wrap{
+    top: 23px;
+}
+.catalog-product-view .fotorama__stage__frame .fotorama__img{
+    height: 745px;
+}
+.catalog-product-view .product.media.product-img-box{
+    margin-top: -23px;
+}
 @media screen and (max-width: 767px){
 	.alocolumns .fotorama__wrap--css3 .fotorama__stage:after{
 		content:"" !important;
