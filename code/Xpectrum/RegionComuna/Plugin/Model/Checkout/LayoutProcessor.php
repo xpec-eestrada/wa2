@@ -36,6 +36,31 @@ class LayoutProcessor
             'options' => $data
         ];
 
+        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
+        ['shippingAddress']['children']['shipping-address-fieldset']['children']['xpec_prefijo_telefono'] = [
+            'component' => 'Magento_Ui/js/form/element/abstract',
+            'config' => [
+                'customScope' => 'shippingAddress',
+                'template' => 'ui/form/field',
+                'elementTmpl' => 'ui/form/element/input',
+                'id' => 'xpec_prefijo_telefono',
+            ],
+            'dataScope' => 'shippingAddress.xpec_prefijo_telefono',
+            'label' => 'Indicativo',
+            'provider' => 'checkoutProvider',
+            'visible' => true,
+            'validation' => [
+                'required-entry' => true,
+            ],
+            'sortOrder' => 102,
+            'value' => '+56',
+            'readOnly' => true,
+            'id' => 'xpec_prefijo_telefono'
+        ];
+        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
+        ['shippingAddress']['children']['shipping-address-fieldset']['children']['xpec_prefijo_telefono']['value'] = '+56';
+        
+
         return $jsLayout;
     }
 }

@@ -3147,6 +3147,58 @@ transition: all 0.5s ease-in-out;
 .block.box-up-sell.upsell .slick-slide img{
     height: 326px;
 }
+.field.telephone .xpec-prefix-telefono{
+    width: 12%;
+    padding: 0 8px;
+    height: 40px;
+    font-size: 13px;
+}
+.field.telephone .xpec-telefono{
+    width: 80%;
+    padding: 0 8px;
+    height: 40px;
+    font-size: 13px;
+}
+div[name="shippingAddress.xpec_prefijo_telefono"]{
+    float: none;
+    width: 19%;
+    display: inline-block;
+    vertical-align: top;
+}
+div[name="shippingAddress.telephone"]{
+    width: 79%;
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+}
+@media screen and (min-width: 992px){
+    .field.telephone .xpec-telefono{
+        width: 88%;
+        padding: 0 8px;
+        height: 40px;
+        font-size: 13px;
+    }
+    div[name="shippingAddress.xpec_prefijo_telefono"]{
+        float: none;
+        width: 12%;
+        display: inline-block;
+        vertical-align: top;
+    }
+}
+@media screen and (min-width: 1200px){
+    .field.telephone .xpec-telefono{
+        width: 90%;
+        padding: 0 8px;
+        height: 40px;
+        font-size: 13px;
+    }
+    div[name="shippingAddress.xpec_prefijo_telefono"]{
+        float: none;
+        width: 10%;
+        display: inline-block;
+        vertical-align: top;
+    }
+}
 @media screen and (max-width: 767px){
 	.alocolumns .fotorama__wrap--css3 .fotorama__stage:after{
 		content:"" !important;
@@ -3165,4 +3217,9 @@ transition: all 0.5s ease-in-out;
 	.magnify-lens{
 		    display: none !important;
 	}
+}
+@media screen and (max-width: 417px){
+    div[name="shippingAddress.xpec_prefijo_telefono"] .label span{
+        visibility: hidden;
+    }
 }
