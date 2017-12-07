@@ -37,6 +37,31 @@ class LayoutProcessor
         ];
 
         $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
+        ['shippingAddress']['children']['shipping-address-fieldset']['children']['xpec_prefijo_telefono2'] = [
+            'component' => 'Magento_Ui/js/form/element/abstract',
+            'config' => [
+                'customScope' => 'shippingAddress',
+                'template' => 'ui/form/field',
+                'elementTmpl' => 'ui/form/element/input',
+                'id' => 'xpec_prefijo_telefono2',
+            ],
+            'dataScope' => 'shippingAddress.xpec_prefijo_telefono2',
+            'label' => 'Indicativo',
+            'provider' => 'checkoutProvider',
+            'visible' => true,
+            'validation' => [
+                'required-entry' => true,
+            ],
+            'sortOrder' => 102,
+            'value' => '+56',
+            'readonly' => true,
+            'disabled' => true,
+            'id' => 'xpec_prefijo_telefono2'
+        ];
+        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
+        ['shippingAddress']['children']['shipping-address-fieldset']['children']['xpec_prefijo_telefono2']['value'] = '+56';
+
+        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
         ['shippingAddress']['children']['shipping-address-fieldset']['children']['xpec_prefijo_telefono'] = [
             'component' => 'Magento_Ui/js/form/element/abstract',
             'config' => [
@@ -48,13 +73,12 @@ class LayoutProcessor
             'dataScope' => 'shippingAddress.xpec_prefijo_telefono',
             'label' => 'Indicativo',
             'provider' => 'checkoutProvider',
-            'visible' => true,
+            'visible' => false,
             'validation' => [
                 'required-entry' => true,
             ],
             'sortOrder' => 102,
             'value' => '+56',
-            'readOnly' => true,
             'id' => 'xpec_prefijo_telefono'
         ];
         $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
