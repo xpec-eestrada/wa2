@@ -3182,6 +3182,52 @@ transition: all 0.5s ease-in-out;
 .checkout-index-index .opc-progress-bar{
     margin-top: 20px;
 }
+.cms-404-wa2 .main-container{
+    background: url(../images/error404.jpg) no-repeat center center;
+    background-size: cover;
+    min-height: 700px;
+    padding: 0px;
+    margin: 0px;
+    max-width: 100%;
+}
+.cms-404-wa2 .content-page-not-found .title span{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+.cms-404-wa2 .content-page-not-found .text{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+.cms-404-wa2 .content-page-not-found{
+    display: block;
+    width: 306px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 340px;
+}
+.cms-404-wa2 .content-page-not-found .button{
+    display: inline-block;
+    padding: 14px 36px;
+    font-family: 'Oswald',sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: #5c6989;
+    margin-top: 25px;
+}
+.cms-404-wa2 .content-page-not-found .button:hover{
+    background-color: #9eafce;
+}
 @media screen and (min-width: 992px){
     .checkout-container .field.telephone .xpec-telefono{
         width: 88%;
