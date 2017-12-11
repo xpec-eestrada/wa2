@@ -3179,6 +3179,9 @@ transition: all 0.5s ease-in-out;
     width: 65%;
     float: right;
 }
+.checkout-index-index .opc-progress-bar{
+    margin-top: 20px;
+}
 @media screen and (min-width: 992px){
     .checkout-container .field.telephone .xpec-telefono{
         width: 88%;
