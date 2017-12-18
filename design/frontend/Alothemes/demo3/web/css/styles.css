@@ -3234,6 +3234,23 @@ transition: all 0.5s ease-in-out;
 .catalog-category-view .breadcrumbs > .container .items .item.home > a{
     padding-left: 1px;
 }
+.xpec-sku{
+    margin-top: 10px;
+}
+.xpec-sku .xpec-title span,
+.xpec-sku .xpec-value span{
+    display: block;
+    color: #000;
+    font-size: 18px;
+    line-height: normal;
+    margin: 0px;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+.xpec-sku > div{
+    display: inline-block;
+}
 @media screen and (min-width: 992px){
     .checkout-container .field.telephone .xpec-telefono{
         width: 88%;

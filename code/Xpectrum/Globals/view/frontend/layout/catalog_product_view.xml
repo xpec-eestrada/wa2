@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.price">
+            <block class="Xpectrum\Globals\Block\Product\Sku" name="product.sku" template="product/sku.phtml" after="product.info.stock.sku" />
+        </referenceContainer>
+    </body>
+</page>
