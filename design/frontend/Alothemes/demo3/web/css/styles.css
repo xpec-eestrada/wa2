@@ -3251,6 +3251,33 @@ transition: all 0.5s ease-in-out;
 .xpec-sku > div{
     display: inline-block;
 }
+.magicmenu .nav-desktop .level0 .level-top-mega .mage-column .children.xpec_menu_level1{
+    float: none;
+}
+.magicmenu .nav-desktop .level0 .level-top-mega .mage-column .children.xpec_menu_level1 > a{
+    margin: 0px 0px;
+    border: 0px;
+}
+.magicmenu .nav-desktop .level0 .level-top-mega .mage-column .children.xpec_menu_level1 > a::before{
+    height: 0px;
+}
+.xpec_menu_level1{
+    height: 30px;
+}
+.xpec_menu_level1 > a{
+    border: 0px;
+}
+.xpec_menu_level1 > a > span{
+    font-family: Montserrat;
+    font-weight: 300;
+    text-transform: capitalize;
+}
+.xpec_menu_level1 .level1.submenu{
+    display: none;
+}
+.max-width-xpec{
+    max-width: 400px;
+}
 @media screen and (min-width: 992px){
     .checkout-container .field.telephone .xpec-telefono{
         width: 88%;

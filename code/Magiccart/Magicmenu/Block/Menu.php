@@ -240,7 +240,7 @@ class Menu extends \Magento\Catalog\Block\Navigation
 				$desktopTmp .= '<div class="level-top-mega">';  /* Wrap Mega */
 					$desktopTmp .='<div class="content-mega">';  /*  Content Mega */
 						$desktopTmp .= $blocks['top'];
-						$desktopTmp .= '<div class="content-mega-horizontal">';
+						$desktopTmp .= '<div class="content-mega-horizontal max-width-xpec">';
 							$desktopTmp .= $blocks['left'];
 							if($hasChild) :
 								$desktopTmp .= '<ul class="level0 mage-column cat-mega">';
@@ -248,9 +248,9 @@ class Menu extends \Magento\Catalog\Block\Navigation
 								$childTop  = $this->getChildExt($idTop);
 								foreach ($childTop as $child) {
 									$id = $child->getId();
-									$class = ' level1';
+									$class = ' level1 xpec_menu_level1';
 									$class .= $this->isCategoryActive($child->getId()) ? ' active' : '';
-									$url =  '<a href="'. $child->getUrl().'"><span>'.__($child->getName()) . $this->getCatLabel($child) . '</span></a>';
+									$url =  '<a href="'. $child->getUrl().'"><span>'.strtolower(__($child->getName()) . $this->getCatLabel($child)) . '</span></a>';
 									$childHtml = $this->getTreeCategoriesExt($id); // include magic_label
 									// $childHtml = $this->getTreeCategoriesExtra($id); // include magic_label
 									$desktopTmp .= '<li class="children' . $class . '">' . $this->getImage($child) . $url . $childHtml . '</li>';
