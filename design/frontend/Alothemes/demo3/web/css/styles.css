@@ -3261,9 +3261,6 @@ transition: all 0.5s ease-in-out;
 .magicmenu .nav-desktop .level0 .level-top-mega .mage-column .children.xpec_menu_level1 > a::before{
     height: 0px;
 }
-.xpec_menu_level1{
-    height: 30px;
-}
 .xpec_menu_level1 > a{
     border: 0px;
 }
@@ -3279,6 +3276,9 @@ transition: all 0.5s ease-in-out;
     max-width: 400px;
 }
 @media screen and (min-width: 992px){
+    .xpec_menu_level1{
+        height: 30px;
+    }
     .checkout-container .field.telephone .xpec-telefono{
         width: 88%;
         padding: 0 8px;
