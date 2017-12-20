@@ -287,9 +287,9 @@ p.required{font-size:11px;text-align:right;color:#EB340A}
 .v-fix{float:left}
 .v-fix .validation-advice{display:block;width:12em;margin-right:-12em;position:relative}
 /* Global Messages  */
-.success{color:#3d6611;font-weight:bold}
+.success{color:#5c6989;font-weight:bold}
 .error{color:#df280a;font-weight:bold}
-.notice{color:#e26703}
+.notice{color:#9eafce}
 .messages,.messages ul{list-style:none!important;margin:0!important;padding:0!important}
 .messages{width:100%;overflow:hidden}
 .messages li{margin:0 0 10px!important}
