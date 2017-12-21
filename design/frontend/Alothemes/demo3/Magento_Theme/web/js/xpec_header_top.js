@@ -23,6 +23,13 @@ require([
             }
             window.accon=true;
         });
+        $('.magicmenu .level0').hover(function(){
+            if(!$(this).find('.xpec_menu_level1').length){
+                $(this).find('.level-top-mega').remove();
+                $(this).removeClass('hasChild');
+                $(this).removeClass('parent');
+            }
+        });
     });
     
 });
