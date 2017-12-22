@@ -29,6 +29,7 @@ class InstallData implements InstallDataInterface
                 "type"     => "varchar",
                 "label"    => "Rut",
                 "input"    => "text",
+                'backend'  => 'Xpectrum\AtributoAdicional\Model\Attribute\Backend\Rut',
                 "visible"  => true,
                 "required" => false,
                 "system"   => 0,
