@@ -69,7 +69,7 @@ table{border:0;/*border-collapse:collapse;*/
 caption,th,td{vertical-align:middle;text-align:left;}
 /* Content */
 strong{font-weight:bold}
-address{font-style:normal;line-height:1.35;color:#333;}
+address{font-style:normal;line-height:1.35;color:#666;/*xpec_er*/}
 cite{font-style:normal}
 q,blockquote{quotes:none}
 q:before,q:after{content:''}
@@ -239,7 +239,7 @@ a:hover, a:focus{outline:none !important;text-decoration: none;}
 .contact-index-index .contact{margin-bottom: 50px;margin-top: 50px;display: block;}
 .map-store{margin-bottom: 30px;}
 .contact-content .product-title{text-align: left;}
-.contact-content .sub-title{font-size: 20px;}
+.contact-content .sub-title{/*xpec_er*//*font-size: 20px;*/font-size: 14px;letter-spacing: 1px;text-align: left;padding-bottom: 5px;line-height: normal;color: #000;/*xpec_er*/}
 /* Customer */
 .form-list .customer-name-prefix .input-box,.form-list .customer-name-suffix .input-box,.form-list .customer-name-prefix-suffix .input-box,.form-list .customer-name-prefix-middlename .input-box,.form-list .customer-name-middlename-suffix .input-box,.form-list .customer-name-prefix-middlename-suffix .input-box{width:auto}
 .form-list .name-prefix{width:65px}
@@ -337,8 +337,8 @@ p.required{font-size:11px;text-align:right;color:#EB340A}
 .pages > .label {border: 0 none;clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}
 .pages .item .label {border: 0 none;clip: rect(0px, 0px, 0px, 0px);height: 1px;margin: -1px; overflow: hidden;padding: 0; position: absolute; width: 1px;}
 .pages .action.next > span,.pages .action.previous > span {border: 0 none;clip: rect(0px, 0px, 0px, 0px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}
-.pages .action.next:before {content: "ÃƒÆ’Ã‚Â¯ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦";display: inline-block;font-family: FontAwesome; font-size: 13px;font-weight: normal;line-height: inherit;margin: 0px;overflow: hidden;text-align: center;vertical-align: top;}
-.pages .action.previous:before{ content: "ÃƒÆ’Ã‚Â¯ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾";display: inline-block;font-family: FontAwesome; font-size: 13px;font-weight: normal;line-height: inherit;margin: 0px;overflow: hidden;text-align: center;vertical-align: top;}
+.pages .action.next:before {content: "\f054"/*xpec_er*/;display: inline-block;font-family: FontAwesome; font-size: 13px;font-weight: normal;line-height: inherit;margin: 0px;overflow: hidden;text-align: center;vertical-align: top;}
+.pages .action.previous:before{ content: "\f053"/*xpec_er*/;display: inline-block;font-family: FontAwesome; font-size: 13px;font-weight: normal;line-height: inherit;margin: 0px;overflow: hidden;text-align: center;vertical-align: top;}
 /* Sorter */
 .sorter-label,.limiter .label{    font-size: 11px;
     font-weight: 400;
@@ -2789,6 +2789,7 @@ button.search .fa-search:before {
     padding: 30px;
     padding-top: 15px;
     text-align: center;
+    position: relative;/*xpec_er*/
 }
 
 .denim-product {
@@ -2835,16 +2836,27 @@ button.search .fa-search:before {
 .denim-product-inner img {
     margin-top: 40px;
     margin-bottom: 53px;
+    width: 515px;/*xpec_er*/
 }
 
 .denim-product-inner a {
     clear: both;
-    color: #000 !important;
+    color: #fff !important;/*xpec_er*/
     display: block;
     text-decoration: underline;
     letter-spacing: 3px;
     font-weight: 500;
     margin-bottom: 40px;
+    
+    /*xpec_er -inicio*/
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    height: 30%;
+    width: 50%;
+    margin: -15% 0 0 -25%;
+    font-size: 20px;
+    /*xpec_er -fin*/
 }
 
 .denim-product .widget {
