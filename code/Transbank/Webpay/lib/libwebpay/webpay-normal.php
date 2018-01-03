@@ -93,13 +93,15 @@ class WebPayNormal
 		"-6" => "Excede cupo máximo mensual",
 		"-7" => "Excede límite diario por transacción",
 		"-8" => "Rubro no autorizado",
-	);
+    );
+    
+    private $xpecidorden;
 
     private static $classmap = array('getTransactionResult' => 'getTransactionResult', 'getTransactionResultResponse' => 'getTransactionResultResponse', 'transactionResultOutput' => 'transactionResultOutput', 'cardDetail' => 'cardDetail', 'wsTransactionDetailOutput' => 'wsTransactionDetailOutput', 'wsTransactionDetail' => 'wsTransactionDetail', 'acknowledgeTransaction' => 'acknowledgeTransaction', 'acknowledgeTransactionResponse' => 'acknowledgeTransactionResponse', 'initTransaction' => 'initTransaction', 'wsInitTransactionInput' => 'wsInitTransactionInput', 'wpmDetailInput' => 'wpmDetailInput', 'initTransactionResponse' => 'initTransactionResponse', 'wsInitTransactionOutput' => 'wsInitTransactionOutput');
     
     function __construct($config)
-    {       
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/webpay_log_class.log');
+    {
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/webpay_'.date('Y-m-d').'.log');
         $this->logger = new \Zend\Log\Logger();
         $this->logger->addWriter($writer);
 
@@ -144,11 +146,19 @@ class WebPayNormal
 
     function _getReason($code){
 		return WebPayNormal::$RESULT_CODES[$code];
-	}
+    }
+    
+    public function getIdOrden(){
+        return $this->xpecidorden;
+    } 
+    public function setIdOrden($orden){
+        $this->xpecidorden=$orden;
+    }
 
     public function initTransaction($amount, $sessionId="", $ordenCompra="0", $urlFinal){
+        $this->setIdOrden($ordenCompra);
         try{
-
+            $amount=number_format($amount,0,'','');
             $tipotrans=$this->config->getParam("TIPO_TRANS");
             $error = array();
             $arraydefi=array();
@@ -178,9 +188,9 @@ class WebPayNormal
             $arraydetalle['amount']=$amount;
             $arraydefi['transactionDetails']=$arraydetalle;
 
-            $this->logger->info(date('H:i:s') . ' - datos request initTransaction ');
+            $this->logger->info(date('H:i:s') . ' - datos request initTransaction IdOrden='.$this->getIdOrden());
 
-            $this->logger->info(date('H:i:s').print_r($arraydefi, true));
+            $this->logger->info(date('H:i:s'). ' - ' .print_r($arraydefi, true) . ' IdOrden='.$this->getIdOrden());
 
             
             /*Se agrega al arreglo de tiendas*/
@@ -191,16 +201,18 @@ class WebPayNormal
                 array("wsInitTransactionInput" => $wsInitTransactionInput)
             );
             $xmlResponse = $this->soapClient->__getLastResponse();
-            $this->logger->info(date('H:i:s') . ' - initTransaction request  - ' . $this->soapClient->__getLastResponse());
-            $this->logger->info(date('H:i:s') . ' - initTransaction response - ' . $xmlResponse);
+            $this->logger->info(date('H:i:s') . ' - initTransaction request  - ' . $this->soapClient->__getLastResponse(). ' IdOrden='.$this->getIdOrden());
+            $this->logger->info(date('H:i:s') . ' - initTransaction response - ' . $xmlResponse . ' IdOrden='.$this->getIdOrden());
 
             $soapValidation = new SoapValidation($xmlResponse, $this->config->getParam("WEBPAY_CERT"));
             $validationResult = $soapValidation->getValidationResult();
             /*Invocar sólo sí $validationResult es TRUE*/
             if ($validationResult) {
                 $wsInitTransactionOutput = $initTransactionResponse->return;
+                $this->logger->info(date('H:i:s') . ' - TOKEN de Transacción entregado por Webpay - ' . $xmlResponse . ' IdOrden='.$this->getIdOrden());
                 /*TOKEN de Transacción entregado por Webpay*/
                 $tokenWebpay = $wsInitTransactionOutput->token;
+                $this->logger->info(date('H:i:s') . ' - URL donde se debe continuar el flujo - ' . $wsInitTransactionOutput->url . ' IdOrden='.$this->getIdOrden());
                 /*URL donde se debe continuar el flujo*/
                 $urlRedirect = $wsInitTransactionOutput->url;
                 return array ( 
@@ -210,12 +222,12 @@ class WebPayNormal
             }else{           
                 $error["error"] = "Error validando conexión a Webpay";
                 $error["detail"] = "No se puede validar la respuesta usando certificado " . WebPaySOAP::getConfig("WEBPAY_CERT");
-                $this->logger->info(date('H:i:s') . ' - Error - '.$error["detail"]);
+                $this->logger->info(date('H:i:s') . ' - Error - '.$error["detail"] . ' IdOrden='.$this->getIdOrden());
             }
         }catch(Exception $err){
             $error["error"] = "Error conectando a Webpay";
             $error["detail"] = $err->getMessage();
-            $this->logger->info(date('H:i:s') . ' - Error - '.$err->getMessage());
+            $this->logger->info(date('H:i:s') . ' - Error - '.$err->getMessage() . ' IdOrden='.$this->getIdOrden());
         }
         return $error;
     }
@@ -226,20 +238,25 @@ class WebPayNormal
 		$getTransactionResult->tokenInput = $token;
 		$getTransactionResultResponse = $this->_getTransactionResult($getTransactionResult);
 		
-		$xmlResponse = $this->soapClient->__getLastResponse();
+        $xmlResponse = $this->soapClient->__getLastResponse();
+        $tmpidorden = $getTransactionResultResponse->return;
+        $this->setIdOrden($tmpidorden->buyOrder);
         
-        $this->logger->info(date('H:i:s') . ' - initTransaction request  - ' . $this->soapClient->__getLastResponse());
-        $this->logger->info(date('H:i:s') . ' - transactionResult response - ' . $xmlResponse);
+        $this->logger->info(date('H:i:s') . ' - initTransaction request  - ' . $this->soapClient->__getLastResponse(). ' IdOrden='.$this->getIdOrden());
+        $this->logger->info(date('H:i:s') . ' - transactionResult response - ' . $xmlResponse. ' IdOrden='.$this->getIdOrden());
 
 		$soapValidation = new SoapValidation($xmlResponse, $this->config->getParam("WEBPAY_CERT"));
 		$validationResult = $soapValidation->getValidationResult();
         if ($validationResult === TRUE){
-			$result = $getTransactionResultResponse->return;
+            $result = $getTransactionResultResponse->return;
+            $this->logger->info(date('H:i:s') . ' - Avisar a transbank que transaccion esta OK - ' . ' IdOrden='.$this->getIdOrden());
 			/** Avisar a transbank que transaccion esta OK */
 			if ($this->acknowledgeTransaction($token)){
+                $this->logger->info(date('H:i:s') . ' - Ver si transaccion fue exitosa - ' . ' IdOrden='.$this->getIdOrden());
 				/** Ver si transaccion fue exitosa */
 				$resultCode = $result->detailOutput->responseCode;
 				if ( ($result->VCI == "TSY" || $result->VCI == "") && $resultCode == 0){
+                    $this->logger->info(date('H:i:s') . ' - Codigo de Respuesta : '.$resultCode.' - ' . 'VCI = '.$result->VCI . ' IdOrden='.$this->getIdOrden());
 					return $result;
 					//$result["aaa"] = "OK";
                     /*
@@ -260,17 +277,18 @@ class WebPayNormal
                     -7 Excede límite diario por transacción.
                     -8 Rubro no autorizado.
                     */
-				}
-				else{
+				}else{
+                    $this->logger->info(date('H:i:s') . ' - Codigo de Respuesta Incorrecto : '.$resultCode.' - ' . 'VCI = '.$result->VCI . ' IdOrden='.$this->getIdOrden());
 					$result->detailOutput->responseDescription = $this->_getReason($resultCode);
 					return $result;					
 				}
-				
 			}
 			else{
+                $this->logger->info(date('H:i:s') . ' - Error eviando ACK a Webpay - ' . ' IdOrden='.$this->getIdOrden());
 				return array("error" => "Error eviando ACK a Webpay");
 			}
-		}		
+        }		
+        $this->logger->info(date('H:i:s') . ' - Error validando transacción en Webpay - ' . ' IdOrden='.$this->getIdOrden());
 		return array("error" => "Error validando transacción en Webpay");
 	}
 
@@ -282,8 +300,8 @@ class WebPayNormal
 
         $xmlResponse = $this->soapClient->__getLastResponse();
         
-        $this->logger->info(date('H:i:s') . ' - acknowledgeTransaction request  - ' . $this->soapClient->__getLastRequest());
-        $this->logger->info(date('H:i:s') . ' - acknowledgeTransaction response - ' . $xmlResponse);
+        $this->logger->info(date('H:i:s') . ' - acknowledgeTransaction request  - ' . $this->soapClient->__getLastRequest(). ' IdOrden='.$this->getIdOrden());
+        $this->logger->info(date('H:i:s') . ' - acknowledgeTransaction response - ' . $xmlResponse. ' IdOrden='.$this->getIdOrden());
         
 		$soapValidation = new SoapValidation($xmlResponse, $this->config->getParam("WEBPAY_CERT"));
 		$validationResult = $soapValidation->getValidationResult();
