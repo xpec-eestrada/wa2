@@ -3293,6 +3293,10 @@ transition: all 0.5s ease-in-out;
 .xpec-hidden-title .magictabs{
     display: none;
 }
+.xpec_menu_level1{
+    width: 100%;
+    display: inline-block;
+}
 @media screen and (min-width: 992px){
     .xpec_menu_level1{
         height: 30px;
