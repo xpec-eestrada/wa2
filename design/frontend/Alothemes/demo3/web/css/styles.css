@@ -3290,6 +3290,9 @@ transition: all 0.5s ease-in-out;
 .mean-nav .accor-title{
     display: none;
 }
+.xpec-hidden-title .magictabs{
+    display: none;
+}
 @media screen and (min-width: 992px){
     .xpec_menu_level1{
         height: 30px;
