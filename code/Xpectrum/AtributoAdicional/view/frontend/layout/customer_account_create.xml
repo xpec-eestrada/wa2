@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <link src="Xpectrum_AtributoAdicional::js/xpecvalidarrut.js"/>
+        <link src="Xpectrum_AtributoAdicional::js/xpecvalidarform.js"/>
     </head>
     <body>
         <referenceBlock class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Xpectrum_AtributoAdicional::form/register.phtml"></referenceBlock>

@@ -1,9 +1,13 @@
 var config = {
 	paths: {
-		'Validador': 'Xpectrum_AtributoAdicional/js/validar.rut'
+		'ValidarRut': 'Xpectrum_AtributoAdicional/js/validar.rut',
+		'ValidarNumeroContacto': 'Xpectrum_AtributoAdicional/js/validar.numerocontacto'
 	},
 	shim: {
-		'Validador': {
+		'ValidarRut': {
+			deps: ['jquery']
+		},
+		'ValidarNumeroContacto': {
 			deps: ['jquery']
 		}
     }
