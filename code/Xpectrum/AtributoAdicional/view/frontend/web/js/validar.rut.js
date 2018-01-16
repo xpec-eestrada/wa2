@@ -1,15 +1,15 @@
 (function(window){
     'use strict';
-    var Fn = {
+    var rut = {
         validaRut : function (rutCompleto) {
             if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test( rutCompleto ))
                 return false;
             var tmp 	= rutCompleto.split('-');
             var digv	= tmp[1]; 
-            var rut 	= tmp[0];
-            if(rut.length<7 || rut.length>8){return false}
+            var rutn 	= tmp[0];
+            if(rutn.length<7 || rutn.length>8){return false}
             if ( digv == 'K' ) digv = 'k' ;
-            return (Fn.dv(rut) == digv );
+            return (rut.dv(rutn) == digv );
         },
         dv : function(T){
             var M=0,S=1;
@@ -18,5 +18,5 @@
             return S?S-1:'k';
         }
     }
-    window.Fn=Fn;
+    window.rut=rut;
 })(window);

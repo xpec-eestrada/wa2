@@ -8,7 +8,6 @@ use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Eav\Model\Config;
 
-
 class InstallData implements InstallDataInterface
 {
     private $customerSetupFactory;
@@ -30,8 +29,8 @@ class InstallData implements InstallDataInterface
             $setup->startSetup();
 
             /* Attributo Text Rut */
-            $code_attribute     = 'rut';
-            $customerSetup      = $this->customerSetupFactory->create(['setup' => $setup]);
+            $code_attribute='rut';
+            $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
             $attrSet            = $this->attributeSetFactory->create();
             $entity_type        = $this->_eavConfig->getEntityType('customer');
             $entity_type_id     = $entity_type->getId();
@@ -74,7 +73,6 @@ class InstallData implements InstallDataInterface
                 ->setData("is_visible", 1)
                 ->setData("sort_order", $order);
             $input->save();
-            //************************************************************************************* */
 
 
             /* Attributo Text Numero de Contacto */
