@@ -78,7 +78,6 @@ class LayoutProcessor
                 'required-entry' => true,
             ],
             'sortOrder' => 102,
-            'value' => '+56',
             'id' => 'xpec_prefijo_telefono'
         ];
         $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']

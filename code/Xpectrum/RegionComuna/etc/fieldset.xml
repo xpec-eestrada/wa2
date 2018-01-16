@@ -7,9 +7,17 @@
                 <aspect name="update" />
                 <aspect name="to_quote_address" />
             </field>
+            <field name="xpec_prefijo_telefono">
+                <aspect name="create" />
+                <aspect name="update" />
+                <aspect name="to_quote_address" />
+            </field>
         </fieldset>
         <fieldset id="sales_convert_order_address">
             <field name="xpec_comuna">
+                <aspect name="to_quote_address" />
+            </field>
+            <field name="xpec_prefijo_telefono">
                 <aspect name="to_quote_address" />
             </field>
         </fieldset>
@@ -18,9 +26,16 @@
                 <aspect name="to_order_address" />
                 <aspect name="to_customer_address" />
             </field>
+            <field name="xpec_prefijo_telefono">
+                <aspect name="to_order_address" />
+                <aspect name="to_customer_address" />
+            </field>
         </fieldset>
         <fieldset id="sales_copy_order_billing_address">
             <field name="xpec_comuna">
+                <aspect name="to_order" />
+            </field>
+            <field name="xpec_prefijo_telefono">
                 <aspect name="to_order" />
             </field>
         </fieldset>
@@ -28,6 +43,14 @@
             <field name="xpec_comuna">
                 <aspect name="to_customer_address" />
             </field>
+            <field name="xpec_prefijo_telefono">
+                <aspect name="to_customer_address" />
+            </field>
         </fieldset>
+
+
+
+
+        
     </scope>
 </config>
