@@ -629,5 +629,54 @@ class InstallData implements InstallDataInterface{
         $setup->endSetup();
         /* Attributo Drop Down List Comunas */
 
+        /* Attributo Indicativo */
+        $code_attribute     = 'xpec_prefijo_telefono';
+        $attrSet            = $this->_attrSetFactory->create();
+        $entity_type        = $this->_eavConfig->getEntityType('customer_address');
+        $entity_type_id     = $entity_type->getId();
+        $attribute_set_id   = $entity_type->getDefaultAttributeSetId();
+        $attribute_group_id = $attrSet->getDefaultGroupId($attribute_set_id);
+        $customerSetup      = $this->customerSetupFactory->create(['setup' => $setup]);
+        $order              = 102;
+        
+        
+
+        $customerSetup->addAttribute('customer_address', $code_attribute,  array(
+            "type"     => "varchar",
+            "label"    => "Indicativo",
+            "input"    => "text",
+            "visible"  => true,
+            "required" => false,
+            "system"   => 0,
+            'user_defined' => true,
+            'sort_order' => $order,
+            "position" => $order,
+            'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE
+
+        ));
+
+        $customerSetup->addAttributeToGroup(
+            $entity_type_id,
+            $attribute_set_id,
+            $attribute_group_id,
+            $code_attribute,
+            '33'
+        );
+
+        $dropdownlist       = $customerSetup->getEavConfig()->getAttribute('customer_address', $code_attribute);$used_in_forms      = array();
+        $used_in_forms[]    = "adminhtml_customer_address";
+        $used_in_forms[]    = "customer_address_edit";
+        $used_in_forms[]    = "customer_register_address";
+
+        $dropdownlist->setData("used_in_forms", $used_in_forms)
+            ->setData("is_used_for_customer_segment", true)
+            ->setData("is_system", 0)
+            ->setData("is_user_defined", 1)
+            ->setData("is_visible", 1)
+            ->setData("sort_order", $order);
+        $dropdownlist->save();
+        $setup->endSetup();
+        /* Attributo Drop Down List Comunas */
+
     }
 }
