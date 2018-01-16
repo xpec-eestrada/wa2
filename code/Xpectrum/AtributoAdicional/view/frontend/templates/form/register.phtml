@@ -47,7 +47,14 @@
         <?php if ($_gender->isEnabled()): ?>
             <?php echo $_gender->setGender($block->getFormData()->getGender())->toHtml() ?>
         <?php endif ?>
-        
+        <div class="field field-numero_contacto required">
+            <label class="label" for="numero_contacto">
+                <span>Número de Contácto</span>
+            </label>
+            <div class="control">
+                <input type="text" id="numero_contacto" name="numero_contacto" value="" title="Número de Contácto" class="input-text required-entry" data-validate="{required:true}" autocomplete="off" aria-required="true">
+            </div>
+        </div>
     </fieldset>
     <?php if ($block->getShowAddressFields()): ?>
         <fieldset class="fieldset address">
