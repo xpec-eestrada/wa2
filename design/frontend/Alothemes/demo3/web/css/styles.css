@@ -3265,6 +3265,7 @@ transition: all 0.5s ease-in-out;
 }
 .magicmenu .nav-desktop .level0 .level-top-mega .mage-column .children.xpec_menu_level1{
     float: none;
+    width: 100%;
 }
 .magicmenu .nav-desktop .level0 .level-top-mega .mage-column .children.xpec_menu_level1 > a{
     margin: 0px 0px;
@@ -3297,6 +3298,7 @@ transition: all 0.5s ease-in-out;
     width: 100%;
     display: inline-block;
 }
+
 @media screen and (min-width: 992px){
     .xpec_menu_level1{
         height: 30px;
