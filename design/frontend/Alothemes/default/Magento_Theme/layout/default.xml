@@ -13,7 +13,7 @@
 					<argument name="label" xsi:type="string" translate="true">My Wish List</argument>
 				</arguments>
 			</block>
-			<block class="Magento\Customer\Block\Account\Link" name="my-account-link">
+			<block class="Magento\Customer\Block\Account\Link" name="my-account-link" >
 				<arguments>
 					<argument name="label" xsi:type="string" translate="true">My Account</argument>
 				</arguments>
@@ -32,14 +32,7 @@
            template="account/link/authorization.phtml"/>
 			
 		 </referenceBlock>
-		 <referenceBlock name="header.links">
-                <block class="Magento\Framework\View\Element\Html\Link" name="custom-link">
-                <arguments>
-                    <argument name="label" xsi:type="string" translate="true">Lista de Comparación</argument>
-                    <argument name="path" xsi:type="string" translate="true">catalog/product_compare</argument>
-                </arguments>
-                </block>
-            </referenceBlock>
+		 
 		
 		<referenceContainer name="page.wrapper">
 			<block class="Magento\Theme\Block\Html\Header" name="alothemes_header" template="html/header.phtml" before="-">
