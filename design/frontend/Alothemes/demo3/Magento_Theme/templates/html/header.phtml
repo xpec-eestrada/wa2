@@ -9,10 +9,10 @@
 /**
  * @var \Magento\Theme\Block\Html\Header $block
  */
-$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$customerSession = $objectManager->get('Magento\Customer\Model\Session');
-$isLoggedIn = $customerSession->isLoggedIn();
-$msg = $isLoggedIn ? __('Welcome') .', '. $customerSession->getCustomer()->getName() : $this->getWelcome() 
+$ObjectManager= \Magento\Framework\App\ObjectManager::getInstance();
+$context = $ObjectManager->get('Magento\Framework\App\Http\Context');
+$isLoggedIn = $context->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+//$msg = $isLoggedIn ? __('Welcome') .', '. $customerSession->getCustomer()->getName() : $this->getWelcome() 
 ?>
 <link href='//fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 <link href="//fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
@@ -144,7 +144,6 @@ require(['jquery'], function($){
 		?>
 		<script>
 			require(['jquery'], function($){
-				console.log("eliminar");
 				$('.header-top-link .links li')
 				if($('.header-top-link .links li').length){
 					$('.header-top-link .links li')[0].remove();
