@@ -19,7 +19,7 @@ $finalPriceModel = $block->getPriceType('final_price');
 
 $idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
 $schema = ($block->getZone() == 'item_view') ? true : false;
-$classxpecprice = ($block->hasSpecialPrice()) ? 'xpec-price-normal':'';
+$classxpecprice = ($block->hasSpecialPrice()) ? 'xpec-special-price':'xpec-price-normal';
 ?>
 <?php if ($finalPriceModel->getAmount()->getValue() !== null): ?>
     <span class="normal-price <?php echo $classxpecprice; ?>">

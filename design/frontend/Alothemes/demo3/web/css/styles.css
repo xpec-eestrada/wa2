@@ -3304,16 +3304,17 @@ ul.nav-accordion li.xpec_menu_level1 a span{
 .product-item .price-box .price-label{
     display: none;
 }
-.price-box.price-final_price .xpec-price-normal.normal-price{
+.price-box.price-final_price .xpec-special-price{
     float: left;
 }
 .price-box.price-final_price .old-price{
     float: right;
 }
-.xpec-price-normal.normal-price .price-label{
+.xpec-special-price .price-label,
+.xpec-price-normal .price-label{
     display: none;
 }
-.xpec-price-normal.normal-price{
+.xpec-special-price{
     padding-right: 10px;
 }
 @media screen and (min-width: 992px){
