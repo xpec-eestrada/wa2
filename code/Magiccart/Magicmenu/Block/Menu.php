@@ -253,7 +253,8 @@ class Menu extends \Magento\Catalog\Block\Navigation
 									$url =  '<a href="'. $child->getUrl().'"><span>'.strtolower(__($child->getName()) . $this->getCatLabel($child)) . '</span></a>';
 									$childHtml = $this->getTreeCategoriesExt($id); // include magic_label
 									// $childHtml = $this->getTreeCategoriesExtra($id); // include magic_label
-									$desktopTmp .= '<li class="children' . $class . '">' . $this->getImage($child) . $url . $childHtml . '</li>';
+                                    //$desktopTmp .= '<li class="children' . $class . '">' . $this->getImage($child) . $url . $childHtml . '</li>';
+                                    $desktopTmp .= '<li class="children' . $class . '">' . $url . $childHtml . '</li>';
 									$mobileTmp  .= '<li class="' . $class . '">' . $url . $childHtml . '</li>';
 								}
 								$desktopTmp .= '<li>'  .$blocks['bottom']. '</li>';
