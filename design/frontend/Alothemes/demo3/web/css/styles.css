@@ -2786,8 +2786,8 @@ button.search .fa-search:before {
     float: left;
     border: 15px solid #efefef; 
     width: 100%;
-    padding: 30px;
-    padding-top: 15px;
+    /*padding: 30px;*//*xpec_er*/
+    /*padding-top: 15px;*//*xpec_er*/
     text-align: center;
     position: relative;/*xpec_er*/
 }
@@ -2834,9 +2834,9 @@ button.search .fa-search:before {
 }
 
 .denim-product-inner img {
-    margin-top: 40px;
-    margin-bottom: 53px;
-    width: 515px;/*xpec_er*/
+    /*margin-top: 40px;*//*xpec_er*/
+    /*margin-bottom: 53px;*//*xpec_er*/
+    width: 100%;/*xpec_er*/
 }
 
 .denim-product-inner a {
