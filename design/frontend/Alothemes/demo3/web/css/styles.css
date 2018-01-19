@@ -3301,7 +3301,15 @@ transition: all 0.5s ease-in-out;
 ul.nav-accordion li.xpec_menu_level1 a span{
     text-transform: capitalize;
 }
-
+.product-item .price-box .price-label{
+    display: none;
+}
+.price-box.price-final_price .xpec-price-normal.normal-price{
+    float: left;
+}
+.price-box.price-final_price .old-price{
+    float: right;
+}
 @media screen and (min-width: 992px){
     .xpec_menu_level1{
         height: 30px;
