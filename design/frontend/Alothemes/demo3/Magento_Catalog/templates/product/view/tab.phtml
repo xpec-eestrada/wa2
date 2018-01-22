@@ -16,16 +16,22 @@
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
 $_product = $block->getProduct();   
 ?>
- 
 
 <div class="description-tab">
+	<h2 class="toggle-tab">descripción del producto <i class="fa fa-plus" aria-hidden="true"></i></h2>
+	<div class="description-desc toggle-content">
+		<?php echo $_product->getData('description'); ?>
+	</div>
+</div> 
+
+<?php /* <div class="description-tab">
 	<h2>descripción del producto <i class="fa fa-plus" aria-hidden="true"></i></h2>
 	<div class="description-desc"> 
 		<?php echo $_product->getData('description'); ?> 
 	</div>
 </div>
 
-<?php /* <div class="description-tab second">
+<div class="description-tab second">
 	<h2>despacho y devoluciones <i class="fa fa-plus" aria-hidden="true"></i></h2>
 	<div class="description-desc">
 		<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('despacho-y-devoluciones')->toHtml() ?>   

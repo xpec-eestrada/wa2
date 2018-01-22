@@ -2772,6 +2772,20 @@ button.search .fa-search:before {
 .c-smartsearch__wrapper{
 	    top: 0 !important;
 }
+/* body.catalog-product-view #MagicZoomImage-product-id a[href*="magictoolbox"],
+body.catalog-product-view #MagicZoomImage-product-id a[href*="magiczoom"]{
+	display: none !important; 
+} */
+html body.catalog-product-view .MagicZoom figure a[href*='magiczoom'] {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+    position: absolute;
+}
 
 
 .slide-showcase {
@@ -3154,7 +3168,8 @@ transition: all 0.5s ease-in-out;
     height: 745px;
 }
 .catalog-product-view .product.media.product-img-box{
-    margin-top: -23px;
+    margin-top: 0;
+    padding-left: 0;
 }
 .block.box-up-sell.upsell .slick-slide img{
     height: 326px;
@@ -3240,6 +3255,31 @@ transition: all 0.5s ease-in-out;
 .cms-404-wa2 .content-page-not-found .button:hover{
     background-color: #9eafce;
 }
+/*xpec_er - CMS nuestras tiendas - inicio*/
+.containertiendas{
+  display: grid;
+  grid-template-columns: repeat(1,1fr); 
+}
+.header-nuestras-tiendas{
+  grid-column: 1;
+  text-align:center;
+  text-transform:uppercase;
+}
+.tiendas-texto{
+  grid-column: 1;
+}
+#div-tiendas{
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-gap:20px
+}
+.tiendas{
+  text-align:center;
+}
+#tienda14{
+  grid-column:3/4;
+}
+/*xpec_er - CMS nuestras tiendas - fin*/
 .catalog-category-view .breadcrumbs > .container{
     padding-left: 0px;
 }

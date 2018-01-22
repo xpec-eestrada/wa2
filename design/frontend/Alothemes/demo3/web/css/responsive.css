@@ -56,7 +56,7 @@
 	.footer-item .box-content .content .info{width: 70%;display: inline-block;}
 	
 	.denim-product-inner h2{    font-size: 90px;}
-	.denim-product-inner img { margin-top: 0px;         margin-bottom: 25px;    max-width: 80%;}
+	.denim-product-inner img { margin-top: 0px;         /*margin-bottom: 25px;*/    /*max-width: 80%;*/}/*xpec_er*/
 	.denim-product-inner a{    margin-bottom: 0;}
 	 .catalog-category-view .category-image{    max-width: 100%;}
 	 
@@ -186,9 +186,9 @@
     .data-table tbody tr td .product-name a, .data-table tbody tr td .cart-price .price{font-size: 12px;}
 	.denim-product-inner h2{    font-size: 70px;}
 	.denim-product-inner h2:after{    left: 19%;}
-	.denim-product-inner img { margin-top: 0px;         margin-bottom: 25px;    max-width: 80%;}
+	.denim-product-inner img { margin-top: 0px;         /*margin-bottom: 25px;    max-width: 80%;*/}/*xpec_er*/
 	.denim-product-inner a{    margin-bottom: 0;}
-	.denim-product-inner{    padding: 30px 15px;}
+	.denim-product-inner{    /*padding: 30px 15px;*/}/*xpec_er*/
 	.content-products .products .slick-arrow {
     top: -43px;
 }
@@ -503,11 +503,11 @@ body.page-layout-2columns-right .sidebar-additional{
 		float: left;
 		width: 100%;
 	} 
-	.denim-product-inner img { margin-top: 0px;         margin-bottom: 25px;    max-width: 80%;}
+	.denim-product-inner img { margin-top: 0px;         /*margin-bottom: 25px;    max-width: 80%;*/}/*xpec_er*/
 	.denim-product-inner h2{font-size: 65px;}
 	.denim-product-inner h2:after{    left: 19%;}
 	.denim-product-inner a{    margin-bottom: 0;}
-	.denim-product-inner{    padding: 20px 15px;}
+	.denim-product-inner{    /*padding: 20px 15px;*/}/*xpec_er*/
 	.content-products .products .slick-arrow {
     top: -43px;
 }

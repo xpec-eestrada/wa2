@@ -73,20 +73,23 @@
                 <height>140</height>
             </image> 
             <image id="product_page_image_medium" type="image">
-                <width>534</width>
-                <height>791</height>
+                <width>1068</width>
+                <height>1582</height>
+				<frame>false</frame>
             </image>
             <image id="product_page_image_small" type="thumbnail">
                 <width>92</width>
                 <height>134</height>
             </image>
             <image id="product_page_main_image" type="image">
-                <width>534</width>
-                <height>791</height>
+                <width>1068</width>
+                <height>1582</height>
+				<frame>false</frame>
             </image>
             <image id="product_page_main_image_default" type="image">
-                <width>534</width>
-                <height>791</height>
+                <width>1068</width>
+                <height>1582</height>
+				<frame>false</frame>
             </image>
             <image id="product_page_more_views" type="thumbnail">
                 <width>92</width>
@@ -213,12 +216,11 @@
             </var>
         </var>
 
-        <var name="magnifier">
+        <var name="magnifier">  
             <var name="fullscreenzoom">3</var>  <!-- Zoom for fullscreen (integer)-->
-            <var name="top">0</var> <!-- Top position of magnifier -->
-            <var name="left"></var> <!-- Left position of magnifier -->
-            <var name="width">500px</var> <!-- Width of magnifier block -->
-            <var name="height">500px</var> <!-- Height of magnifier block -->
+            <var name="top">20</var> <!-- Top position of magnifier --> 
+            <var name="width">450px</var> <!-- Width of magnifier block -->
+            <var name="height">450px</var> <!-- Height of magnifier block -->
             <var name="eventType">hover</var> <!-- Action that atcivates zoom (hover/click) -->
             <var name="enabled">true</var> <!-- Turn on/off magnifier (true/false) -->
         </var>
