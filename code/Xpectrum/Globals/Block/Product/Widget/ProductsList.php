@@ -257,8 +257,6 @@ class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList{
                     'widget.products.list.pager'
                 );
 
-                $this->_stockFilter->addInStockFilterToCollection($this->getProductCollection());
-
                 $this->pager->setUseContainer(true)
                     ->setShowAmounts(true)
                     ->setShowPerPage(false)
@@ -282,7 +280,6 @@ class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList{
     public function getIdentities()
     {
         $identities = [];
-        $this->_stockFilter->addInStockFilterToCollection($this->getProductCollection());
         if ($this->getProductCollection()) {
             foreach ($this->getProductCollection() as $product) {
                 if ($product instanceof IdentityInterface) {
