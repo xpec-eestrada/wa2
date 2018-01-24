@@ -81,7 +81,7 @@ class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList imp
         $conditions = $this->getConditions();
         $conditions->collectValidatedAttributes($collection);
         $this->sqlBuilder->attachConditionToCollection($collection, $conditions);
-        $collection->getSelect()->where("stock_status_index.stock_status = 1");
+        //$collection->getSelect()->where("stock_status_index.stock_status = 1");
         return $collection;
     }
 
