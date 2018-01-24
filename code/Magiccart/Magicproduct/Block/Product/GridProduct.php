@@ -232,6 +232,7 @@ class GridProduct extends \Magento\Catalog\Block\Product\AbstractProduct
         $collection->getSelect()->order('rand()');
         // getNumProduct
         $collection->setPageSize($this->_limit)->setCurPage(1);
+        $collection->getSelect()->where("stock_status_index.stock_status = 1");
         return $collection;
     }
 
