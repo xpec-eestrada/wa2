@@ -13,6 +13,7 @@
 namespace Magiccart\Magicproduct\Block\Product;
 
 use Magento\Catalog\Api\CategoryRepositoryInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 class GridProduct extends \Magento\Catalog\Block\Product\AbstractProduct
 {
@@ -58,6 +59,10 @@ class GridProduct extends \Magento\Catalog\Block\Product\AbstractProduct
 
     protected $_catIds; // all categories of store.
 
+    protected $_stockFilter;
+    protected $_stockFilter2;
+    protected $scopeConfig;
+
 
     /**
      * @param Context $context
@@ -73,8 +78,15 @@ class GridProduct extends \Magento\Catalog\Block\Product\AbstractProduct
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
         \Magento\Catalog\Model\Product\Visibility $catalogProductVisibility,
         CategoryRepositoryInterface $categoryRepository,
+
+        \Magento\CatalogInventory\Model\ResourceModel\Stock\Status $stockFilter2,
+        \Magento\CatalogInventory\Helper\Stock $stockFilter,
+
         array $data = []
     ) {
+        $this->scopeConfig = $context->getScopeConfig();
+        $this->_stockFilter = $stockFilter;
+        $this->_stockFilter2 = $stockFilter2;
         $this->urlHelper = $urlHelper;
         $this->_objectManager = $objectManager;
         $this->_productCollectionFactory = $productCollectionFactory;
@@ -127,7 +139,7 @@ class GridProduct extends \Magento\Catalog\Block\Product\AbstractProduct
             'catalog_block_product_list_collection',
             ['collection' => $collection]
         );
-
+        $collection->getSelect()->where("stock_status_index.stock_status = 1");
         return $collection;
     }
 
@@ -142,6 +154,7 @@ class GridProduct extends \Magento\Catalog\Block\Product\AbstractProduct
         }
 
         $collection->addAttributeToFilter('entity_id', array('in' => $producIds));
+        $collection->getSelect()->where("stock_status_index.stock_status = 1");
         
         return $collection;
         
@@ -150,6 +163,7 @@ class GridProduct extends \Magento\Catalog\Block\Product\AbstractProduct
     public function getFeatured($collection)
     {
         $collection->addAttributeToFilter('featured', '1')->setPageSize($this->_limit)->setCurPage(1);
+        $collection->getSelect()->where("stock_status_index.stock_status = 1");
 
         return $collection;
 
@@ -158,6 +172,7 @@ class GridProduct extends \Magento\Catalog\Block\Product\AbstractProduct
     public function getLatest($collection){
 
         $collection->addAttributeToSort('entity_id', 'desc')->setPageSize($this->_limit)->setCurPage(1);
+        $collection->getSelect()->where("stock_status_index.stock_status = 1");
 
         return $collection; 
     }
@@ -172,6 +187,7 @@ class GridProduct extends \Magento\Catalog\Block\Product\AbstractProduct
         }
 
         $collection->addAttributeToFilter('entity_id', array('in' => $producIds));
+        $collection->getSelect()->where("stock_status_index.stock_status = 1");
         return $collection;
 
     }
@@ -206,6 +222,7 @@ class GridProduct extends \Magento\Catalog\Block\Product\AbstractProduct
             ]
         )->addAttributeToSort('news_from_date', 'desc')
         ->setPageSize($this->_limit)->setCurPage(1);
+        $collection->getSelect()->where("stock_status_index.stock_status = 1");
 
         return $collection;
     }
@@ -254,6 +271,7 @@ class GridProduct extends \Magento\Catalog\Block\Product\AbstractProduct
             ]
         )->addAttributeToSort('special_to_date', 'desc')
         ->setPageSize($this->_limit)->setCurPage(1);
+        $collection->getSelect()->where("stock_status_index.stock_status = 1");
 
         return $collection;
 
@@ -290,6 +308,7 @@ class GridProduct extends \Magento\Catalog\Block\Product\AbstractProduct
             ]
         )->addAttributeToSort('special_to_date', 'desc')
         ->setPageSize($this->_limit)->setCurPage(1);
+        $collection->getSelect()->where("stock_status_index.stock_status = 1");
 
         return $collection;
 
