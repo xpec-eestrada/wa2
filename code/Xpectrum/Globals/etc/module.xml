@@ -2,6 +2,7 @@
     <module name="Xpectrum_Globals" setup_version="1.0.0">
     <sequence>
         <module name="Magento_Catalog"/>
+        <module name="Magento_CatalogWidget"/>
     </sequence>
     </module>
 </config>
