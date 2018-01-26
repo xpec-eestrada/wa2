@@ -66,6 +66,11 @@ class ProductOutStockIndexer implements \Magento\Framework\Indexer\ActionInterfa
                             );
                             if($stockitem->getQty()>0){
                                 $swoutstock=false;
+                                $stockitem->setIsInStock(true);
+                                $stockItem->save();
+                            }else{
+                                $stockitem->setIsInStock(false);
+                                $stockItem->save();
                             }
                             if($swvalidar){
                                 $this->logger->info("Sku: ".$child->getSku().' -- Stock: '.$child->getQty().' Stock2: '.$stockitem->getQty());
@@ -73,12 +78,16 @@ class ProductOutStockIndexer implements \Magento\Framework\Indexer\ActionInterfa
                         }
                     }
                 }
+                $stockItem = $this->stockInventory->getStockItemBySku($product->getSku());
                 if($swoutstock){
-                    $stockItem = $this->stockInventory->getStockItemBySku($product->getSku());
                     $stockItem->setIsInStock(false);
                     $stockItem->save();
                     $this->logger->info("Sku: ".$product->getSku().' fue establecido como out of stock');
                     $j++;
+                }else{
+                    $this->logger->info("Sku: ".$product->getSku().' fue establecido como out of stock');
+                    $stockItem->setIsInStock(true);
+                    $stockItem->save();
                 }
             }
             $this->logger->info("Productos leidos: ".$i.' Out Stock: '.$j);
