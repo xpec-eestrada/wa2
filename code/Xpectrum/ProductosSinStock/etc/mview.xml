@@ -1,0 +1,7 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Mview/etc/mview.xsd">
+  <view id="xpec_product_out_stock" class="Xpectrum\CategoriasSale\Model\Indexer\Popular" group="indexer">
+    <subscriptions>
+      <table name="catalog_product_entity" entity_column="entity_id" />
+    </subscriptions>
+  </view>
+</config>

@@ -1,0 +1,6 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Indexer/etc/indexer.xsd">
+  <indexer id="xpec_product_out_stock" view_id="xpec_product_out_stock" class="Xpectrum\ProductosSinStock\Model\Indexer\ProductOutStockIndexer">
+    <title translate="true">Xpec Cambio estado de productos sin stock</title>
+    <description translate="true">Se recorren los pructos, y se valida si no tienen inventario se establece la propiedad stock(out of stock)</description>
+  </indexer>
+</config>
