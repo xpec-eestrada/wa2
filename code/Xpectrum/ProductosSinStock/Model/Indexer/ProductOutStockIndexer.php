@@ -67,10 +67,10 @@ class ProductOutStockIndexer implements \Magento\Framework\Indexer\ActionInterfa
                             if($stockitem->getQty()>0){
                                 $swoutstock=false;
                                 $stockitem->setIsInStock(true);
-                                $stockItem->save();
+                                $stockitem->save();
                             }else{
                                 $stockitem->setIsInStock(false);
-                                $stockItem->save();
+                                $stockitem->save();
                             }
                             if($swvalidar){
                                 $this->logger->info("Sku: ".$child->getSku().' -- Stock: '.$child->getQty().' Stock2: '.$stockitem->getQty());
