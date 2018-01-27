@@ -57,7 +57,12 @@ class Wa2 implements Wa2Interface{
         try{
             $objectManager =   \Magento\Framework\App\ObjectManager::getInstance();
             $connection = $objectManager->get('Magento\Framework\App\ResourceConnection')->getConnection('\Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION'); 
-            $result1 = $connection->query("UPDATE ".$this->table_prefix."catalog_product_entity INNER JOIN ".$this->table_prefix."cataloginventory_stock_item ON(product_id=entity_id) SET qty=".$stock." WHERE sku='".$sku."'");
+            if($stock>0){
+                $result1 = $connection->query("UPDATE ".$this->table_prefix."catalog_product_entity INNER JOIN ".$this->table_prefix."cataloginventory_stock_item ON(product_id=entity_id) SET qty=".$stock.",is_in_stock=1 WHERE sku='".$sku."'");
+            }else{
+                $result1 = $connection->query("UPDATE ".$this->table_prefix."catalog_product_entity INNER JOIN ".$this->table_prefix."cataloginventory_stock_item ON(product_id=entity_id) SET qty=".$stock.",is_in_stock=0 WHERE sku='".$sku."'");
+            }
+            
             $status='successful';
             $mensaje='';
         }catch(Exception $err){
@@ -87,7 +92,12 @@ class Wa2 implements Wa2Interface{
                 foreach($data->param as $obj){
                     if(isset($obj->sku) && isset($obj->stock)){
                         try{
-                            $result1 = $connection->query("UPDATE ".$this->table_prefix."catalog_product_entity INNER JOIN ".$this->table_prefix."cataloginventory_stock_item ON(product_id=entity_id) SET qty=".$obj->stock." WHERE sku='".$obj->sku."'");    
+                            if($obj->stock>0){
+                                $result1 = $connection->query("UPDATE ".$this->table_prefix."catalog_product_entity INNER JOIN ".$this->table_prefix."cataloginventory_stock_item ON(product_id=entity_id) SET qty=".$obj->stock.",is_in_stock=1 WHERE sku='".$obj->sku."'");
+                            }else{
+                                $result1 = $connection->query("UPDATE ".$this->table_prefix."catalog_product_entity INNER JOIN ".$this->table_prefix."cataloginventory_stock_item ON(product_id=entity_id) SET qty=".$obj->stock.",is_in_stock=0 WHERE sku='".$obj->sku."'");
+                            }
+                            
                         }catch(Exception $err){
                             $mensaje=$mensaje.'El objeto con index {'.$i.'} genero erro en la consulta ('.$err->getMessage().'). ';
                         }
