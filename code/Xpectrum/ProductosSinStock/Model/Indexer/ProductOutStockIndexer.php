@@ -41,39 +41,22 @@ class ProductOutStockIndexer implements \Magento\Framework\Indexer\ActionInterfa
             $collection->addAttributeToFilter('status', ['in' => $this->productStatus->getVisibleStatusIds()])
                 ->addAttributeToFilter('visibility', ['in' => $this->productVisibility->getVisibleInSiteIds()]);
 
-            
-            //$this->logger->info('Sql: '.$collection->getselect()->__toString());
-
             $i=0;
-            $j=0;
             foreach($collection as $product){
-                $swvalidar=false;
-                if($product->getSku() == 'J302N'){
-                    $this->logger->info("Sku: ".$product->getSku());
-                    $swvalidar=true;
-                }
                 $swoutstock=true;
                 $i++;
                 if(method_exists($product->getTypeInstance(),"getUsedProducts")){
                     $_children = $product->getTypeInstance()->getUsedProducts($product);
                     if(isset($_children) && is_array($_children) && count($_children)>0  ){
-                        $nom=0;
                         foreach($_children as $child){
-                            $nom++;
                             $stockitem = $this->stockInventory->getStockItem(
                                 $child->getId(),
                                 $child->getStore()->getWebsiteId()
                             );
                             if($stockitem->getQty()>0){
                                 $swoutstock=false;
-                                $stockitem->setIsInStock(true);
-                                $stockitem->save();
-                            }else{
-                                $stockitem->setIsInStock(false);
-                                $stockitem->save();
-                            }
-                            if($swvalidar){
-                                $this->logger->info("Sku: ".$child->getSku().' -- Stock: '.$child->getQty().' Stock2: '.$stockitem->getQty());
+                                // $stockitem->setIsInStock(true);
+                                // $stockitem->save();
                             }
                         }
                     }
@@ -83,14 +66,13 @@ class ProductOutStockIndexer implements \Magento\Framework\Indexer\ActionInterfa
                     $stockItem->setIsInStock(false);
                     $stockItem->save();
                     $this->logger->info("Sku: ".$product->getSku().' fue establecido como out of stock');
-                    $j++;
                 }else{
-                    $this->logger->info("Sku: ".$product->getSku().' fue establecido como out of stock');
+                    $this->logger->info("Sku: ".$product->getSku().' fue establecido como in stock');
                     $stockItem->setIsInStock(true);
                     $stockItem->save();
                 }
             }
-            $this->logger->info("Productos leidos: ".$i.' Out Stock: '.$j);
+            $this->logger->info("Productos leidos: ".$i);
             $this->logger->info(date("Y-m-d H:i:s")." End Transaction...");
         } catch (\Exception $e) {
             $this->logger->info(date("Y-m-d H:i:s")." - Error : ".$e->getMessage());
