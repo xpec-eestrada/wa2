@@ -1,0 +1,49 @@
+"The rule has been duplicated.","The rule has been duplicated."
+"We can't duplicate the rule right now. Please review the log and try again.","We can't duplicate the rule right now. Please review the log and try again."
+"We can't find a rule to delete.","We can't find a rule to delete."
+"You deleted %1 rule(s).","You deleted %1 rule(s)."
+"We can't delete the rule right now. Please review the log and try again.","We can't delete the rule right now. Please review the log and try again."
+"A total of %1 record(s) have been updated.","A total of %1 record(s) have been updated."
+"Something went wrong while updating the rule(s) status.","Something went wrong while updating the rule(s) status."
+"Percent of product price discount","Percent of product price discount"
+"Fixed amount discount","Fixed amount discount"
+"Fixed amount discount for whole cart","Fixed amount discount for whole cart"
+"Buy X get Y free (discount amount is Y)","Buy X get Y free (discount amount is Y)"
+"Auto add promo items with products","Auto add promo items with products"
+"Auto add promo items for the whole cart","Auto add promo items for the whole cart"
+"Auto add the same product","Auto add the same product"
+"Auto add promo items for every $X spent","Auto add promo items for every $X spent"
+"The Cheapest, also for Buy 1 get 1 free","The Cheapest, also for Buy 1 get 1 free"
+"The Most Expensive","The Most Expensive"
+"Get $Y for each $X spent","Get $Y for each $X spent"
+"Percent Discount: each 2-d, 4-th, 6-th with 15% 0ff","Percent Discount: each 2-d, 4-th, 6-th with 15% 0ff"
+"Fixed Discount: each 3-d, 6-th, 9-th with $15 0ff","Fixed Discount: each 3-d, 6-th, 9-th with $15 0ff"
+"Fixed Price: each 5th, 10th, 15th for $49","Fixed Price: each 5th, 10th, 15th for $49"
+"Percent Discount: each 1st, 3rd, 5th with 15% 0ff after 5 items added to the cart","Percent Discount: each 1st, 3rd, 5th with 15% 0ff after 5 items added to the cart"
+"Fixed Discount: each 3d, 7th, 11th with $15 0ff after 5 items added to the cart","Fixed Discount: each 3d, 7th, 11th with $15 0ff after 5 items added to the cart"
+"Fixed Price: each 5th, 7th, 9th for $89.99 after 5 items added to the cart","Fixed Price: each 5th, 7th, 9th for $89.99 after 5 items added to the cart"
+"Fixed Price: Each 5 items for $50","Fixed Price: Each 5 items for $50"
+"Percent Discount: Each 5 items with 10% off","Percent Discount: Each 5 items with 10% off"
+"Percent Discount: Buy X get Y Free","Percent Discount: Buy X get Y Free"
+"Fixed Discount:  Buy X get Y with $10 Off .","Fixed Discount:  Buy X get Y with $10 Off ."
+"Fixed Price: Buy X get Y for $9.99","Fixed Price: Buy X get Y for $9.99"
+"Percent Discount: Buy X get N of Y Free","Percent Discount: Buy X get N of Y Free"
+"Fixed Discount:  Buy X get N of Y with $10 Off .","Fixed Discount:  Buy X get N of Y with $10 Off ."
+"Fixed Price: Buy X get N of Y for $9.99","Fixed Price: Buy X get N of Y for $9.99"
+"Percent Discount","Percent Discount"
+"Fixed Discount","Fixed Discount"
+"Fixed Price","Fixed Price"
+"Percent discount for product set","Percent discount for product set"
+"Fixed price for product set","Fixed price for product set"
+Delete,Delete
+Enable,Enable
+Disable,Disable
+"Top Priority","Top Priority"
+"Lowest Priority","Lowest Priority"
+"Rule Action","Rule Action"
+Stop,Stop
+No,No
+Yes,Yes
+Amount,Amount
+Action,Action
+Duplicate,Duplicate
