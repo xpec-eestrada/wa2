@@ -30,5 +30,12 @@
 			<referenceBlock name="wishlist_sidebar" remove="true"/>
 			<referenceBlock name="sale.reorder.sidebar" remove="true"/>
         </referenceContainer>
+
+				
+		<referenceBlock name="category.products.list">
+            <action method="setDefaultDirection">
+                <argument name="dir" xsi:type="string">desc</argument>
+            </action>
+        </referenceBlock>
     </body>
 </page>
