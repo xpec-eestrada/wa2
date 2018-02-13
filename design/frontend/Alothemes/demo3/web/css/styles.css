@@ -3093,7 +3093,7 @@ html body.catalog-product-view .MagicZoom figure a[href*='magiczoom'] {
 
 .block.box-related.related .slick-slide img,
 .block.box-up-sell.upsell .slick-slide img { 
-    width: 100%;
+    /* width: 100%; */
 }
 
 
@@ -3172,7 +3172,7 @@ transition: all 0.5s ease-in-out;
     padding-left: 0;
 }
 .block.box-up-sell.upsell .slick-slide img{
-    height: 326px;
+    /* height: 326px; */
 }
 .checkout-container .field.telephone .xpec-prefix-telefono{
     width: 12%;
