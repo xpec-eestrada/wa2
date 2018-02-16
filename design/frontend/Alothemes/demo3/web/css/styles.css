@@ -1475,7 +1475,7 @@ ul.magictabs{padding:0}
     max-width: 1280px;
     margin: 0 auto;
 	    height: auto;
-	    min-height: 260px;
+	    /*min-height: 260px;*//*oportunidades - xpec_er*/
 }
 .img-back{background: #000;}
 .category-title{margin:0 0 20px}
@@ -1512,7 +1512,7 @@ ul.magictabs{padding:0}
 	    position: absolute;
 	    left: 16%;
 }
-.page-products.catalog-category-view .page-title-wrapper {background-image: none;position: absolute;top: 50%;width: 100%;}
+.page-products.catalog-category-view .page-title-wrapper {background-image: none;position: absolute;top: 50%;width: 100%; visibility: hidden; /*hacer invisible el titulo OPORTUNIDADES - xpec_er*/}
 .page-products.catalog-category-view .pagecrumbs-title{display: none;}
 /* count down ========================================================================= */
 .alo-count-down{position: absolute;bottom: 10px;}
@@ -3030,7 +3030,7 @@ html body.catalog-product-view .MagicZoom figure a[href*='magiczoom'] {
     min-width: 25px; 
     height: 25px;
     border-radius: 100%;  
-    border: 0;  
+    border: solid 2px #959595;  
 	    outline: 0 !important;
 }
 
@@ -3255,7 +3255,6 @@ transition: all 0.5s ease-in-out;
 .cms-404-wa2 .content-page-not-found .button:hover{
     background-color: #9eafce;
 }
-/*xpec_er - CMS nuestras tiendas - inicio*/
 .containertiendas{
   display: grid;
   grid-template-columns: repeat(1,1fr); 
@@ -3264,6 +3263,8 @@ transition: all 0.5s ease-in-out;
   grid-column: 1;
   text-align:center;
   text-transform:uppercase;
+  font-size:30px;
+  font-weight: bold;
 }
 .tiendas-texto{
   grid-column: 1;
@@ -3271,15 +3272,69 @@ transition: all 0.5s ease-in-out;
 #div-tiendas{
   display:grid;
   grid-template-columns: repeat(3,1fr);
-  grid-gap:20px
+  grid-row-gap: 30px;
+  grid-column-gap: 20px;
+  margin-top: 30px;
+  margin-bottom:30px;
 }
 .tiendas{
   text-align:center;
 }
-#tienda14{
-  grid-column:3/4;
-}
 /*xpec_er - CMS nuestras tiendas - fin*/
+
+#container-tabwa2{
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap:30px;
+  margin-top:30px;
+  margin-bottom:30px;
+}
+.tabwa {
+	padding: 10px;
+	border: 1px solid #666;
+	width: 100%;
+	height: auto;
+}
+.tabwa table tr td {
+	border: 1px solid #666;
+  font-size:12px;
+}
+table td, table th {
+	padding: 9px 10px;
+	text-align: left;
+}
+.tabwa p{
+  text-align:center;
+}/*xpec_er - CMS Costos y Tiempos de Entrega - fin*/
+
+/* estilos para la pagina de preguntas frecuentes - xpec_er - inicio */
+.preg{
+    padding: 20px;
+}
+.preg p{
+  text-align:justify !important;
+    margin-left: 35px;
+}
+.preg h2 strong{
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
+.preg h3{
+    margin-left: 20px;
+}
+.preg ol{
+  list-style:numbers !important;
+    margin-left: 35px;
+}
+.imgpreg{
+  text-align:center !important;
+}
+/* estilos para la pagina de preguntas frecuentes - xpec_er - fin */
+
+
+#Montserratblog div{
+font-family: Montserrat;
+}/*xpec_er - Blog Fuente*/
 .catalog-category-view .breadcrumbs > .container{
     padding-left: 0px;
 }
