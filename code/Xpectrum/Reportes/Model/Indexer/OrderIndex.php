@@ -47,9 +47,11 @@ class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento
                     $shipping_address      = str_replace(array("'"), "\'", $roworder['shipping_address']);
                     $billing_address       = str_replace(array("'"), "\'", $roworder['billing_address']);
                     $shipping_description  = str_replace(array("'"), "\'", $roworder['shipping_description']);
-                    $values="(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','phone','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$shipping_address."','".$billing_address."','".$shipping_description."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$roworder['name']."','".$roworder['method']."')";
+                    $customer_name         = str_replace(array("'"), "\'", $roworder['name']);
+                    $method                = str_replace(array("'"), "\'", $roworder['method']);
+                    $values="(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','phone','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$shipping_address."','".$billing_address."','".$shipping_description."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$customer_name."','".$method."')";
                 }else{
-                    $values=$values.",(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','phone','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$shipping_address."','".$billing_address."','".$shipping_description."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$roworder['name']."','".$roworder['method']."')";
+                    $values=$values.",(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','phone','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$shipping_address."','".$billing_address."','".$shipping_description."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$customer_name."','".$method."')";
                 }
                 $values = str_replace(array("\r", "\n"), '', $values);
                 //$values = str_replace(array("'"), "\'", $values);
