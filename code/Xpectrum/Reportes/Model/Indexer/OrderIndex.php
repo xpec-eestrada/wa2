@@ -44,12 +44,11 @@ class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento
             foreach($rsorders as $roworder){
                 $product = $this->getDataProduct($resource,$connection,$roworder['entity_id']);
                 if(empty($values)){
-                    $values="(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','phone','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$roworder['shipping_address']."','".$roworder['billing_address']."','".$roworder['shipping_description']."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$roworder['name']."','".$roworder['method']."')";
+                    $values="(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','phone','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."',QUOTE('".$roworder['shipping_address']."'),QUOTE('".$roworder['billing_address']."'),QUOTE('".$roworder['shipping_description']."'),'".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$roworder['name']."','".$roworder['method']."')";
                 }else{
-                    $values=$values.",(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','phone','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$roworder['shipping_address']."','".$roworder['billing_address']."','".$roworder['shipping_description']."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$roworder['name']."','".$roworder['method']."')";
+                    $values=$values.",(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','phone','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."',QUOTE('".$roworder['shipping_address']."'),QUOTE('".$roworder['billing_address']."'),QUOTE('".$roworder['shipping_description']."'),'".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$roworder['name']."','".$roworder['method']."')";
                 }
                 $values = str_replace(array("\r", "\n"), '', $values);
-                $values = str_replace(array("'"), '\'', $values);
                 $sql = "INSERT INTO ".$tableindx."(id_order,increment_id,skus,qty,productnames,phone,created_at,total,status,shipping_address,billing_address,shipping_description,customer_email,shipping_price,customer_name,payment_method) VALUES ".$values;
                 $connection->query($sql);
                 $values='';
