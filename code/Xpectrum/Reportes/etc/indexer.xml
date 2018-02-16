@@ -1,0 +1,6 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Indexer/etc/indexer.xsd">
+  <indexer id="xpec_reportes_orders_index" view_id="xpec_reportes_orders_index" class="Xpectrum\Reportes\Model\Indexer\OrderIndex">
+    <title translate="true">Xpec Indexer Orders</title>
+    <description translate="true">Se obtiene la información para generar reporte de ordenes.</description>
+  </indexer>
+</config>
