@@ -7,12 +7,12 @@
         <?php echo $block->getBlockHtml('formkey')?>
         <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Account Information') ?></span></legend><br>
 
-        <div class="field field-name-rut required">
+        <div class="field field-name-rut">
             <label class="label" for="rut">
                 <span>Rut</span>
             </label>
             <div class="control">
-                <input type="text" id="rut" name="rut" value="<?php echo $block->getRutCustomer(); ?>" title="rut" class="input-text required-entry" data-validate="{required:true}" aria-required="true">
+                <input type="text" id="rut" name="rut" value="<?php echo $block->getRutCustomer(); ?>" title="rut" class="input-text" data-validate="{required:false}" aria-required="true">
             </div>
         </div>
 

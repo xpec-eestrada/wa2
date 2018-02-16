@@ -57,16 +57,16 @@ class SaveOrder{
             $customerData = $this->customerSession->getCustomer();
             $email=$customerData->getData('email');
             try{
-                $rut=$customerData->getData('rut');
-                if(isset($rut) && !empty($rut)){
-                    if(!$this->valida_rut($rut)){
-                        $mensaje='Rut invalido.';
-                        throw new \Exception($mensaje);
-                    }
-                }else{
-                    $mensaje='Debe ingresar Rut.';
-                    throw new \Exception($mensaje);
-                }
+                // $rut=$customerData->getData('rut');
+                // if(isset($rut) && !empty($rut)){
+                //     if(!$this->valida_rut($rut)){
+                //         $mensaje='Rut invalido.';
+                //         throw new \Exception($mensaje);
+                //     }
+                // }else{
+                //     $mensaje='Debe ingresar Rut.';
+                //     throw new \Exception($mensaje);
+                // }
             }catch(\Exception $err){
                 $this->logger->info($mensaje.' Email: '.$email);
                 throw new InputException(__($mensaje));
