@@ -29,7 +29,7 @@ class Rut extends \Magento\Eav\Model\Entity\Attribute\Backend\AbstractBackend
      */
     public function beforeSave($object)
     {
-        $this->valida_rut($object);
+        //$this->valida_rut($object);
         return parent::beforeSave($object);
     }
     /**
