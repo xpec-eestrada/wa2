@@ -54,7 +54,8 @@ class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento
                     $phone                  = str_replace(array("'"), "\'", $roworder['phone']);
                     $payment                = $roworder['additional_information'];
                     $objpayment             = unserialize($payment);
-                    $method                 = str_replace(array("'"), "\'", $objpayment['method_title']);
+                    $method                 = str_replace(array("'"), "\'", (isset($objpayment['method_title']))?$objpayment['method_title']:$roworder['method']);
+                    print_r($objpayment);
                     $values="(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','".$phone."','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$shipping_address."','".$billing_address."','".$shipping_description."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$customer_name."','".$method."')";
                 }else{
                     $values=$values.",(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','".$phone."','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$shipping_address."','".$billing_address."','".$shipping_description."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$customer_name."','".$method."')";
