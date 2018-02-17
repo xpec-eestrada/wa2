@@ -24,11 +24,14 @@ class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento
             $tableindx = $resource->getTableName('xpec_indx_orders');
             $sql       = 'DELETE FROM '.$tableindx;
             $result    = $connection->query($sql);
-
-            $torder = $resource->getTableName('sales_order');
-            $taddress = $resource->getTableName('sales_order_address');
+            $torder    = $resource->getTableName('sales_order');
+            $taddress  = $resource->getTableName('sales_order_address');
+            $tpayment  = $resource->getTableName('sales_order_payment');
 
             $sql = 'SELECT torder.entity_id,increment_id,created_at,grand_total,torder.status,
+            (SELECT telephone 
+                FROM '.$taddress.' 
+                WHERE parent_id=torder.entity_id AND address_type=\'shipping\') as phone,
             (SELECT street 
                 FROM '.$taddress.' 
                 WHERE parent_id=torder.entity_id AND address_type=\'shipping\') as shipping_address,
@@ -36,36 +39,33 @@ class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento
                 FROM '.$taddress.' 
                 WHERE parent_id=torder.entity_id AND address_type=\'billing\') as billing_address,
             shipping_description,customer_email,torder.shipping_amount,
-            concat(customer_firstname,\' \',customer_lastname) as name,method
+            concat(customer_firstname,\' \',customer_lastname) as name,method,additional_information
             FROM '.$torder.' torder 
-            INNER JOIN wa2_dsales_order_payment pay ON(pay.parent_id=torder.entity_id);';
+            INNER JOIN '.$tpayment.' pay ON(pay.parent_id=torder.entity_id)';
             $rsorders = $connection->fetchAll($sql);
             $values='';
             foreach($rsorders as $roworder){
                 $product = $this->getDataProduct($resource,$connection,$roworder['entity_id']);
                 if(empty($values)){
-                    $shipping_address      = str_replace(array("'"), "\'", $roworder['shipping_address']);
-                    $billing_address       = str_replace(array("'"), "\'", $roworder['billing_address']);
-                    $shipping_description  = str_replace(array("'"), "\'", $roworder['shipping_description']);
-                    $customer_name         = str_replace(array("'"), "\'", $roworder['name']);
-                    $method                = str_replace(array("'"), "\'", $roworder['method']);
-                    $values="(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','phone','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$shipping_address."','".$billing_address."','".$shipping_description."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$customer_name."','".$method."')";
+                    $shipping_address       = str_replace(array("'"), "\'", $roworder['shipping_address']);
+                    $billing_address        = str_replace(array("'"), "\'", $roworder['billing_address']);
+                    $shipping_description   = str_replace(array("'"), "\'", $roworder['shipping_description']);
+                    $customer_name          = str_replace(array("'"), "\'", $roworder['name']);
+                    $phone                  = str_replace(array("'"), "\'", $roworder['phone']);
+                    $payment                = $roworder['additional_information'];
+                    $objpayment             = unserialize($payment);
+                    $method                 = str_replace(array("'"), "\'", $objpayment['method_title']);
+                    $values="(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','".$phone."','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$shipping_address."','".$billing_address."','".$shipping_description."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$customer_name."','".$method."')";
                 }else{
-                    $values=$values.",(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','phone','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$shipping_address."','".$billing_address."','".$shipping_description."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$customer_name."','".$method."')";
+                    $values=$values.",(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','".$phone."','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$shipping_address."','".$billing_address."','".$shipping_description."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$customer_name."','".$method."')";
                 }
                 $values = str_replace(array("\r", "\n"), '', $values);
-                //$values = str_replace(array("'"), "\'", $values);
                 $sql = "INSERT INTO ".$tableindx."(id_order,increment_id,skus,qty,productnames,phone,created_at,total,status,shipping_address,billing_address,shipping_description,customer_email,shipping_price,customer_name,payment_method) VALUES ".$values;
                 $connection->query($sql);
                 $values='';
             }
-            //$sql = "INSERT INTO ".$tableindx."(id_order,increment_id,skus,qty,productnames,phone,created_at,total,status,shipping_address,billing_address,shipping_description,customer_email,shipping_price,customer_name,payment_method) VALUES ".$values;
-            //$connection->query($sql);
-
-            
         } catch (\Exception $e) {
             error_log($e->getMessage());
-            //$this->logger->info(date("Y-m-d H:i:s")." - Error : ".$e->getMessage());
         }
     }
     private function getDataProduct($resource,$connection,$idOrder){
