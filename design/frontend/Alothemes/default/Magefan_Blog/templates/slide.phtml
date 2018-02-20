@@ -13,7 +13,16 @@
  * @var $block \Magefan\Blog\Block\Sidebar\Recent
  */
 ?>
-
+<style>
+    .alo-blog.cms-static-blog .block-content.lazy{
+        display:block;
+    }
+    .alo-blog.cms-static-blog .block-content.lazy .item{
+        width:48%;
+        padding-left:1%;
+        padding-right:1%;
+    }
+</style>
 <?php
 	$_postCollection = $block->getPostCollection();
     if (!$_postCollection->count()) return;
