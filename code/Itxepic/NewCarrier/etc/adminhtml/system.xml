@@ -21,7 +21,7 @@
                 </field> -->
 		
 				<field id="pickupstore" translate="label comment tooltip" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
-					<label>Pickup Store</label>
+					<label>Seleccione Tienda</label>
 					<frontend_model>Itxepic\NewCarrier\Block\Adminhtml\System\Config\Form\Field\PickupStore</frontend_model>
 					<backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
 					<comment>
