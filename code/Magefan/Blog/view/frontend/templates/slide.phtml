@@ -66,7 +66,15 @@
         ], function($){
             (function($) {
                 var blog  = $('.<?php echo $selector ?> .block-content');
-                if(blog.length) $('head').append(magicproduct(blog, '.item'));
+                if(blog.length){
+                    if (typeof magicproduct === 'undefined') {
+
+                    }else{
+                        $('head').append(magicproduct(blog, '.item'));
+                    }
+                }
+                
+                
             })(jQuery); 
     });
 </script>
