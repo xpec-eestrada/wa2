@@ -72,3 +72,16 @@
 .blog-image a:hover:after{visibility: visible;opacity: 0.8;-webkit-transform: scale(1);-ms-transform: scale(1);transform: scale(1);}
 .blog-image a:hover:before{opacity: 1;} */
 
+.cms-static-blog .block-content.lazy.slick-slider .item{
+    float: left;
+    width: 48%;
+    padding-right: 1%;
+    padding-left: 1%;
+}
+
+@media screen and (max-width: 767px){
+    .cms-static-blog .block-content.lazy.slick-slider .item{
+        padding-right: 1%;
+        padding-left: 1%;
+    }
+}
