@@ -156,7 +156,7 @@ class InstallSchema implements InstallSchemaInterface
             'id_order',
             \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
             null,
-            ['identity' => true,'nullable' => false],
+            ['nullable' => false],
             'Id Order'
         )
         ->addColumn(
