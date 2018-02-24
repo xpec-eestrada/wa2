@@ -9,5 +9,14 @@
              action="xpectrum/order/index"
              parent="Xpectrum_Backend::Xpectrum"
              resource="Xpectrum_Reportes::xpectrum_orders" />
+
+        <add id="Xpectrum_Reportes::xpectrum_reportes_envios"
+             title="Productos para Envío"
+             module="Xpectrum_Reportes"
+             sortOrder="5"
+             action="xpectrum/envio/index"
+             parent="Xpectrum_Backend::Xpectrum"
+             resource="Xpectrum_Reportes::xpectrum_envio" />
+
     </menu>
 </config>

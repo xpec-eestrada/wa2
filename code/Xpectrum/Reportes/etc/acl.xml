@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Xpectrum_Backend::Xpectrum" title="Xpectrum" sortOrder="100">
+                    <resource id="Xpectrum_Reportes::xpectrum_orders" title="Reporte Ordenes" sortOrder="4" />
+                    <resource id="Xpectrum_Reportes::xpectrum_envio" title="Productos para Envío" sortOrder="5" />
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

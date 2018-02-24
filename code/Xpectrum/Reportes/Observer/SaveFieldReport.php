@@ -52,7 +52,14 @@ class SaveFieldReport implements ObserverInterface
             $taddress   = $resource->getTableName('sales_order_address');
             $tpayment   = $resource->getTableName('sales_order_payment');
 
-            $sql = 'SELECT torder.entity_id,increment_id,created_at,grand_total,torder.status,
+            $tableindxshipp = $resource->getTableName('xpec_indx_shipping');
+            $tentity        = $resource->getTableName('catalog_product_entity');
+            $torderitem     = $resource->getTableName('sales_order_item');
+            $toptionvalue   = $resource->getTableName('eav_attribute_option_value');
+            $tentityint     = $resource->getTableName('catalog_product_entity_int');
+            $tattribute     = $resource->getTableName('eav_attribute');
+
+            $sql = 'SELECT torder.entity_id,increment_id,created_at,grand_total,torder.status,torder.store_id,base_subtotal,pay.cc_trans_id,
             (SELECT telephone 
                 FROM '.$taddress.' 
                 WHERE parent_id=torder.entity_id AND address_type=\'shipping\') as phone,
@@ -63,15 +70,15 @@ class SaveFieldReport implements ObserverInterface
                 FROM '.$taddress.' 
                 WHERE parent_id=torder.entity_id AND address_type=\'billing\') as billing_address,
             shipping_description,customer_email,torder.shipping_amount,
-            concat(customer_firstname,\' \',customer_lastname) as name,method
+            concat(customer_firstname,\' \',customer_lastname) as name,method,additional_information
             FROM '.$torder.' torder 
             LEFT JOIN '.$tpayment.' pay ON(pay.parent_id=torder.entity_id) WHERE torder.entity_id='.$orderId;
             $sql = str_replace(array("\r", "\n"), '', $sql);
             $rsorders = $connection->fetchAll($sql);
             $values='';
             foreach($rsorders as $roworder){
-                //$product = $this->getDataProduct($resource,$connection,$roworder['entity_id']);
-                $product = $this->getDataProduct($order);
+                
+                $product                = $this->getDataProduct($order);
                 $objShippingAddress     = $order->getShippingAddress();
                 $shippingAddressLines   = $objShippingAddress->getStreet();
                 $dlvStreet              = isset($shippingAddressLines[0]) ? $shippingAddressLines[0] : "";
@@ -87,6 +94,9 @@ class SaveFieldReport implements ObserverInterface
                 $billing_address        = str_replace(array("\r", "\n"), '', $billing_address);
                 //$shipping_description   = str_replace(array("'"), "\'", $order->getShippingMethod());
                 $shipping_description   = str_replace(array("'"), "\'", $order->getShippingDescription());
+                $payment                = $roworder['additional_information'];
+                $objpayment             = unserialize($payment);
+                $method                 = str_replace(array("'"), "\'", (isset($objpayment['method_title']))?$objpayment['method_title']:$roworder['method']);
                 $name = '';
                 if( $order->getCustomerFirstname() != null ) {// Customer login
                     $name = trim($order->getCustomerFirstname().' '.$order->getCustomerLastname());
@@ -119,30 +129,40 @@ class SaveFieldReport implements ObserverInterface
                 }else{
                     $values = str_replace(array("\r", "\n"), '', $values);
                     $sql = "INSERT INTO ".$tableindx."(id_order,increment_id,skus,qty,productnames,phone,created_at,total,status,shipping_address,billing_address,shipping_description,customer_email,shipping_price,customer_name,payment_method) VALUES ".$values;
+                    
                 }
                 $connection->query($sql);
+
+                $sql        = 'SELECT id FROM '.$tableindxshipp.' WHERE id_order = '.$orderId;
+                $rssearch2  = $connection->fetchAll($sql);
+                $swaction2 = false;
+                foreach($rssearch2 as $rowsearch2){
+                    $swaction2 = true;
+                }
+                if(!$swaction2){
+                    $products_shipping      = $this->getDataProductShipping($resource,$connection,$roworder,$tentity,$torderitem,$toptionvalue,$tentityint,$tattribute);
+                    foreach($products_shipping as $item){
+                        $sql2 = "INSERT INTO ".$tableindxshipp."(id_order,increment_id,sku,payment,authocode,productname,size,color,qty,shipping_method,price_product_base,price_product_total,discount_percent,price_order_base,price_order_total,created_at,status) 
+                                VALUE(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$item['skuparent']."','".$method."','".$roworder['cc_trans_id']."','".$item['name']."','".$item['size']."','".$item['color']."',".$item['qty'].",'".$shipping_description."',".round($item['base_price']).",".round($item['price_inc_tax']).",".round($item['disc_percent']).",".round($roworder['base_subtotal']).",".round($roworder['grand_total']).",'".$roworder['created_at']."','".$roworder['status']."')";
+                        $sql2 = str_replace(array("\r", "\n"), '', $sql2);
+                        $connection->query($sql2);
+                    }
+                }else{
+                    $sql2 = "UPDATE 
+                                ".$tableindxshipp." 
+                            SET 
+                                status = '".$roworder['status']."'
+                            WHERE 
+                                id_order = ".$orderId;
+                    $sql2 = str_replace(array("\r", "\n"), '', $sql2);
+                    $connection->query($sql2);
+                }
             }
         } catch (\Exception $e) {
             error_log($e->getMessage());
         }
     }
 
-    private function getDataProduct2($resource,$connection,$idOrder){
-        $tproduct = $resource->getTableName('sales_order_item');
-        $sql = 'SELECT sku,name,qty_ordered  FROM '.$tproduct.' WHERE order_id='.$idOrder.' AND product_type=\'simple\'';
-        $sku = '';
-        $name = '';
-        $qty = '';
-        $rsproducts = $connection->fetchAll($sql);
-        foreach($rsproducts as $row){
-            $sku = (empty($sku))?$row['sku']:$sku.','.$row['sku'];
-            $name = (empty($name))?$row['name']:$name.','.$row['name'];
-            $tmp = explode('.',$row['qty_ordered']);
-            $qty = (empty($qty))?$tmp[0]:$qty.','.$tmp[0];
-        }
-        $data = array('sku'=>$sku,'name'=>$name,'qty'=>$qty);
-        return $data;
-    }
     private function getDataProduct($order){
         $items = $order->getItems();
         $sku = '';
@@ -159,6 +179,46 @@ class SaveFieldReport implements ObserverInterface
         $data       = array('sku'=>$sku,'name'=>$name,'qty'=>$qty);
         return $data;
     }
+    public function getDataProductShipping($resource,$connection,$itemorder,$tentity,$torderitem,$toptionvalue,$tentityint,$tattribute){
+        $idOrder = $itemorder['entity_id'];
+        $storeId = $itemorder['store_id'];
+        
+        $sql = 'SELECT orit.name,orit.qty_ordered,parentp.base_price,parentp.base_price_incl_tax,parentp.tax_percent,
+        (SELECT e.sku FROM '.$tentity.' e 
+            INNER JOIN '.$torderitem.' parent ON(parent.product_id=e.entity_id)
+            WHERE parent.item_id=orit.parent_item_id) as skuparent,orit.product_id,
+        (SELECT tcolor.value  FROM '.$toptionvalue.' tcolor
+            INNER JOIN '.$tentityint.' rec ON (tcolor.option_id=rec.value AND (rec.store_id=0 OR rec.store_id='.$storeId.'))
+            INNER JOIN '.$tattribute.' attr ON (attr.attribute_code=\'color\' AND attr.attribute_id=rec.attribute_id)
+            WHERE rec.entity_id=orit.product_id ORDER BY rec.store_id DESC LIMIT 1
+        ) AS color,
+        (SELECT ttalla.value  FROM '.$toptionvalue.' ttalla
+            INNER JOIN '.$tentityint.' rec ON (ttalla.option_id=rec.value AND (rec.store_id=0 OR rec.store_id='.$storeId.'))
+            INNER JOIN '.$tattribute.' attr ON (attr.attribute_code=\'size\' AND attr.attribute_id=rec.attribute_id)
+            WHERE rec.entity_id=orit.product_id ORDER BY rec.store_id DESC LIMIT 1
+        ) AS talla
+        FROM '.$torderitem.' orit 
+        LEFT JOIN '.$torderitem.' parentp ON(parentp.item_id=orit.parent_item_id)
+        WHERE orit.product_type=\'simple\' AND orit.order_id='.$idOrder;
+        $sql        = str_replace(array("\r", "\n"), '', $sql);
+        $rsproducts = $connection->fetchAll($sql);
+        $data       = array();
+        foreach($rsproducts as $row){
+            $data[] = array(
+                'name'          => $row['name'],
+                'qty'           => $row['qty_ordered'],
+                'base_price'    => $row['base_price'],
+                'price_inc_tax' => $row['base_price_incl_tax'],
+                'disc_percent'  => $row['tax_percent'],
+                'color'         => $row['color'],
+                'size'          => $row['talla'],
+                'skuparent'     => $row['skuparent'],
+                'product_id'    => $row['product_id']
+            );
+        }
+        return $data;
+    }
+
 
 
 
