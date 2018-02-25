@@ -5,11 +5,12 @@ use Magento\Framework\Indexer\CacheContext;
 class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento\Framework\Mview\ActionInterface
 {
     private $cacheContext;
+    private $_logger;
 
     public function __construct(
-        
+        \Xpectrum\Reportes\Logger\LoggerAdmin $logger
     ) {
-        
+        $this->_logger = $logger;
         
     }
     public function execute($ids){
@@ -70,20 +71,33 @@ class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento
                 }else{
                     $values=$values.",(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$product['sku']."','".$product['qty']."','".$product['name']."','".$phone."','".$roworder['created_at']."',".round($roworder['grand_total']).",'".$roworder['status']."','".$shipping_address."','".$billing_address."','".$shipping_description."','".$roworder['customer_email']."',".round($roworder['shipping_amount']).",'".$customer_name."','".$method."')";
                 }
+                $sql = 'SELECT increment_id FROM '.$tableindxshipp.' WHERE id_order = '.$roworder['entity_id'];
+                $rsvaleexit = $connection->fetchAll($sql);
+                $swvalidate = false;
                 $values = str_replace(array("\r", "\n"), '', $values);
                 $sql = "INSERT INTO ".$tableindx."(id_order,increment_id,skus,qty,productnames,phone,created_at,total,status,shipping_address,billing_address,shipping_description,customer_email,shipping_price,customer_name,payment_method) VALUES ".$values;
-                $connection->query($sql);
-
+                foreach($rsvaleexit as $itemval){
+                    $swvalidate = true;
+                }
+                if(!$swvalidate){
+                    $connection->query($sql);
+                }else{
+                    $ar = array(
+                        'IdOrder'   => $roworder['entity_id'],
+                        'Estado'    => 'Repetida',
+                        'Sql'       => $sql
+                    );
+                    $this->_logger->info( json_encode($ar) );
+                }
                 foreach($products_shipping as $item){
                     $sql = "INSERT INTO ".$tableindxshipp."(id_order,increment_id,sku,payment,authocode,productname,size,color,qty,shipping_method,price_product_base,price_product_total,discount_percent,price_order_base,price_order_total,created_at,status) 
                             VALUE(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$item['skuparent']."','".$method."','".$roworder['cc_trans_id']."','".$item['name']."','".$item['size']."','".$item['color']."',".$item['qty'].",'".$shipping_description."',".round($item['base_price']).",".round($item['price_inc_tax']).",".round($item['disc_percent']).",".round($roworder['base_subtotal']).",".round($roworder['grand_total']).",'".$roworder['created_at']."','".$roworder['status']."')";
                     $connection->query($sql);
                 }
-
                 $values='';
             }
         } catch (\Exception $e) {
-            error_log($e->getMessage());
+            $this->_logger->info($e->getMessage());
         }
     }
     private function getDataProduct($resource,$connection,$idOrder){
