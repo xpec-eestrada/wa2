@@ -999,3 +999,4 @@ define([
 
     return $.mage.SwatchRenderer;
 });
+
