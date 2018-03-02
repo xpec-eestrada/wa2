@@ -210,6 +210,22 @@ define([
             if (this.options.jsonConfig !== '' && this.options.jsonSwatchConfig !== '') {
                 this._sortAttributes();
                 this._RenderControls();
+                if( $('.catalog-product-view').length ){
+                    if($('.swatch-attribute.color').length==1){
+                        if( $('.swatch-attribute.color .swatch-attribute-options .swatch-option').length==1 ){
+                            if( !$('.swatch-attribute.color .swatch-attribute-options div.swatch-option').first().hasClass('selected')  ){
+                                $('.swatch-attribute.color .swatch-attribute-options div.swatch-option').first().click();
+                            }
+                        }
+                    }
+                    if($('.swatch-attribute.size').length==1){
+                        if( $('.swatch-attribute.size .swatch-attribute-options .swatch-option').length==1 ){
+                            if( !$('.swatch-attribute.size .swatch-attribute-options div.swatch-option').first().hasClass('selected')  ){
+                                $('.swatch-attribute.size .swatch-attribute-options div.swatch-option').first().click();
+                            }
+                        }
+                    }
+                }
             } else {
                 console.log('SwatchRenderer: No input data received');
             }
@@ -978,3 +994,4 @@ define([
 
     return $.mage.SwatchRenderer;
 });
+
