@@ -210,10 +210,15 @@ define([
             if (this.options.jsonConfig !== '' && this.options.jsonSwatchConfig !== '') {
                 this._sortAttributes();
                 this._RenderControls();
+                console.log("checkpoint 1");
                 if( $('.catalog-product-view').length ){
+                    console.log("checkpoint 2");
                     if($('.swatch-attribute.color').length==1){
+                        console.log("checkpoint 3");
                         if( $('.swatch-attribute.color .swatch-attribute-options .swatch-option').length==1 ){
+                            console.log("checkpoint 4");
                             if( !$('.swatch-attribute.color .swatch-attribute-options div.swatch-option').first().hasClass('selected')  ){
+                                console.log("checkpoint 5");
                                 $('.swatch-attribute.color .swatch-attribute-options div.swatch-option').first().click();
                             }
                         }
