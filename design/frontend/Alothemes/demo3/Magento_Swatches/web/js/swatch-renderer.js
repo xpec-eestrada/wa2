@@ -935,7 +935,9 @@ define([
 
                     gallery.seek(1);
                 } else {
-                    gallery.updateData(imagesToUpdate);
+                    if (typeof gallery.updateData !== 'undefined') {
+                        gallery.updateData(imagesToUpdate);
+                    }
                     $(this.options.mediaGallerySelector).AddFotoramaVideoEvents();
                 }
             } else if (justAnImage && justAnImage.img) {
