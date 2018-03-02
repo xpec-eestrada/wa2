@@ -112,7 +112,14 @@
             </argument>
         </paging>
         
-        <exportButton name="export_button"/>
+        
+        <exportButton name="export_button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">gridenvio.gridenvio.gridenvio_columns.ids</item>
+                </item>
+            </argument>
+        </exportButton>
 
     </container>
 
@@ -141,7 +148,7 @@
             </item>
         </argument>
 
-        <selectionsColumn name="id">
+        <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="indexField" xsi:type="string">id</item>
