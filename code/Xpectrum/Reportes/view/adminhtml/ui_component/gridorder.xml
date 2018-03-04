@@ -36,15 +36,7 @@
             </item>
         </argument>
 
-        <bookmark name="bookmarks">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="storageConfig" xsi:type="array">
-                        <item name="namespace" xsi:type="string">gridorder</item>
-                    </item>
-                </item>
-            </argument>
-        </bookmark>
+        
 
         <component name="columns_controls">
             <argument name="data" xsi:type="array">
