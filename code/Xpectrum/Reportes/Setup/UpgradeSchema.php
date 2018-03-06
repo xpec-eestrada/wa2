@@ -26,6 +26,9 @@ class UpgradeSchema implements UpgradeSchemaInterface
         if (version_compare($context->getVersion(), '1.0.1', '<')) {
             $this->addColumnReport($setup);
         }
+        if (version_compare($context->getVersion(), '1.0.2', '<')) {
+            $this->addColumnReportDireccion($setup);
+        }
         
         $setup->endSetup();
     }
@@ -53,6 +56,27 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 'length' => 255,
                 'nullable' => true,
                 'comment' => 'Nombre Comuna'
+            ]
+        );
+    }
+    private function addColumnReportDireccion(SchemaSetupInterface $installer){
+        $installer->getConnection()->addColumn(
+            $installer->getTable('xpec_indx_shipping'),
+            'direccion',
+            [
+                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                'length' => 255,
+                'comment' => 'Direccion'
+            ]
+        );
+        $installer->getConnection()->addColumn(
+            $installer->getTable('xpec_indx_shipping'),
+            'sku_simple',
+            [
+                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                'length' => 255,
+                'nullable' => true,
+                'comment' => 'Sku Producto Simple'
             ]
         );
     }

@@ -145,8 +145,8 @@ class SaveFieldReport implements ObserverInterface
                     foreach($products_shipping as $item){
                         $objComuna = $this->getDataComuna($resource,$connection,$roworder['entity_id']);
                         if(isset($objComuna['id']) && is_numeric($objComuna['id']) && $objComuna['id']>0){
-                            $sql2 = "INSERT INTO ".$tableindxshipp."(id_order,increment_id,sku,payment,authocode,productname,size,color,qty,shipping_method,price_product_base,price_product_total,discount_percent,price_order_base,price_order_total,created_at,status,id_comuna,nombre_comuna) 
-                                VALUE(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$item['skuparent']."','".$method."','".$roworder['cc_trans_id']."','".$item['name']."','".$item['size']."','".$item['color']."',".$item['qty'].",'".$shipping_description."',".round($item['base_price']).",".round($item['price_inc_tax']).",".round($item['disc_percent']).",".round($roworder['base_subtotal']).",".round($roworder['grand_total']).",'".$roworder['created_at']."','".$roworder['status']."',".$objComuna['id'].",'".$objComuna['nombre']."')";
+                            $sql2 = "INSERT INTO ".$tableindxshipp."(id_order,increment_id,sku,payment,authocode,productname,size,color,qty,shipping_method,price_product_base,price_product_total,discount_percent,price_order_base,price_order_total,created_at,status,id_comuna,nombre_comuna,direccion,sku_simple) 
+                                VALUE(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$item['skuparent']."','".$method."','".$roworder['cc_trans_id']."','".$item['name']."','".$item['size']."','".$item['color']."',".$item['qty'].",'".$shipping_description."',".round($item['base_price']).",".round($item['price_inc_tax']).",".round($item['disc_percent']).",".round($roworder['base_subtotal']).",".round($roworder['grand_total']).",'".$roworder['created_at']."','".$roworder['status']."',".$objComuna['id'].",'".$objComuna['nombre']."','".$billing_address."','".$item['sku']."')";
                             $sql2 = str_replace(array("\r", "\n"), '', $sql2);
                             $connection->query($sql2);
                         }else{
@@ -190,7 +190,7 @@ class SaveFieldReport implements ObserverInterface
         $idOrder = $itemorder['entity_id'];
         $storeId = $itemorder['store_id'];
         
-        $sql = 'SELECT orit.name,orit.qty_ordered,parentp.base_price,parentp.base_price_incl_tax,parentp.tax_percent,
+        $sql = 'SELECT orit.name,orit.qty_ordered,parentp.base_price,parentp.base_price_incl_tax,parentp.tax_percent,orit.sku,
         (SELECT e.sku FROM '.$tentity.' e 
             INNER JOIN '.$torderitem.' parent ON(parent.product_id=e.entity_id)
             WHERE parent.item_id=orit.parent_item_id) as skuparent,orit.product_id,
@@ -220,7 +220,8 @@ class SaveFieldReport implements ObserverInterface
                 'color'         => $row['color'],
                 'size'          => $row['talla'],
                 'skuparent'     => $row['skuparent'],
-                'product_id'    => $row['product_id']
+                'product_id'    => $row['product_id'],
+                'sku'           => $row['sku']
             );
         }
         return $data;

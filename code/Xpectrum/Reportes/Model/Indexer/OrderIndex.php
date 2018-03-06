@@ -92,8 +92,8 @@ class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento
                     $this->_logger->info( json_encode($ar) );
                 }
                 foreach($products_shipping as $item){
-                    $sql = "INSERT INTO ".$tableindxshipp."(id_order,increment_id,sku,payment,authocode,productname,size,color,qty,shipping_method,price_product_base,price_product_total,discount_percent,price_order_base,price_order_total,created_at,status,nombre_comuna) 
-                            VALUE(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$item['skuparent']."','".$method."','".$roworder['cc_trans_id']."','".$item['name']."','".$item['size']."','".$item['color']."',".$item['qty'].",'".$shipping_description."',".round($item['base_price']).",".round($item['price_inc_tax']).",".round($item['disc_percent']).",".round($roworder['base_subtotal']).",".round($roworder['grand_total']).",'".$roworder['created_at']."','".$roworder['status']."','".$roworder['comuna']."'  )";
+                    $sql = "INSERT INTO ".$tableindxshipp."(id_order,increment_id,sku,payment,authocode,productname,size,color,qty,shipping_method,price_product_base,price_product_total,discount_percent,price_order_base,price_order_total,created_at,status,nombre_comuna,direccion,sku_simple) 
+                            VALUE(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$item['skuparent']."','".$method."','".$roworder['cc_trans_id']."','".$item['name']."','".$item['size']."','".$item['color']."',".$item['qty'].",'".$shipping_description."',".round($item['base_price']).",".round($item['price_inc_tax']).",".round($item['disc_percent']).",".round($roworder['base_subtotal']).",".round($roworder['grand_total']).",'".$roworder['created_at']."','".$roworder['status']."','".$roworder['comuna']."','".$shipping_address."','".$item['sku']."')";
                     $connection->query($sql);
                 }
                 $values='';
@@ -136,7 +136,7 @@ class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento
         $idOrder = $itemorder['entity_id'];
         $storeId = $itemorder['store_id'];
         
-        $sql = 'SELECT orit.name,orit.qty_ordered,parentp.base_price,parentp.base_price_incl_tax,parentp.tax_percent,
+        $sql = 'SELECT orit.name,orit.qty_ordered,parentp.base_price,parentp.base_price_incl_tax,parentp.tax_percent,orit.sku,
         (SELECT e.sku FROM '.$tentity.' e 
             INNER JOIN '.$torderitem.' parent ON(parent.product_id=e.entity_id)
             WHERE parent.item_id=orit.parent_item_id) as skuparent,orit.product_id,
@@ -165,7 +165,8 @@ class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento
                 'color'         => $row['color'],
                 'size'          => $row['talla'],
                 'skuparent'     => $row['skuparent'],
-                'product_id'    => $row['product_id']
+                'product_id'    => $row['product_id'],
+                'sku'           => $row['sku']
             );
         }
         return $data;
