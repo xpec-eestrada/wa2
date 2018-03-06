@@ -76,11 +76,21 @@ class Save implements ObserverInterface
                         $connection->query($sql);
                         $this->_logger->info('Data Grabada con Exito.');
                     }else{
-
+                        
                     }
                 }else{
                     if(isset($addressId) && is_numeric($addressId)){
                         throw new \Exception("Actualice la dirección y seleccione la comuna.");
+                    }else{
+                        $region     =  $objShippingAddress->getData("region");
+                        $regionId   =  $objShippingAddress->getData("region_id");
+                        $comuna     =  $objShippingAddress->getData("city");
+                        $arrcom     = $this->getDataComunaByText($resource,$connection,$comuna);
+                        $sql        = 'INSERT INTO '.$taddresss.'(id_order,id_region,name_region,id_comuna,name_comuna,type_address) 
+                        VALUES('.$orderId.','.$regionId.',\''.$region.'\','.$arrcom['id'].',\''.$comuna.'\',1)';
+                        $sql = str_replace(array("\r", "\n"), '', $sql);
+                        $connection->query($sql);
+                        $this->_logger->info('Data Grabada con Exito(Invitado).');
                     }
                 }
             }else{
@@ -129,6 +139,20 @@ class Save implements ObserverInterface
         $this->_logger->info('Data de Region Obtenida');
         return $data;
     }
-
+    private function getDataComunaByText($resource,$connection,$textComuna){
+        $this->_logger->info('Obteniendo data de Comuna');
+        $tcomuna            = $resource->getTableName('xpec_comunas');
+        $sql = "SELECT co.id,nombre FROM ".$tcomuna." co WHERE nombre='".$textComuna."'";
+        $sql        = str_replace(array("\r", "\n"), '', $sql);
+        $rscomuna   = $connection->fetchAll($sql);
+        $data       = array();
+        foreach($rscomuna as $row){
+            $idComuna   = $row['id'];
+            $nameComuna = $row['nombre'];
+            $data = array('id' => $idComuna, 'nombre'=>$nameComuna);
+        }
+        $this->_logger->info('Data de Comuna Obtenida');
+        return $data;
+    }
 
 }
