@@ -63,6 +63,11 @@
             <argument name="resourceModel" xsi:type="string">Xpectrum\Reportes\Model\ResourceModel\Order</argument>
         </arguments>
     </type>
+    
+    
+    
+    
+    
     <virtualType name="XpectrumEnvioFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
         <arguments>
             <argument name="appliers" xsi:type="array">

@@ -80,6 +80,7 @@ class SaveFieldReport implements ObserverInterface
                 
                 $product                = $this->getDataProduct($order);
                 $objShippingAddress     = $order->getShippingAddress();
+                $addressId               = $objShippingAddress->getCustomerAddressId();
                 $shippingAddressLines   = $objShippingAddress->getStreet();
                 $dlvStreet              = isset($shippingAddressLines[0]) ? $shippingAddressLines[0] : "";
                 $dlvStreet              .= isset($shippingAddressLines[1]) ? " ".$shippingAddressLines[1] : "";
@@ -142,10 +143,16 @@ class SaveFieldReport implements ObserverInterface
                 if(!$swaction2){
                     $products_shipping      = $this->getDataProductShipping($resource,$connection,$roworder,$tentity,$torderitem,$toptionvalue,$tentityint,$tattribute);
                     foreach($products_shipping as $item){
-                        $sql2 = "INSERT INTO ".$tableindxshipp."(id_order,increment_id,sku,payment,authocode,productname,size,color,qty,shipping_method,price_product_base,price_product_total,discount_percent,price_order_base,price_order_total,created_at,status) 
-                                VALUE(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$item['skuparent']."','".$method."','".$roworder['cc_trans_id']."','".$item['name']."','".$item['size']."','".$item['color']."',".$item['qty'].",'".$shipping_description."',".round($item['base_price']).",".round($item['price_inc_tax']).",".round($item['disc_percent']).",".round($roworder['base_subtotal']).",".round($roworder['grand_total']).",'".$roworder['created_at']."','".$roworder['status']."')";
-                        $sql2 = str_replace(array("\r", "\n"), '', $sql2);
-                        $connection->query($sql2);
+                        $objComuna = $this->getDataComuna($resource,$connection,$roworder['entity_id']);
+                        if(isset($objComuna['id']) && is_numeric($objComuna['id']) && $objComuna['id']>0){
+                            $sql2 = "INSERT INTO ".$tableindxshipp."(id_order,increment_id,sku,payment,authocode,productname,size,color,qty,shipping_method,price_product_base,price_product_total,discount_percent,price_order_base,price_order_total,created_at,status,id_comuna,nombre_comuna,direccion,sku_simple) 
+                                VALUE(".$roworder['entity_id'].",'".$roworder['increment_id']."','".$item['skuparent']."','".$method."','".$roworder['cc_trans_id']."','".$item['name']."','".$item['size']."','".$item['color']."',".$item['qty'].",'".$shipping_description."',".round($item['base_price']).",".round($item['price_inc_tax']).",".round($item['disc_percent']).",".round($roworder['base_subtotal']).",".round($roworder['grand_total']).",'".$roworder['created_at']."','".$roworder['status']."',".$objComuna['id'].",'".$objComuna['nombre']."','".$billing_address."','".$item['sku']."')";
+                            $sql2 = str_replace(array("\r", "\n"), '', $sql2);
+                            $connection->query($sql2);
+                        }else{
+                            error_log("check");
+                            throw new \Exception("Debe seleccionar una comuna en su dirección");
+                        }
                     }
                 }else{
                     $sql2 = "UPDATE 
@@ -183,7 +190,7 @@ class SaveFieldReport implements ObserverInterface
         $idOrder = $itemorder['entity_id'];
         $storeId = $itemorder['store_id'];
         
-        $sql = 'SELECT orit.name,orit.qty_ordered,parentp.base_price,parentp.base_price_incl_tax,parentp.tax_percent,
+        $sql = 'SELECT orit.name,orit.qty_ordered,parentp.base_price,parentp.base_price_incl_tax,parentp.tax_percent,orit.sku,
         (SELECT e.sku FROM '.$tentity.' e 
             INNER JOIN '.$torderitem.' parent ON(parent.product_id=e.entity_id)
             WHERE parent.item_id=orit.parent_item_id) as skuparent,orit.product_id,
@@ -213,13 +220,20 @@ class SaveFieldReport implements ObserverInterface
                 'color'         => $row['color'],
                 'size'          => $row['talla'],
                 'skuparent'     => $row['skuparent'],
-                'product_id'    => $row['product_id']
+                'product_id'    => $row['product_id'],
+                'sku'           => $row['sku']
             );
         }
         return $data;
     }
-
-
-
-
+    private function getDataComuna($resource,$connection,$idOrder,$type=1){
+        $tcomuna    = $resource->getTableName('xpec_order_address_data');
+        $sql        = 'SELECT id_comuna,name_comuna FROM '.$tcomuna.' WHERE id_order='.$idOrder.' AND type_address='.$type;
+        $rsorders   = $connection->fetchAll($sql);
+        $data       = array();
+        foreach($rsorders as $item){
+            $data = array('id'=>$item['id_comuna'],'nombre'=>$item['name_comuna']);
+        }
+        return $data;
+    }
 }
