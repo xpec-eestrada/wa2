@@ -148,13 +148,7 @@
             </item>
         </argument>
 
-        <selectionsColumn name="ids">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="indexField" xsi:type="string">id</item>
-                </item>
-            </argument>
-        </selectionsColumn>
+        
 
         <column name="increment_id">
             <argument name="data" xsi:type="array">
@@ -296,6 +290,22 @@
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Comuna</item>
+                </item>
+            </argument>
+        </column>
+        <column name="direccion">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Dirección</item>
+                </item>
+            </argument>
+        </column>
+        <column name="sku_simple">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Sku Simple</item>
                 </item>
             </argument>
         </column>
