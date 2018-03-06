@@ -57,9 +57,10 @@ class Save implements ObserverInterface
             $objShippingAddress = $order->getShippingAddress();
             $addressId          = $objShippingAddress->getCustomerAddressId();
             $this->_logger->info('IdOrder: '.$orderId.' -- IdAddress: '.$addressId);
-            $objRegion          = $this->getDataRegion($resource,$connection,$addressId);
-            $objComuna          = $this->getDataComuna($resource,$connection,$addressId);
-
+            if(isset($addressId) && is_numeric($addressId)){
+                $objRegion          = $this->getDataRegion($resource,$connection,$addressId);
+                $objComuna          = $this->getDataComuna($resource,$connection,$addressId);
+            }
             $sql    = 'SELECT id FROM '.$taddresss.' WHERE id_order = '.$orderId;
             $rssw   = $connection->fetchAll($sql);
             $swnew  = true; 
@@ -68,13 +69,19 @@ class Save implements ObserverInterface
             }
             if($swnew){
                 if(isset($objComuna['id']) && is_numeric($objComuna['id']) && $objComuna['id']>0){
-                    $sql = 'INSERT INTO '.$taddresss.'(id_order,id_region,name_region,id_comuna,name_comuna,type_address) 
-                    VALUES('.$orderId.','.$objRegion['id'].',\''.$objRegion['nombre'].'\','.$objComuna['id'].',\''.$objComuna['nombre'].'\',1)';
-                    $sql = str_replace(array("\r", "\n"), '', $sql);
-                    $connection->query($sql);
-                    $this->_logger->info('Data Grabada con Exito.');
+                    if(isset($addressId) && is_numeric($addressId)){
+                        $sql = 'INSERT INTO '.$taddresss.'(id_order,id_region,name_region,id_comuna,name_comuna,type_address) 
+                        VALUES('.$orderId.','.$objRegion['id'].',\''.$objRegion['nombre'].'\','.$objComuna['id'].',\''.$objComuna['nombre'].'\',1)';
+                        $sql = str_replace(array("\r", "\n"), '', $sql);
+                        $connection->query($sql);
+                        $this->_logger->info('Data Grabada con Exito.');
+                    }else{
+
+                    }
                 }else{
-                    throw new \Exception("Actualice la dirección y seleccione la comuna.");
+                    if(isset($addressId) && is_numeric($addressId)){
+                        throw new \Exception("Actualice la dirección y seleccione la comuna.");
+                    }
                 }
             }else{
                 $this->_logger->info('Data no grabada porque ya existia.');
