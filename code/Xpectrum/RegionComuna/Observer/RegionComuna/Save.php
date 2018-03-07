@@ -80,7 +80,7 @@ class Save implements ObserverInterface
                     }
                 }else{
                     if(isset($addressId) && is_numeric($addressId)){
-                        throw new \Exception("Actualice la dirección y seleccione la comuna.");
+                        //throw new \Exception("Actualice la dirección y seleccione la comuna.");
                     }else{
                         $region     =  $objShippingAddress->getData("region");
                         $regionId   =  $objShippingAddress->getData("region_id");
