@@ -13,7 +13,7 @@ define([
 		 var newcarrierMethod = jQuery("#label_method_newcarrier_newcarrier").parent();
 		 if(jQuery(".newcarrier-info").length == 0){
 			 newcarrierMethod.after(storeHtml);
-			 jQuery(".newcarrier-info").append("<div class='show-store-detail'><label>"+$t('Pickup Store')+"</label></div>");
+			 jQuery(".newcarrier-info").append("<div class='show-store-detail'><label>"+$t('Selecciona tu tienda:')+"</label></div>");
 			 jQuery(".show-store-detail").append("<select id='pickup-store' class='store-detail-select'></select>");
 			 /* jQuery(".store-detail-select").append("<option class='store-detail-item' value=''>"+$t('Please Select Store')+"</option>"); */
 			 jQuery.each(storeList, function (index, el) {

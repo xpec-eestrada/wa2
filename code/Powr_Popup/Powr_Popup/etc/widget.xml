@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="powr_popupswidgit" class="Powr\Popup\Block\Widget\Popup">
+        <label translate="true">POWr Popup</label>
+        <description>Capture contacts and promote offers with custom popups</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="false">
+                <label translate="true">Title</label>
+                <type>text</type>
+                <description>Optional -  for internal use only</description>
+            </parameter>
+            <parameter name="id" xsi:type="block"  required="true" visible="true" >
+                <label translate="true">Unique Identifier</label>
+                <block class="Powr\Popup\Block\IdGenerator\Index" />
+            </parameter>
+            <parameter name="plugin_type" xsi:type="select" required="true" visible="false">
+                <label translate="true">Type</label>
+                <description>Once selected don't change this - create a new widget instead</description>
+                <options>
+                    <option name="popup" value="powr-popup" selected="true">
+                        <label translate="true">Popup</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="Powr_Popup::popup/widget.phtml" selected="true">
+                        <label translate="true">Popup Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

@@ -51,13 +51,13 @@ require(['jquery'], function($){
 					<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header-info-custom')->toHtml(); ?>
 					<div class="col-sm-3 col-lg-3 col-md-3 col-xs-4 col1 toplink">
 						<div class="header-setting tool-header shopbtn hide">
-							<a title="My Shop" href="javascript:void(0)" class="icon fa fa-comments-o"></a>
+							<a title="Carro de Compras" href="javascript:void(0)" class="icon fa fa-comments-o"></a>
 						</div>
 						<div class="header-setting tool-header">
-							<a title="My Account" href="javascript:void(0)" target="_blank" class="user-account icon fa fa-user"></a>
+							<a title="Mi Cuenta" href="javascript:void(0)" target="_blank" class="user-account icon fa fa-user"></a>
 						</div>
 						<div class="header-setting tool-header">
-							<a title="My wishlist" href="<?php echo $this->getUrl('wishlist') ?>" target="_blank" class="wishlist icon fa fa-heart-o"></a>
+							<a title="Mi lista de deseos" href="<?php echo $this->getUrl('wishlist') ?>" target="_blank" class="wishlist icon fa fa-heart-o"></a>
 						</div>
 						<div class="content-cart">
 							<?php echo $this->getChildHtml('minicart'); ?>
