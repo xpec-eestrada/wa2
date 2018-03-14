@@ -20,10 +20,10 @@ class Data extends AbstractHelper
     protected $_modelStatusFactory;
 
     public function __construct(Context $context, 
-        ScopeConfigInterface $configScopeConfigInterface, 
         OrderstatusFactory $modelStatusFactory)
     {
-        $this->_configScopeConfigInterface = $configScopeConfigInterface;
+        // $this->_configScopeConfigInterface = $configScopeConfigInterface;
+        $this->_configScopeConfigInterface = $context->getScopeConfig();
         $this->_modelStatusFactory = $modelStatusFactory;
 
         parent::__construct($context);

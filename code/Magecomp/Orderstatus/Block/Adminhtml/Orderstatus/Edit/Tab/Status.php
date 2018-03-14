@@ -16,13 +16,12 @@ class Status extends \Magento\Backend\Block\Widget\Form\Generic implements \Mage
 		\Magento\Framework\Registry $registry, 
 		\Magento\Framework\Data\FormFactory $formFactory, 
 		\Magento\Store\Model\System\Store $systemStore, 
-		LoggerInterface $logger,
 		\Magento\Email\Model\ResourceModel\Template\CollectionFactory $emailcollection,
 		OrderstatusemailFactory $statusemailFactory,
 		array $data = []
 	) 
 	{
-		$this->logger = $logger;
+		$this->_logger = $context->getLogger();
 		$this->_systemStore = $systemStore;
 		$this->emailcollection = $emailcollection;
 		$this->statusemailFactory = $statusemailFactory;
