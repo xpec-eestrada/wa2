@@ -1,0 +1,7 @@
+.mcePowrMenu{
+    display: none;
+}
+
+.mcePowrTitle1:hover ~ .mcePowrMenu{
+    display: block;
+}

@@ -724,9 +724,9 @@ tr.summary-details-excluded{font-style:italic}
 .block-minicart .subtotal .label{color: #666;font-weight: normal;padding: 0;}
 .block-minicart .amount .price-wrapper:first-child .price {font-size: 16px;font-weight: normal;}
 .block-minicart .block-content > .actions{padding: 0;}
-.block-minicart .block-content > .actions .secondary .viewcart{text-transform: uppercase;border-width: 2px;border-style: solid;display: block;line-height: 35px;text-align: center;float: none;color: #666;}
+.block-minicart .block-content > .actions .secondary .viewcart{text-transform: uppercase;border-width: 2px;border-style: solid;display: block;line-height: 35px;text-align: center;float: none;color: #666;color: #5d6a8b !important;border-color: #5d6a8b !important;}/*xpec_er*/
 .block-minicart .block-content > .actions > .primary{margin: 0 0 15px;}
-.block-minicart .block-content > .actions > .primary .action.primary {border-width: 1px;border-style: solid;color: #ffffff;display: block;font-size: 11px;line-height: 35px;margin-bottom: 15px;padding: 0 20px; text-transform: uppercase;width: 100%;}
+.block-minicart .block-content > .actions > .primary .action.primary {border-width: 1px;border-style: solid;color: #ffffff;display: block;font-size: 11px;line-height: 35px;margin-bottom: 15px;padding: 0 20px; text-transform: uppercase;width: 100%;background-color: #fd5400 !important;border-color: #fd5400 !important;}/*xpec_er*/
 .minicart-items-wrapper{margin: 0;padding: 15px 0;border: 0;overflow-x: auto;}
 .minicart-items-wrapper .product-item-photo {display: block;overflow: hidden;position: relative;}
 .minicart-items .product-item-details{text-align: left;padding-left: 95px;}
@@ -1488,9 +1488,7 @@ ul.magictabs{padding:0}
 .pagecrumbs-title {background-image: url("../images/alothemes/banner-breadcrumbs.jpg");background-position: 0 0;background-repeat: no-repeat; background-size: cover;margin: 0;padding: 120px 0;}
 .category-view .page-title-wrapper .page-title,.pagecrumbs-title{color: #fff;text-transform: uppercase;}
 .pagecrumbs-title{font-size: 48px;font-weight: bold;text-align: center;}
-.category-image .image{
-	    height: 100%;
-}
+.category-image .image{}
 .category-view .page-title-wrapper .page-title span{	
 	font-size: 107px;
     letter-spacing: 1px;
@@ -1535,8 +1533,8 @@ ul.magictabs{padding:0}
 .products-grid{position:relative;z-index: 0;}
 .products-grid.last{border-bottom:0}
 .products-grid .product-name{margin: 5px 0 3px;font-size:100%;text-overflow:ellipsis;text-align: center;white-space:nowrap;overflow:hidden;line-height: normal;}
-.products-grid .product-name a{font-size: 12px;line-height: normal;outline:0 none;text-decoration:none;font-weight: 500;color: #000;letter-spacing: 2px;text-transform: uppercase;}
-.products-grid .price-box .price{font-size: 12px;font-weight: 600;color: #000;letter-spacing: 2px;}
+.products-grid .product-name a{font-size: 12px;line-height: normal;outline:0 none;text-decoration:none;font-weight: 500;color: #000;letter-spacing: 2px;text-transform: uppercase;white-space: normal;word-wrap: break-word;}
+.products-grid .price-box .price{font-size: 12px;font-weight: 600;color:#e80f0f;letter-spacing: 2px;}
 
 .products-grid .price-box{line-height: normal;margin: 0px;text-align: center;}
 .products-grid .availability{line-height:21px}
@@ -1695,8 +1693,7 @@ ul.magictabs{padding:0}
 
  
 .product-item .old-price .price{ 
-	color: #afafaf;
-	font-weight: 300;
+	color: #151414;
 }
 .product-item .special-price .price{
 	color: #bb0a0a;
@@ -1922,6 +1919,7 @@ ul.magictabs{padding:0}
     height: 40px;
     width: 294px;
     line-height: 38px;
+    background-color: #fd5400 !important;/*xpec_er*/
 }
 .product-view .add-to-cart button.button span {
     padding: 0;
@@ -2851,6 +2849,7 @@ html body.catalog-product-view .MagicZoom figure a[href*='magiczoom'] {
     /*margin-top: 40px;*//*xpec_er*/
     /*margin-bottom: 53px;*//*xpec_er*/
     width: 100%;/*xpec_er*/
+    height: 758px;/*ajustar alineacion de la imagen - xpec_er*/
 }
 
 .denim-product-inner a {
@@ -3401,9 +3400,11 @@ ul.nav-accordion li.xpec_menu_level1 a span{
 }
 .price-box.price-final_price .xpec-special-price{
     float: left;
+    margin-left: 30px;/*xpec_er*/
 }
 .price-box.price-final_price .old-price{
     float: right;
+    margin-right: 30px;/*xpec_er*/
 }
 .xpec-special-price .price-label,
 .xpec-price-normal .price-label{
@@ -3501,4 +3502,8 @@ ul.nav-accordion li.xpec_menu_level1 a span{
     .customer-address-form .xpec-telefono{
         width: 65%;
     }
+}
+@media screen and (max-width: 320px){
+    .catalog-product-view .fotorama__stage__frame .fotorama__img {
+	left: 60px !important;
 }
