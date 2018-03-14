@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+  <template id="magecomp_orderstatus_change" label="Order Status Change" file="orderstatus.html" type="html" area="frontend" module="Magecomp_Orderstatus"/>
+</config>

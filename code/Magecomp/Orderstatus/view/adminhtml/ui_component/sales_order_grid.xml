@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+     <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="selectProvider" xsi:type="string">sales_order_grid.sales_order_grid.sales_order_columns.ids</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+					<item name="indexField" xsi:type="string">entity_id</item>
+				</item>
+			</argument>
+			<action name="select_orderstatus">
+				<argument name="data" xsi:type="array">
+					<item name="config" xsi:type="array">
+						<item name="type" xsi:type="string">orderstatus_id</item>
+						<item name="label" xsi:type="string" translate="true">Order Status</item>
+					</item>
+				</argument>
+				<argument name="actions" xsi:type="configurableObject">
+					<argument name="class" xsi:type="string">Magecomp\Orderstatus\Ui\Component\Massaction</argument>
+					<argument name="data" xsi:type="array">
+						<item name="urlPath" xsi:type="string">orderstatus/orderstatus/massstatus/</item>
+						<item name="paramName" xsi:type="string">orderstatus_id</item>
+						<item name="confirm" xsi:type="array">
+							<item name="title" xsi:type="string" translate="true">Order Status</item>
+							<item name="message" xsi:type="string" translate="true">Are you sure to change order status?</item>
+						</item>
+					</argument>
+				</argument>
+			</action>
+		</massaction>
+    </listingToolbar>
+</listing>

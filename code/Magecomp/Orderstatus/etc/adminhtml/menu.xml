@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magecomp_Orderstatus::orderstatus" title="MageComp Order Status" resource="Magecomp_Orderstatus::orderstatus" module="Magecomp_Orderstatus" sortOrder="20"/>
+		
+		<add id="Magecomp_Orderstatus::orderstatus_orderstatus" title="Manage Order Statuses" resource="Magecomp_Orderstatus::orderstatus_grid" parent="Magecomp_Orderstatus::orderstatus" action="orderstatus/orderstatus/index" module="Magecomp_Orderstatus" sortOrder="20"/>
+		
+		 <add id="Magecomp_Orderstatus::config_orderstatus" title="Configuration" module="Magecomp_Orderstatus" sortOrder="30" parent="Magecomp_Orderstatus::orderstatus" action="adminhtml/system_config/edit/section/orderstatus_configuration" resource="Magecomp_Orderstatus::config_orderstatus"/>
+    </menu>
+</config>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+			  <resource id="Magento_Backend::stores">
+				   <resource id="Magento_Backend::stores_settings">
+						<resource id="Magento_Config::config">
+							<resource id="Magecomp_Orderstatus::config_orderstatus" title="Order Status Configuration" sortOrder="10" />
+						</resource>
+					</resource>
+			  </resource>
+				<resource id="Magecomp_Orderstatus::orderstatus" title="MageComp Order Status" translate="title" sortOrder="20">	
+					<resource id="Magecomp_Orderstatus::orderstatus_grid" title="Manage Order Statuses" translate="title" sortOrder="30" />
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

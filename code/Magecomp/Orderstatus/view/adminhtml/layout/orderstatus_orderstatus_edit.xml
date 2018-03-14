@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="orderstatus_orderstatus_edit"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magecomp\Orderstatus\Block\Adminhtml\Orderstatus\Edit" name="orderstatus_orderstatus_edit"/>
+        </referenceContainer>
+		
+		<referenceContainer name="left">
+            <block class="Magecomp\Orderstatus\Block\Adminhtml\Orderstatus\Edit\Tabs" name="magecomp_orderstatus_edit_tabs">
+				<block class="Magecomp\Orderstatus\Block\Adminhtml\Orderstatus\Edit\Tab\Status" name="magecomp_orderstatus_edit_tab_status"/>
+				<action method="addTab">
+                    <argument name="name" xsi:type="string">status_section</argument>
+                    <argument name="block" xsi:type="string">magecomp_orderstatus_edit_tab_status</argument>
+                </action>
+			</block>
+        </referenceContainer>
+	</body>
+</page>
