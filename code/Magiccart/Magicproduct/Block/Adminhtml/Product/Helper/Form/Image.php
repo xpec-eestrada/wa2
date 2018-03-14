@@ -9,7 +9,7 @@
  *
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-namespace Magento\Catalog\Block\Adminhtml\Product\Helper\Form;
+namespace Magiccart\Magicproduct\Block\Adminhtml\Product\Helper\Form;
 
 class Image extends \Magento\Framework\Data\Form\Element\Image
 {

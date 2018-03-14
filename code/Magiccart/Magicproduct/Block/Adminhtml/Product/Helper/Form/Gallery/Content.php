@@ -11,7 +11,7 @@
  *
  * @method \Magento\Framework\Data\Form\Element\AbstractElement getElement()
  */
-namespace Magento\Catalog\Block\Adminhtml\Product\Helper\Form\Gallery;
+namespace Magiccart\Magicproduct\Block\Adminhtml\Product\Helper\Form\Gallery;
 
 use Magento\Backend\Block\Media\Uploader;
 use Magento\Framework\View\Element\AbstractBlock;

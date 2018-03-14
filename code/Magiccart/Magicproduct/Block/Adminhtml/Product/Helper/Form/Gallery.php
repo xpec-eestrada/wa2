@@ -12,7 +12,7 @@
  *
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-namespace Magento\Catalog\Block\Adminhtml\Product\Helper\Form;
+namespace Magiccart\Magicproduct\Block\Adminhtml\Product\Helper\Form;
 
 use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Eav\Model\Entity\Attribute;

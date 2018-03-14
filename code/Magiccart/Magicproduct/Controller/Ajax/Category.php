@@ -10,7 +10,7 @@
  * @@Function:
  */
 
-namespace Magiccart\Magicproduct\Controller\Index;
+namespace Magiccart\Magicproduct\Controller\Ajax;
 
 class Ajax extends \Magiccart\Magicproduct\Controller\Ajax
 {

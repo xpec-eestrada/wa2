@@ -6,7 +6,7 @@
 
 // @codingStandardsIgnoreFile
 
-namespace Magento\Catalog\Block\Adminhtml\Product\Helper\Form;
+namespace Magiccart\Magicproduct\Block\Adminhtml\Product\Helper\Form;
 
 use Magento\Catalog\Model\ResourceModel\Category\Collection;
 use Magento\Framework\AuthorizationInterface;

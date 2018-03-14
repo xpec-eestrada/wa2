@@ -10,7 +10,7 @@
  * @@Function:
  */
 
-namespace Magiccart\Magicproduct\Block\Adminhtml\Category\Edit\Tab;
+namespace Magiccart\Magicproduct\Block\Adminhtml\Adminhtml\Category\Edit\Tab;
 
 use Magiccart\Magicproduct\Model\Status;
 
