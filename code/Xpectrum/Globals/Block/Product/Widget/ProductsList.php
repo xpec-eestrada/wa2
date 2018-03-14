@@ -164,7 +164,6 @@ class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList{
         
         //$collection->getSelect()->where("stock_status_index.stock_status = 1");
         $this->_stockFilter->addInStockFilterToCollection($collection);
-        error_log($collection->getSelect()->__toString());
         return $collection;
     }
 

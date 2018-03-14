@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="Xpectrum_NewsletterPopup::js/popup.js"/>
+        <css  src="Xpectrum_NewsletterPopup::js/lib/fancy/jquery.fancybox.css"/>
+        <css  src="Xpectrum_NewsletterPopup::css/xpectrum_popup_newsletter.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Xpectrum\NewsletterPopup\Block\NewsLetterXpec" name="index.home" template="Xpectrum_NewsletterPopup::popup.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

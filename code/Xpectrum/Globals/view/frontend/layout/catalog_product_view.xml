@@ -5,5 +5,8 @@
         <referenceContainer name="product.info.price">
             <block class="Xpectrum\Globals\Block\Product\Sku" name="product.sku" template="product/sku.phtml" after="product.info.stock.sku" />
         </referenceContainer>
+        <referenceContainer name="footer-container">
+            <block class="Xpectrum\Globals\Block\Category\Zoom" name="zoom.image.xpec" template="Xpectrum_Globals::product/zoom.phtml" />
+        </referenceContainer>
     </body>
 </page>

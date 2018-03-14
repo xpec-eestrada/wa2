@@ -103,7 +103,6 @@ class Wa2 implements Wa2Interface{
                         $indexer = $indexerFactory->create();
                         $indexer->load($indexerId);
                         $idParent = $productparent->getId();
-                        error_log("estado papa: ".$idParent);
                         $indexer->reindexRow($idParent); // hace reindex por id
                         $this->loggerxpec->info('Termino reindex (padre) sku: '.$productparent->getSku());
                     }
@@ -198,7 +197,6 @@ class Wa2 implements Wa2Interface{
                                 $indexer = $indexerFactory->create();
                                 $indexer->load($indexerId);
                                 $idParent = $productparent->getId();
-                                error_log("estado papa: ".$idParent);
                                 $indexer->reindexRow($idParent); // hace reindex por id
                                 $this->loggerxpec->info('Finalizando reindex Sku(padre): '.$productparent->getSku());
                             }

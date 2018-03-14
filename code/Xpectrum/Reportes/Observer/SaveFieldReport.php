@@ -150,7 +150,6 @@ class SaveFieldReport implements ObserverInterface
                             $sql2 = str_replace(array("\r", "\n"), '', $sql2);
                             $connection->query($sql2);
                         }else{
-                            error_log("check");
                             throw new \Exception("Debe seleccionar una comuna en su dirección");
                         }
                     }

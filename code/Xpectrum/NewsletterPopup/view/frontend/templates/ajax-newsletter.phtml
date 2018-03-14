@@ -1,0 +1,87 @@
+<script>
+    require(['jquery', 'Magento_Ui/js/modal/modal', 'mage/translate'],
+        function($, modal, $t) {
+            var form = $('.form.subscribe');
+            $($('.form.subscribe')).each( function(i, e) {
+                if (!!!$(e).closest('#xpec-popup-content').length) {
+                    form = $(e);
+                }
+            });
+            
+            form.submit(function(e) {
+                if (form.validation('isValid')) {
+                    var email;
+                    var gender = form.find("#genero").val();
+                    var url = form.attr('action');
+                    var loadingMessage = $('#loading-message');
+                    
+                    $($('input[name="email"]')).each( function(i, e) {
+                        if (!!!$(e).closest('#xpec-popup-content').length) {
+                            email = $(e).val();
+                        }
+                    });
+                    
+                    if (loadingMessage.length == 0) {
+                        form.find('.control').append('<div id="loading-message" style="display:none;padding-top:10px;">&nbsp;</div>');
+                        var loadingMessage = $('#loading-message');
+                    }
+
+                    e.preventDefault();
+                    try {
+                        form.find('button.subscribe').attr('disabled', true);
+                        form.find('input#newsletter').attr('disabled', true);
+                        loadingMessage.html('Enviando...').show();
+                        $.ajax({
+                            url: url,
+                            dataType: 'json',
+                            type: 'POST',
+                            data: {email: email, genero: gender},
+                            success: function (data) {
+                                loadingMessage.hide();
+                                console.log(data.status);
+                                if (data.status != "ERROR") {
+                                    form.find("#newsletter").val('');
+                                    modalNewsletter($t(data.msg));
+                                } else {
+                                    modalNewsletter('Ya teníamos tu correo, gracias por seguirnos.');
+                                }
+                                form.find('button.subscribe').attr('disabled', null);
+                                form.find('input#newsletter').attr('disabled', null);
+                            }
+                        });
+                    } catch (e){
+                        loadingMessage.html(e.message);
+                    }
+                }
+                return false;
+            });
+            
+            function modalNewsletter(msg) {
+                var parentBody = window.parent.document.body;
+                if(msg == 'Ya teníamos tu correo, gracias por seguirnos.'){
+
+                $('<div />').html('')                         
+                    .modal({
+                        modalClass: 'modal-newsletter',
+                        title: msg,
+                        autoOpen: true
+                    });
+
+                }else{
+
+                    $('<div />').html('')                        
+                    .modal({
+                        modalClass: 'modal-newsletter newsletter-s-modal',
+                        title: '<img src="https://static.andesgear.cl/pub/media/wysiwyg/ANDESGEAR/suscripcion-popup.jpg">',
+                        autoOpen: true
+                    });        
+
+                }
+
+                setTimeout(function(){
+                    $('.mfp-close', parentBody).trigger('click');
+                }, 3000);
+            }
+        }        
+    );
+</script>

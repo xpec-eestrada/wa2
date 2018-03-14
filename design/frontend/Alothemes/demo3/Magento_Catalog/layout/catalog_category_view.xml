@@ -14,17 +14,24 @@
 		   </container>
         </referenceContainer>
 	    <referenceContainer name="content">
-	    	<block class="Magento\Catalog\Block\Category\View" name="category.description" template="Magento_Catalog::category/description.phtml"/>
+	    	<block class="Magento\Catalog\Block\Category\View" name="category.description" template="Magento_Catalog::category/description.phtml">
 			<!-- <block class="Magento\Cms\Block\Block" name="slide-category" before="-">
 				<arguments>
 					<argument name="block_id" xsi:type="string">slide-category</argument>
 				</arguments>
 			</block> -->
 		</referenceContainer> 
+
+
+		
+
+
 		<!-- <referenceContainer name="catalog.leftnav" remove="true"/> -->
 		<referenceBlock name="wishlist_sidebar" remove="true"/>
 			<referenceBlock name="sale.reorder.sidebar" remove="true"/>
 			<referenceBlock name="catalog.compare.sidebar" remove="true" />
+
+			
     </body>
 	<move element="breadcrumbs" destination="columns.top" before="-" />
 </page>

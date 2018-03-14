@@ -38,7 +38,6 @@ class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento
             $sql            = 'TRUNCATE '.$tableindxshipp;
             $result         = $connection->query($sql);
             
-
             $sql = 'SELECT torder.entity_id,increment_id,created_at,grand_total,torder.status,torder.store_id,base_subtotal,pay.cc_trans_id,
             (SELECT telephone 
                 FROM '.$taddress.' 
@@ -75,6 +74,7 @@ class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento
                 }
                 $sql = 'SELECT increment_id FROM '.$tableindxshipp.' WHERE id_order = '.$roworder['entity_id'];
                 $rsvaleexit = $connection->fetchAll($sql);
+                
                 $swvalidate = false;
                 $values = str_replace(array("\r", "\n"), '', $values);
                 $sql = "INSERT INTO ".$tableindx."(id_order,increment_id,skus,qty,productnames,phone,created_at,total,status,shipping_address,billing_address,shipping_description,customer_email,shipping_price,customer_name,payment_method) VALUES ".$values;
@@ -153,6 +153,7 @@ class OrderIndex implements \Magento\Framework\Indexer\ActionInterface, \Magento
         FROM '.$torderitem.' orit 
         INNER JOIN '.$torderitem.' parentp ON(parentp.item_id=orit.parent_item_id)
         WHERE orit.product_type=\'simple\' AND orit.order_id='.$idOrder;
+        $this->_logger->info( "get product: ".$sql );
         $rsproducts = $connection->fetchAll($sql);
         $data = array();
         foreach($rsproducts as $row){

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="adminhtml.newslettrer.subscriber.grid.columnSet">
+            <block class="Magento\Backend\Block\Widget\Grid\Column">
+                <arguments>
+                    <argument name="header" xsi:type="string" translate="true">Genero</argument>
+                    <argument name="index" xsi:type="string">genero</argument>
+                    <argument name="type" xsi:type="string">options</argument>
+                    <argument name="options" xsi:type="array">
+                        <item name="genero_male" xsi:type="array">
+                            <item name="value" xsi:type="string">1</item>
+                            <item name="label" xsi:type="string" translate="true">Hombre</item>
+                        </item>
+                        <item name="genero_female" xsi:type="array">
+                            <item name="value" xsi:type="string">2</item>
+                            <item name="label" xsi:type="string" translate="true">Mujer</item>
+                        </item>
+                    </argument>
+                    <argument name="header_css_class" xsi:type="string">col-gender</argument>
+                    <argument name="column_css_class" xsi:type="string">ccol-gender</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>
