@@ -673,6 +673,7 @@
 "%1 doesn't extend \Magento\Framework\Filter\Template","%1 no se extiende a \Magento\Framework\Filter\Template","module","Magento_Catalog"
 "As low as","Tan bajo como","module","Magento_Bundle"
 "message","mensaje","module","Magento_Catalog"
+"Adding...","Agregando...","module","Magento_Catalog"
 "fl","fl","module","Magento_Catalog"
 "123","123","module","Magento_Catalog"
 "Select...","Seleccionar...","module","Magento_BraintreeTwo"

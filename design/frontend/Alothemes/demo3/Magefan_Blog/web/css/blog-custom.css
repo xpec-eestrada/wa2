@@ -83,7 +83,7 @@
     .cms-static-blog .block-content.lazy.slick-slider .item{
         padding-right: 1%;
         padding-left: 1%;
-        float: none;
+        /*float: none;*//*xpec_er*/
         width: 100%;
     }
 }

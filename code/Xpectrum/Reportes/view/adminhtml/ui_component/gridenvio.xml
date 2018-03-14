@@ -112,7 +112,14 @@
             </argument>
         </paging>
         
-        <exportButton name="export_button"/>
+        
+        <exportButton name="export_button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">gridenvio.gridenvio.gridenvio_columns.ids</item>
+                </item>
+            </argument>
+        </exportButton>
 
     </container>
 
@@ -141,7 +148,7 @@
             </item>
         </argument>
 
-        <selectionsColumn name="id">
+        <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="indexField" xsi:type="string">id</item>
@@ -281,6 +288,30 @@
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
                     <item name="dataType" xsi:type="string">select</item>
                     <item name="label" xsi:type="string" translate="true">Status</item>
+                </item>
+            </argument>
+        </column>
+        <column name="nombre_comuna">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Comuna</item>
+                </item>
+            </argument>
+        </column>
+        <column name="direccion">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Dirección</item>
+                </item>
+            </argument>
+        </column>
+        <column name="sku_simple">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Sku Simple</item>
                 </item>
             </argument>
         </column>

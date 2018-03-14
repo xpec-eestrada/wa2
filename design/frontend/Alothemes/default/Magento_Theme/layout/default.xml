@@ -91,7 +91,16 @@
                     </arguments>
                 </block>
             </container>
-			<container name="footer-bottom" label="Footer Bottom" htmlTag="div" htmlClass="block-footer-bottom" after="footer-top">
+
+			<container name="secitions.block.news" label="Before Section Footer" htmlTag="div" htmlClass="xpec-block-news">
+				<block class="Magento\Cms\Block\Block" name="cms-after-newsletter">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">cms-after-newsletter</argument>
+                    </arguments>
+                </block>
+			</container>
+
+			<container name="footer-bottom" label="Footer Bottom" htmlTag="div" htmlClass="block-footer-bottom" after="secitions.block.news">
 			    <container name="main.wrap" label="Page Footer Wrap" htmlTag="div" htmlClass="main-wrap">
 					<block class="Magento\Cms\Block\Block" name="cms-static-main-footer">
 						<arguments>
