@@ -5,7 +5,6 @@
         <resources>
             <resource id="Magento_Backend::admin">
                 <resource id="Xpectrum_Backend::Xpectrum" title="Xpectrum" sortOrder="100">
-                    
                 </resource>                
             </resource>
         </resources>
