@@ -56,20 +56,19 @@ class AjaxSubscribe extends \Magento\Framework\App\Action\Action{
                         WHERE subscriber_email = \'' . $email . '\' AND subscriber_status = 1 AND store_id = ' . $store_id;
                 $result = $connection->fetchOne($sql);
                 $issubscriber = (isset($result) && is_numeric($result) && $result > 0) ? true : false;
-                $sql    = "SELECT cupon FROM ".$tablecoupon." WHERE email = '".$email."' ";
-                $cupon  = $connection->fetchOne($sql);
                 if(!$issubscriber){
                     if($this->validateEmailFormatXpec($email)){
                         $this->validateEmailAvailable($email);
                         $status = $this->subscriberFactory->create()->subscribe($email);
-                        
                         if ($status == \Magento\Newsletter\Model\Subscriber::STATUS_NOT_ACTIVE) {
                             $response = [
                                 'status'    => 'OK',
                                 'code'      => 101,
                                 'msg'       => 'No esta activo.'
                             ];
-                        } else {
+                        }else{
+                            $sql    = "SELECT cupon FROM ".$tablecoupon." WHERE email = '".$email."' ";
+                            $cupon  = $connection->fetchOne($sql);
                             $response = [
                                 'status'    => 'OK',
                                 'code'      => 102,
@@ -79,6 +78,8 @@ class AjaxSubscribe extends \Magento\Framework\App\Action\Action{
                         }
                     }
                 }else{
+                    $sql    = "SELECT cupon FROM ".$tablecoupon." WHERE email = '".$email."' ";
+                    $cupon  = $connection->fetchOne($sql);
                     $response = [
                         'status' => 'NO',
                         'code'  => 104,

@@ -33,13 +33,20 @@ class Subscriber extends \Magento\Newsletter\Model\Subscriber
         $objectManager                  = \Magento\Framework\App\ObjectManager::getInstance();
         $this->couponManagementService  = $objectManager->get('Magento\SalesRule\Model\Service\CouponManagementService');
         $this->generationSpecFactory    = $objectManager->get('Magento\SalesRule\Api\Data\CouponGenerationSpecInterfaceFactory');
-        $cupon                          = $this->generate($this->ruleId);
+        
         $resource                       = $objectManager->get('Magento\Framework\App\ResourceConnection');
         $connection                     = $resource->getConnection();
         $tableName                      = $resource->getTableName('xpec_email_cupon_newsletter');
 
-        $sql    = "INSERT INTO ".$tableName."(email,cupon,estado) VALUES('".$this->getEmail()."','".$cupon."','A')";
-        $connection->query($sql);
+        $sql    = "SELECT cupon FROM ".$tableName." WHERE email = '".$this->getEmail()."' ";
+        $tcup   = $connection->fetchOne($sql);
+        if(isset($tcup) && !empty($tcup)){
+            $cupon = $tcup;
+        }else{
+            $cupon = $this->generate($this->ruleId);
+            $sql    = "INSERT INTO ".$tableName."(email,cupon,estado) VALUES('".$this->getEmail()."','".$cupon."','A')";
+            $connection->query($sql);
+        }
 
         $this->_transportBuilder->setTemplateIdentifier(
             $this->_scopeConfig->getValue(
