@@ -10,7 +10,9 @@ class Redirect extends \Magento\Framework\App\Action\Action
     protected $resultPageFactory;
     
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,         
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Checkout\Model\Session $checkoutSession,
+        \Magento\Customer\Model\Session $customerSession,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory        
     ){
         parent::__construct($context);
@@ -19,7 +21,8 @@ class Redirect extends \Magento\Framework\App\Action\Action
     }
     
     public function execute()
-    {        
+    {
+
         $resultPage = $this->resultPageFactory->create();    	
     	return $resultPage;        
     }

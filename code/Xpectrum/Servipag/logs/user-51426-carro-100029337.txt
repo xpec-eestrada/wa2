@@ -1,0 +1,16 @@
+CodigoCanal = 500
+IdTxPago = 100029337
+FechaPago = 20180321
+MontoTotalDeuda = 23980
+IdSubTx = 1
+NumeroBoletas = 1
+Identificador = 100029337
+Boleta = 20180321034540
+Monto = 23980
+FechaVencimiento = 20180321
+NombreCliente = Erick Estrada
+RutCliente = 
+EmailCliente = sneider86@gmail.com
+IdOrderState = 13
+Fecha = 2018-03-21 03:45:40
+XML = <?xml version='1.0' encoding='ISO-8859-1'?><Servipag><Header><FirmaEPS>p3yq3Q9SmNBgpp2lNGxmicUQ1uoeOtOQQPoMcsFPZMs7OK785QURWDGvWDlOxuJxo2fzWCydjaRIEiWWiWH9yAbsTnR1GP6LbzwCOX+cPwkLTrmHcHFrlbVkxplKPgJKwExrGYrk02ZjPOSFwJqRgRD0Ziblnmf3yV8xcwX1obE=</FirmaEPS><CodigoCanalPago>500</CodigoCanalPago><IdTxPago>100029337</IdTxPago><EmailCliente>sneider86@gmail.com</EmailCliente><NombreCliente>Erick Estrada</NombreCliente><RutCliente></RutCliente><FechaPago>20180321</FechaPago><MontoTotalDeuda>23980</MontoTotalDeuda><NumeroBoletas>1</NumeroBoletas><Version>2</Version></Header><Documentos><IdSubTx>1</IdSubTx><Identificador>100029337</Identificador><Boleta>20180321034540</Boleta><Monto>23980</Monto><FechaVencimiento>20180321</FechaVencimiento></Documentos></Servipag>
