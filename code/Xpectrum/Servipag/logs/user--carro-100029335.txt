@@ -1,0 +1,16 @@
+CodigoCanal = 500
+IdTxPago = 100029335
+FechaPago = 20180320
+MontoTotalDeuda = 23980
+IdSubTx = 1
+NumeroBoletas = 1
+Identificador = 100029335
+Boleta = 20180320224059
+Monto = 23980
+FechaVencimiento = 20180320
+NombreCliente =  
+RutCliente = 
+EmailCliente = 
+IdOrderState = 13
+Fecha = 2018-03-20 22:40:59
+XML = <?xml version='1.0' encoding='ISO-8859-1'?><Servipag><Header><FirmaEPS>QHV6xPGJqLA4GLpRH5eg7t03pb1BEIMqqK6UYJ+LF5Qp015ndhzY6Rkzv7SWhjAEOAvMo8mMGzPRBHQ7ivOtWih3TlSwgqWGKnQ/P6T59uioSX5zoKgRnOnr/M1x0kcJKZnbBTzrw99/L/kz84frznez9Fd/P3/3HcD6ZaMoWzw=</FirmaEPS><CodigoCanalPago>500</CodigoCanalPago><IdTxPago>100029335</IdTxPago><EmailCliente></EmailCliente><NombreCliente> </NombreCliente><RutCliente></RutCliente><FechaPago>20180320</FechaPago><MontoTotalDeuda>23980</MontoTotalDeuda><NumeroBoletas>1</NumeroBoletas><Version>2</Version></Header><Documentos><IdSubTx>1</IdSubTx><Identificador>100029335</Identificador><Boleta>20180320224059</Boleta><Monto>23980</Monto><FechaVencimiento>20180320</FechaVencimiento></Documentos></Servipag>

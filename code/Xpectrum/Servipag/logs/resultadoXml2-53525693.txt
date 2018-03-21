@@ -1,4 +1,0 @@
-XML 2 = <?xml version="1.0" encoding="ISO-8859-1" ?><Servipag><FirmaServipag>CbbrEDg8OxSwOvOw4g1NEcGyZYFt5e0WAhWe/8eL5EVKFr9MEmA3b+V5KAy2LcvyQHeNtENd
-yyEGI09hOc8f4WCUOJ/W5anAQwtFyT0WAGBfuz61z8V7j+E2ay2lzUYRGrf6eRHPy0sPwoEz
-YBrGHJu1khvNoP66fEwHzxK9x0A=
-</FirmaServipag><IdTrxServipag>53525693</IdTrxServipag><IdTxCliente>000000098</IdTxCliente><FechaPago>20170119</FechaPago><CodMedioPago>B</CodMedioPago><FechaContable>20170119</FechaContable><CodigoIdentificador>000000098</CodigoIdentificador><Boleta>20170118201628</Boleta><Monto>1</Monto></Servipag>

@@ -1,0 +1,35 @@
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: Setea Ruta Llave Privada :/keys/private.key 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: Setea Ruta Llave Publica :/keys/PUBLIC.KEY 
+[Tue, 20 Mar 2018 22:40:59 +0000]     0: Realiza ordenamiento:1,2,3,4,5,6,7,8 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: Funcion Generacion XML1 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: IdSubTx 1 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: Datos Concatenado :500201803202398011201803202240592398020180320 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: Funcion Encripta : 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: Obtiene Llave Privada: 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: ----------------------------------- 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: Realiza Firmado de los Datos : 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: ------- variable datos: 500201803202398011201803202240592398020180320 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: ------- variable result:  
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: ------- variable llavePrivada: -----BEGIN RSA PRIVATE KEY-----
+MIICXAIBAAKBgQCyCHtupw4rK7sfKNxX1sm4GRl5gHxezy/zbjGeNQen+eg9+kom
+UiqCAo8PaeWHHEH2HDy5J+B6CrDl5yX1MkSgGf0hUhB0b8TvccswX75rd9EeGzhn
++aR6Mhgu7uJl1eJKVf7MmQRm/DJjdeBWWX0xBnL7GP4IOTllzueGQKsxdwIDAQAB
+AoGAIwIF+4lAAP81aXgoc+FZgyj0WG8Khb4qCK03douo+L/sihtob0ai8zO7m+VP
+7BSDZ/i/fA06V+U4Scz9Ksz6r0iax1ERhwfCSEcXmXTg+PRCqhq8bQ2iQSab2khF
+/JZ5Gl4qMF3FzV7JHeJvgXeoggpOXCZc/lJdE6/4tZWrqpECQQDmHEFPy7iohwEa
+XLg9Vgu7kl7DTd/Q+OiTSfyLrP3HSt/G/cosWCp3EksjeOMg5ORSBH74R9u4wO3n
+heyG/6t/AkEAxhBGQcepYKw9k1OuLXGxp2T680UFYvKrfLyogJBPtpiDERGbJbEe
+z2klJMlOkSI1U9H6wK5z3p9nGNtmyK7WCQJBAMP++w5Jek5pN2JJ6U+tE68/e+Gk
+Wef3qrmRwj8CKOJv/uzSTDq7Gehzt3ZOSD9DVsoZNECrjBXwlnKmWpGeAWcCQBGO
+Rbv056WC/t49L5Ylmrqcr8W6W3Tez6Z5znG+2OH1eMCdj+PyZCm8RyeQlF826gUo
++pHzpJ+Z/3hrkhu9q4kCQDaMcvhe9bUDYiyyiI+tR/ymZZsXvNPgsbTLhjPA6COo
+ddf6G+JrCHe9Gd7RvwDFehlbn/mG7Cqpp/lWEWCmXwo=
+-----END RSA PRIVATE KEY-----
+ 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: ----------------------------------- 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: ------------------Entra dentro del try--------------------- 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: Realizado Firmado de los Datos :@uzÄñ‰¨°8ºQ— îÝ7¥½Aƒ*¨®”`Ÿ‹”)Ó^gvØé3¿´–†08Ì£ÉŒ3Ñt;Šó­Z(wNT°‚¥†*t??¤ùöè¨I~s ¨œéëüÍqÒG	)™Û<ëÃß/ù3ó‡ëÎw³ôW?÷Àúe£([< 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: ----------------------------------- 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: Realiza Encriptacion de los Datos :QHV6xPGJqLA4GLpRH5eg7t03pb1BEIMqqK6UYJ+LF5Qp015ndhzY6Rkzv7SWhjAEOAvMo8mMGzPRBHQ7ivOtWih3TlSwgqWGKnQ/P6T59uioSX5zoKgRnOnr/M1x0kcJKZnbBTzrw99/L/kz84frznez9Fd/P3/3HcD6ZaMoWzw= 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: Firma para XML1:QHV6xPGJqLA4GLpRH5eg7t03pb1BEIMqqK6UYJ+LF5Qp015ndhzY6Rkzv7SWhjAEOAvMo8mMGzPRBHQ7ivOtWih3TlSwgqWGKnQ/P6T59uioSX5zoKgRnOnr/M1x0kcJKZnbBTzrw99/L/kz84frznez9Fd/P3/3HcD6ZaMoWzw= 
+[Tue, 20 Mar 2018 22:40:59 +0000]     1: XML1 completo:<?xml version='1.0' encoding='ISO-8859-1'?><Servipag><Header><FirmaEPS>QHV6xPGJqLA4GLpRH5eg7t03pb1BEIMqqK6UYJ+LF5Qp015ndhzY6Rkzv7SWhjAEOAvMo8mMGzPRBHQ7ivOtWih3TlSwgqWGKnQ/P6T59uioSX5zoKgRnOnr/M1x0kcJKZnbBTzrw99/L/kz84frznez9Fd/P3/3HcD6ZaMoWzw=</FirmaEPS><CodigoCanalPago>500</CodigoCanalPago><IdTxPago>100029335</IdTxPago><EmailCliente></EmailCliente><NombreCliente> </NombreCliente><RutCliente></RutCliente><FechaPago>20180320</FechaPago><MontoTotalDeuda>23980</MontoTotalDeuda><NumeroBoletas>1</NumeroBoletas><Version>2</Version></Header><Documentos><IdSubTx>1</IdSubTx><Identificador>100029335</Identificador><Boleta>20180320224059</Boleta><Monto>23980</Monto><FechaVencimiento>20180320</FechaVencimiento></Documentos></Servipag> 

@@ -1,1 +1,0 @@
-XML 3 = <?xml version='1.0' encoding='ISO-8859-1'?><Servipag><CodigoRetorno>0</CodigoRetorno><MensajeRetorno>Transaccion OK 10-4</MensajeRetorno></Servipag>

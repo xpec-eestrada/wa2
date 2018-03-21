@@ -1,5 +1,0 @@
-XML 4 = <Servipag><FirmaServipag>aw7op0lVrOSOT7nDmCUrzXTC6G65uZL48VvFIRNL8NaHTpNIx7TDqKSVPVXBkv0pNgERf0iZ41RLEgXiBDP8Alg9KOG7lLcQ/oakCMQ0/2vvOUa32sUfohzNJUSjGMLqMzPKgCF1MvYJEWULvp7dIRHuVG6S02qq ci4tBv8f2s=</FirmaServipag><IdTrxServipag>53525693</IdTrxServipag><IdTxCliente>000000098</IdTxCliente><EstadoPago>0</EstadoPago><Mensaje>Pago OK</Mensaje></Servipag>
-id = 000000098
-servipag = 53525693
-estado = Aceptado
-monto = 1
