@@ -133,7 +133,6 @@ class ServipagPayment extends \Magento\Payment\Model\Method\AbstractMethod
 
         $cart = $this->checkoutSession->getCartData();
         $total = $cart['cartAmount'];
-        error_log("total: ".$total);
         
         $this->directoryList = $directoryList;
         $path_config = $this->directoryList->getPath('app') . '/code/Xpectrum/Servipag/lib/libservipag/config.ini';
