@@ -3413,6 +3413,11 @@ ul.nav-accordion li.xpec_menu_level1 a span{
 .xpec-special-price{
     padding-right: 10px;
 }
+.checkout-index-index .payment-method._active button.action{
+    background-color: #fd5400;
+    border-color: #fd5400;
+    color: #fff;
+}
 @media screen and (min-width: 992px){
     .xpec_menu_level1{
         height: 30px;
