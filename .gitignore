@@ -1,3 +1,5 @@
 /etc/env.php
 /etc/config.php
-/code/Xpectrum/Servipag/logs/*.*
+/code/Xpectrum/Servipag/logs/
+/code/Xpectrum/Servipag/logs/*.log
+/code/Xpectrum/Servipag/logs/*.txt
