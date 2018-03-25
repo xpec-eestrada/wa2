@@ -214,14 +214,14 @@ define([
                     if($('.swatch-attribute.color').length==1){
                         if( $('.swatch-attribute.color .swatch-attribute-options .swatch-option').length>=1 ){
                             if( !$('.swatch-attribute.color .swatch-attribute-options div.swatch-option').first().hasClass('selected')  ){
-                                //$('.swatch-attribute.color .swatch-attribute-options div.swatch-option').first().click();
+                                $('.swatch-attribute.color .swatch-attribute-options div.swatch-option').first().click();
                             }
                         }
                     }
                     if($('.swatch-attribute.size').length==1){
                         if( $('.swatch-attribute.size .swatch-attribute-options .swatch-option').length>=1 ){
                             if( !$('.swatch-attribute.size .swatch-attribute-options div.swatch-option').first().hasClass('selected')  ){
-                                //$('.swatch-attribute.size .swatch-attribute-options div.swatch-option').first().click();
+                                $('.swatch-attribute.size .swatch-attribute-options div.swatch-option').first().click();
                             }
                         }
                     }
