@@ -3418,6 +3418,9 @@ ul.nav-accordion li.xpec_menu_level1 a span{
     border-color: #fd5400;
     color: #fff;
 }
+.custom-qty div.mage-error[generated]{
+    margin-top: 0px;
+}
 @media screen and (min-width: 992px){
     .xpec_menu_level1{
         height: 30px;
