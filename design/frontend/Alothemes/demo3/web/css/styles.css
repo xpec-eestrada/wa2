@@ -3432,6 +3432,10 @@ ul.nav-accordion li.xpec_menu_level1 a span{
     min-height: 100px;
     background: none;
 }
+.xpec-agotado{
+    position: absolute;
+    z-index: 2;
+}
 @media screen and (min-width: 992px){
     .xpec_menu_level1{
         height: 30px;
