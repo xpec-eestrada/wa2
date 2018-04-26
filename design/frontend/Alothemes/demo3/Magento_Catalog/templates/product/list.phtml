@@ -71,7 +71,7 @@ $_aloHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
 					<div class="images-container">
 						<?php 
 						if(  !$_product->isSaleable() ){
-							echo '<div class="xpec-agotado"><img src="pub/media/wysiwyg/agotado.png" /></div>';
+							echo '<div class="xpec-agotado"><img src="/pub/media/wysiwyg/agotado.png" /></div>';
 						}
 						$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 						//$StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
