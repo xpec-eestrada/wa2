@@ -3436,6 +3436,12 @@ ul.nav-accordion li.xpec_menu_level1 a span{
     position: absolute;
     z-index: 2;
 }
+.xpec-crossell .products-grid.products-crosssell{
+    text-align: center;
+}
+.xpec-crossell .products-grid.products-crosssell .product-items{
+    display: inline-block;
+}
 @media screen and (min-width: 992px){
     .xpec_menu_level1{
         height: 30px;
