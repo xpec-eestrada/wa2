@@ -69,6 +69,22 @@ $_aloHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
                     ?>
                     <?php // Product Image ?> 
 					<div class="images-container">
+						<?php 
+						if(  !$_product->isSaleable() ){
+							echo '<div class="xpec-agotado"><img src="/pub/media/wysiwyg/agotado.png" /></div>';
+						}
+						$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+						//$StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
+						$productStockObj = $objectManager->get('Magento\CatalogInventory\Api\StockRegistryInterface')->getStockItem($_product->getId());
+						//var_dump($productStockObj->getData());
+						
+						// echo '<pre>';
+						// print_r($productStockObj->getData());
+						// echo '</pre>';
+
+						//echo $StockState->getStockQty($_product->getId(), $_product->getStore()->getWebsiteId()).'test';
+
+						?>
 						<div class="product-hover">
                             <?php //echo $_aloHelper->getLabels($_product); ?>
 							<a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">

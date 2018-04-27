@@ -7,6 +7,21 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <referenceBlock name="content">
+            <container name="div.xpec.crosssell" htmlTag="div" htmlClass="xpec-crossell" after="-">
+                <block class="Magento\Checkout\Block\Cart\Crosssell" name="checkout.cart.crosssell" template="Magento_Catalog::product/list/items.phtml" after="-">
+                    <arguments>
+                        <argument name="type" xsi:type="string">crosssell</argument>
+                    </arguments>
+                    <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="crosssell.product.addto" as="addto">
+                        <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+                            name="crosssell.product.addto.compare" as="compare"
+                            template="Magento_Catalog::product/list/addto/compare.phtml"/>
+                    </block>
+                </block>
+            </container>
+            
+        </referenceBlock>
         <move element="logo" destination="alothemes_header"/>
     </body>
 </page>

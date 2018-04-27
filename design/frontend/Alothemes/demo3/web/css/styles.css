@@ -547,7 +547,7 @@ tr.summary-details-excluded{font-style:italic}
 	    transform: none;
 	}
 }
-.header-content{padding: 20px 0 0;}
+.header-content{padding: 0px 0 0;}
 .catalog-product-view .header-container-fixed{z-index: 99999;}
 .header-container-fixed .mini-maincart .mini-contentCart {top: 56px;}
 .header-container-fixed .header .top-form-language .lang-switcher:hover .dropdown-switcher, .header-container-fixed .header .currency_top .currency-switcher:hover .dropdown-switcher, .header-container-fixed .header .header-setting .settting-switcher:hover .dropdown-switcher, .header-container-fixed .header .header-search .search-switcher:hover .dropdown-switcher {top: 56px;}
@@ -3420,6 +3420,31 @@ ul.nav-accordion li.xpec_menu_level1 a span{
 }
 .custom-qty div.mage-error[generated]{
     margin-top: 0px;
+}
+.category-view .category-image.container{
+    text-align: center;
+    text-align: -webkit-center;
+}
+.category-view .category-image .image{
+    max-width: 56%;
+}
+.page-wrapper .category-view{
+    min-height: 100px;
+    background: none;
+}
+.xpec-agotado{
+    position: absolute;
+    z-index: 2;
+}
+.xpec-crossell .products-grid.products-crosssell{
+    text-align: center;
+}
+.xpec-crossell .products-grid.products-crosssell .product-items{
+    display: inline-block;
+}
+.crosssell .block-title strong:after, 
+.crosssell .block-title strong:before{
+    display:none;
 }
 @media screen and (min-width: 992px){
     .xpec_menu_level1{
