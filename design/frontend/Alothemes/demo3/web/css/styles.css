@@ -115,7 +115,7 @@ ul,ol{list-style:none;padding: 0;}
 .page-layout-2columns-left .sidebar-main,
 .page-layout-2columns-left .sidebar-additional,
 .page-layout-2columns-right .sidebar-main,
-.page-layout-2columns-right .sidebar-additional{width:25% !important;padding-right: 15px;padding-left: 15px;margin-top: 14px;}
+.page-layout-2columns-right .sidebar-additional{width:20% !important;padding-right: 15px;padding-left: 15px;margin-top: 14px;}
 .blog-index-index.page-layout-2columns-left .sidebar-main,
 .blog-index-index.page-layout-2columns-left .sidebar-additional,
 .blog-index-index.page-layout-2columns-right .sidebar-main,
@@ -133,7 +133,7 @@ ul,ol{list-style:none;padding: 0;}
 .col2-left-layout .col-main{margin-top: 20px;}
 .col2-right-layout .col-main{margin-top: 30px;}
 .page-layout-2columns-left .column.main,
-.page-layout-2columns-right .column.main{width:75% !important;margin-top: 20px;padding: 0 15px;}
+.page-layout-2columns-right .column.main{width:80% !important;margin-top: 20px;padding: 0 15px;}
 .blog-index-index.page-layout-2columns-left .column.main,
 .blog-index-index.page-layout-2columns-right .column.main,
 .blog-post-view.page-layout-2columns-left .column.main,
@@ -308,7 +308,7 @@ p.required{font-size:11px;text-align:right;color:#EB340A}
 .breadcrumbs li.item a{outline:medium none;color: #7e7e7e;}
 .breadcrumbs li a,.breadcrumbs li strong{font-size: 12px;padding:0 13px;    letter-spacing: 1.5px;}
 .breadcrumbs li strong{font-weight:300;color: #951a1a;}
-.breadcrumbs ul{margin:0;padding:15px 0;}
+.breadcrumbs ul{margin-left:20px;padding:15px 0;}
 /* Page Heading */
 .page-title{width:100%;overflow:hidden;margin:25px 0;}
 .page-title h1,.page-title h2,.page-title-wrapper h1,.page-title-wrapper h2{font-size:20px;color:#222;text-transform:uppercase;font-weight: 400;}
@@ -1536,7 +1536,7 @@ ul.magictabs{padding:0}
 .products-grid .product-name a{font-size: 12px;line-height: normal;outline:0 none;text-decoration:none;font-weight: 500;color: #000;letter-spacing: 2px;text-transform: uppercase;white-space: normal;word-wrap: break-word;}
 .products-grid .price-box .price{font-size: 12px;font-weight: 600;color:#e80f0f;letter-spacing: 2px;}
 
-.products-grid .price-box{line-height: normal;margin: 0px;text-align: center;}
+.products-grid .price-box{display:inline-block; line-height: normal;margin: 0px;text-align: center;}
 .products-grid .availability{line-height:21px}
 .item .add-to-links{margin:0; padding: 0;}
 .block-custom.block-custom2 .images-container .actions-no .button.btn-cart {width: 100%;}
@@ -1627,7 +1627,7 @@ ul.magictabs{padding:0}
 .products-list .item .product-item-inner .actions-no .add-to-links{margin-left: 8px;}
 .products-list .item .product-item-inner .actions-no .add-to-links li{margin: 0px 8px;}
 .products-list .add-to-links .separator{display:inline;margin:0 2px}
-.products-textlink{padding:10px 0;text-align:left;position: relative;}
+.products-textlink{padding:10px 0;text-align:center;position: relative;}
 .products-textlink p{margin:0;line-height:15px}
 .product-image{outline:0!important}
 .page-products .products.wrapper.products-list{margin: 0;}
