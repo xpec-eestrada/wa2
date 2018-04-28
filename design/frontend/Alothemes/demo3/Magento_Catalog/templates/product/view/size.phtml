@@ -1,0 +1,69 @@
+<?php
+$_children=array();
+$_product = $block->getProduct();;
+if(method_exists($_product->getTypeInstance(),"getUsedProducts")){
+    $_children = $_product->getTypeInstance()->getUsedProducts($_product);
+}
+$objectManager  = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of object manager
+$resource       = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection     = $resource->getConnection();
+$topcion        = $resource->getTableName('eav_attribute_option_swatch');
+$cantmin        = 0;
+$sw             = false;
+$array_size     = array();
+$array_color    = array();
+if(isset($_children) && is_array($_children) && (count($_children)>0 ) ){
+    foreach( $_children as $key => $_child ){
+        $objectManager  = \Magento\Framework\App\ObjectManager::getInstance();
+        $StockState     = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
+        $qty            = $StockState->getStockQty($_child->getId(), $_child->getStore()->getWebsiteId());
+        $size           = $_child->getSize();
+        $color          = $_child->getColor();
+        if($qty > 0){
+            $sw = true;
+        }
+        if(isset($array_size) && !in_array($size,$array_size) ){
+            $array_size[] = $size;
+        }
+        if(isset($array_color) && !in_array($color,$array_color) ){
+            $array_color[] = $color;
+        }
+    }
+}
+if(!$sw){
+    echo '
+    <div class="swatch-opt" data-role="swatch-options">
+        <div class="swatch-attribute color" attribute-code="color" attribute-id="93" option-selected="169">
+            <span class="swatch-attribute-label">Color</span>
+            <div class="swatch-attribute-options clearfix">';
+                foreach($array_color as $_color){
+                    $sql = 'SELECT value FROM '.$topcion.' WHERE option_id = '.$_color.'';
+                    $result = $connection->fetchAll($sql);
+                    $value = '';
+                    foreach($result as $row){
+                        $value = $row['value'];
+                    }
+                    echo '<div class="swatch-option color" option-type="1" option-id="0" option-label="" option-tooltip-thumb="" option-tooltip-value="'.$value.'" "="" style="background: '.$value.' no-repeat center; background-size: initial;"></div>';
+                }
+    echo    '</div>
+        </div>
+    </div>';
+    echo '
+    <div class="swatch-opt" data-role="swatch-options">
+        <div class="swatch-attribute size" attribute-code="size" attribute-id="141" option-selected="169">
+            <span class="swatch-attribute-label">Tallas</span>
+            <div class="swatch-attribute-options clearfix">';
+                foreach($array_size as $_size){
+                    $sql = 'SELECT value FROM '.$topcion.' WHERE option_id = '.$_size.'';
+                    $result = $connection->fetchAll($sql);
+                    $value = '';
+                    foreach($result as $row){
+                        $value = $row['value'];
+                    }
+                    echo '<div class="swatch-option text disabled" option-type="0" option-id="'.$_size.'" option-label="'.$value.'" option-tooltip-thumb="" option-tooltip-value="'.$value.'">'.$value.'</div>';
+                }
+    echo    '</div>
+        </div>
+    </div>';
+}
+?>

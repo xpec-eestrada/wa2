@@ -3446,6 +3446,9 @@ ul.nav-accordion li.xpec_menu_level1 a span{
 .crosssell .block-title strong:before{
     display:none;
 }
+.product-items .product-item .swatch-attribute.color .swatch-option{
+    display: none;
+}
 @media screen and (min-width: 992px){
     .xpec_menu_level1{
         height: 30px;

@@ -17,7 +17,8 @@
         <referenceBlock name="head.components">
             <block class="Magento\Framework\View\Element\Js\Components" name="checkout_page_head_components" template="Magento_Catalog::js/components.phtml"/>
         </referenceBlock>
-        
+
+       
 		<!-- <referenceContainer name="sidebar.main">
 			<block class="Magento\Cms\Block\Block" name="page-view-right-custom-block" after="-">
 				<arguments>
@@ -32,6 +33,7 @@
         </referenceContainer>
         
         <referenceContainer name="content">
+		
         	<container name="product.view" htmlTag="div" htmlClass="product-view" before="-">
 			    <container name="product.essential" htmlTag="div" htmlClass="product-essential" before="-">
 				   <container name="product.detail" htmlTag="div" htmlClass="row" before="-">
@@ -66,11 +68,13 @@
 									<argument name="zone" xsi:type="string">item_view</argument>
 								</arguments>
 							</block>
+							
 							<container name="alert.urls" as="alert_urls" label="Alert Urls" after="product.price.tier"/>
 							<block class="Magento\Catalog\Block\Product\View" name="product.info" template="product/view/form.phtml" after="alert.urls">
 								<container name="product.info.form.content" as="product_info_form_content">
 									<block class="Magento\Catalog\Block\Product\View" name="product.info.addtocart" as="addtocart" template="product/view/addtocart.phtml"/>
 								</container>
+								
 								<block class="Magento\Framework\View\Element\Template" name="product.info.form.options" as="options_container">
 									<block class="Magento\Catalog\Block\Product\View" name="product.info.options.wrapper" as="product_options_wrapper" template="product/view/options/wrapper.phtml">
 										<block class="Magento\Catalog\Block\Product\View\Options" name="product.info.options" as="product_options" template="product/view/options.phtml">
@@ -88,6 +92,7 @@
 								</block>
 								<move element="product.info.extrahint" as="extrahint" destination="product.info" label="Product View Extra Hint"/>
 							</block>
+							<block class="Magento\Catalog\Block\Product\View" name="no.size" as="nosize" template="Magento_Catalog::product/view/size.phtml"/>
 							<block class="Magento\Catalog\Block\Product\View\Description" name="product.info.tab" template="product/view/tab.phtml" group="detailed_info" after="-"></block>
 							
 							
