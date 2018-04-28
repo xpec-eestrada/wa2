@@ -3449,6 +3449,10 @@ ul.nav-accordion li.xpec_menu_level1 a span{
 .product-items .product-item .swatch-attribute.color .swatch-option{
     display: none;
 }
+.weltpixel-quickview{
+    left: 0;
+    right: 0;
+}
 @media screen and (min-width: 992px){
     .xpec_menu_level1{
         height: 30px;

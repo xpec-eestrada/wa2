@@ -51,7 +51,9 @@ $_aloHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
         <?php $iterator = 1; ?>
         <ol class="products list items product-items">
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
-            <?php foreach ($_productCollection as $_product): ?>
+			<?php foreach ($_productCollection as $_product): ?>
+				<?php $issalable = $_product->getIsSalable(); ?>
+				<?php $urlproduct = $_product->getProductUrl(); ?>
                 <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
                 <div class="product-item-info" data-container="product-grid category-products-grid">
                    
@@ -70,32 +72,26 @@ $_aloHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
                     <?php // Product Image ?> 
 					<div class="images-container">
 						<?php 
-						if(  !$_product->isSaleable() ){
-							echo '<div class="xpec-agotado"><img src="/pub/media/wysiwyg/agotado.png" /></div>';
+						if(  !$issalable ){
+							echo '<a href="'.$urlproduct.'"><div class="xpec-agotado"><img src="/pub/media/wysiwyg/agotado.png" /></div>';
 						}
-						$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-						//$StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
-						$productStockObj = $objectManager->get('Magento\CatalogInventory\Api\StockRegistryInterface')->getStockItem($_product->getId());
-						//var_dump($productStockObj->getData());
-						
-						// echo '<pre>';
-						// print_r($productStockObj->getData());
-						// echo '</pre>';
-
-						//echo $StockState->getStockQty($_product->getId(), $_product->getStore()->getWebsiteId()).'test';
 
 						?>
 						<div class="product-hover">
                             <?php //echo $_aloHelper->getLabels($_product); ?>
-							<a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+							<a href="<?php /* @escapeNotVerified */ echo $urlproduct ?>" class="product photo product-item-photo" tabindex="-1">
 								<?php echo $productImage->toHtml(); ?>
 							</a> 
-							<a class="hover-image" href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>"> 
+							<a class="hover-image" href="<?php /* @escapeNotVerified */ echo $urlproduct ?>"> 
 								  <img src="/pub/media/catalog/product/<?php echo $_product->getThumbnail(); ?> " />
 							</a>
 							 
 						</div>	
-                         
+						<?php
+						if(  !$issalable ){
+							echo '</a>';
+						}
+						?>
 					</div>
 					 
 					<?php if ($block->getMode() == 'grid'):?>
@@ -105,7 +101,7 @@ $_aloHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
 							?>
 							<h2 class="product name product-name product-item-name">
 								<a class="product-item-link"
-								   href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+								   href="<?php /* @escapeNotVerified */ echo $urlproduct ?>">
 									<?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
 								</a>
 							</h2>
@@ -147,7 +143,7 @@ $_aloHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
 												</button>
 											</form>
 										<?php else: ?>
-											<?php if ($_product->getIsSalable()): ?>
+											<?php if ($issalable): ?>
 												<div class="stock available"><span><?php /* @escapeNotVerified */ echo __('In stock') ?></span></div>
 											<?php else: ?>
 												<div class="stock unavailable"><span><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span></div>
