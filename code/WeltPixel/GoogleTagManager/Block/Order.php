@@ -16,15 +16,24 @@ class Order extends \WeltPixel\GoogleTagManager\Block\Core
 
         foreach ($order->getAllVisibleItems() as $item) {
             $product = $item->getProduct();
-            $productDetail = [];
+            $productDetail = [];            
+            
+            if ((int)$item->getDiscountAmount() > 0) {
+                $discount = $item->getDiscountAmount()/$item->getQtyOrdered();
+                $price = $item->getPrice()-$discount;
+            } else {
+                $price = $item->getPrice();
+            }
+            
             $productDetail['name'] = html_entity_decode($item->getName());
             $productDetail['id'] = $this->helper->getGtmOrderItemId($item);
-            $productDetail['price'] = number_format($item->getBasePrice(), 2, '.', '');
+            $productDetail['price'] = round($price, 0);
             if ($this->helper->isBrandEnabled()) :
                 $productDetail['brand'] = $this->helper->getGtmBrand($product);
             endif;
             $productDetail['category'] = $this->helper->getGtmCategoryFromCategoryIds($product->getCategoryIds());
-            $productDetail['quantity'] = $item->getQtyOrdered();
+            $productDetail['variant'] = $product->getData('codcolor');
+            $productDetail['quantity'] = (int)$item->getQtyOrdered();
             $products[] = $productDetail;
         }
 

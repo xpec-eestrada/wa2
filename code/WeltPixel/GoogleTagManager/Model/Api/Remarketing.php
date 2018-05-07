@@ -19,7 +19,7 @@ class Remarketing extends \WeltPixel\GoogleTagManager\Model\Api
     /**
      * Field names used in sending data to dataLayer
      */
-    const FIELD_REMARKEING_GOOGLE_TAG = 'google_tag_params';
+    const FIELD_REMARKEING_GOOGLE_TAG = 'wp_google_tag';
 
 
     const ECOMM_PAGETYPE_HOME = 'home';

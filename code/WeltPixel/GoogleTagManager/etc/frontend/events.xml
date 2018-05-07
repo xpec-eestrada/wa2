@@ -9,4 +9,10 @@
     <event name="sales_quote_remove_item">
         <observer name="weltpixel_googletagmanager" instance="WeltPixel\GoogleTagManager\Observer\SalesQuoteRemoveItemObserver" />
     </event>
+    <event name="customer_login">
+        <observer name="weltpixel_customer_login_observer" instance="WeltPixel\GoogleTagManager\Observer\CustomerLogin" />
+    </event>
+    <event name="customer_register_success">
+        <observer name="weltpixel_customer_register_observer" instance="WeltPixel\GoogleTagManager\Observer\CustomerLogin" />
+    </event>    
 </config>

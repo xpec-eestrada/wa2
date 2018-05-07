@@ -3,7 +3,7 @@
 ?>
 <?php if($this->isEnabled()) : ?>
     <?php $helper = $this->helper('WeltPixel\GoogleTagManager\Helper\Data'); ?>
-    <?php $products = $this->getProducts(); ?>
+    <?php //$products = $this->getProducts(); ?>
 
     <?php
     $checkoutData = [];
@@ -11,7 +11,7 @@
         'step' => '1',
         'option' => '' // @TODO Some value can be added
     ];
-    $checkoutData['products'] = $products;
+    //$checkoutData['products'] = $products;
 
     $this->setDataLayerOption('event', 'checkout');
     $this->setEcommerceData('checkout', $checkoutData);

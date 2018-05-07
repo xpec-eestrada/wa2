@@ -12,7 +12,7 @@
                 </resource>
                 <resource id="WeltPixel_Backend::WeltPixel" >
                     <resource id="WeltPixel_GoogleTagManager::GoogleTagManager_Label" sortOrder="60" title="Google Analytics Enhanced Ecommerce" >
-                        <resource id="WeltPixel_GoogleTagManager::GoogleTagManager" sortOrder="10" title="Google Analytics Enhanced Ecommerce Settings" />
+                        <resource id="WeltPixel_GoogleTagManager::GoogleTagManager" sortOrder="10" title="Google Analytics Enhanced Ecommerce" />
                     </resource>
                 </resource>
             </resource>

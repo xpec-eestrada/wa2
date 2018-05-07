@@ -74,9 +74,9 @@ class Gtm extends \Magento\Framework\DataObject implements SectionSourceInterfac
          * AddToCart data verifications
          */
         if ($this->_checkoutSession->getAddToCartData()) {
-            $data[] = $this->_checkoutSession->getAddToCartData();
+            $data[] = $this->_checkoutSession->getAddToCartData();            
         }
-
+        
         $this->_checkoutSession->setAddToCartData(null);
 
         /**
@@ -95,7 +95,16 @@ class Gtm extends \Magento\Framework\DataObject implements SectionSourceInterfac
             $data[] = $this->_checkoutSession->getCheckoutOptionsData();
         }
         $this->_checkoutSession->setCheckoutOptionsData(null);
-
+        
+        /**
+         * setUser data verifications
+         */
+        if ($this->_checkoutSession->getUserId()) {
+            $data[] = $this->_checkoutSession->getUserId();            
+        }
+        
+        $this->_checkoutSession->setUserId(null);
+        
         $customDimensionData = $this->getCustomDimensions();
         if ($customDimensionData) {
             $data[] = $customDimensionData;

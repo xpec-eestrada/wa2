@@ -47,13 +47,13 @@ class PaymentInformation
             return $result;
         }
 
-        $orderId = $result;
+        /*$orderId = $result;
 
         $order = $this->orderRepository->get($orderId);
         $additionalInformation = $order->getPayment()->getAdditionalInformation();
-        $paymentMethodTitle = $additionalInformation['method_title'];
-
-        $this->_checkoutSession->setCheckoutOptionsData($this->helper->addCheckoutStepPushData('3', $paymentMethodTitle));
+        $paymentMethodTitle = $additionalInformation['method_title'];*/
+        $paymentMethodTitle = 'Pago';
+        $this->_checkoutSession->setCheckoutOptionsData($this->helper->addCheckoutStepPushData('2', $paymentMethodTitle));
 
         return $result;
     }

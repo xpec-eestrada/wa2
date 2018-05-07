@@ -5,12 +5,16 @@
  */
 ?>
 <?php if($this->isEnabled()) : ?>
-    <?php $product = $this->getProduct(); ?>
+    <?php $product = $this->getProduct(); ?>    
     <?php $helper = $this->helper('WeltPixel\GoogleTagManager\Helper\Data'); ?>
     <?php if (isset($product)) : ?>
         <?php
-        $list = $this->getList();
-        $index = $this->getIndex();
+        $categoryPath = $helper->getGtmCategoryFromCategoryIds($product->getCategoryIds());
+        $list = $categoryPath . '/' . $helper->getCurrentPage();
+        $index = $this->getIndex();        
+        $extraData = $helper->getPrice($product);
+        $price = $extraData['finalPrice'];
+        $color = $extraData['color'];
         $data = array(
             'event' => 'productClick',
             'ecommerce' => array(
@@ -20,8 +24,9 @@
                         array(
                             'name'  => html_entity_decode($product->getName()),
                             'id'    => $helper->getGtmProductId($product),
-                            'price' => number_format($product->getFinalPrice(), 2, '.', ''),
-                            'category'  =>  $helper->getGtmCategoryFromCategoryIds($product->getCategoryIds()),
+                            'price' => $price,
+                            'category'  =>  $categoryPath,
+                            'variant' => $color,
                             'position'  => $index
                         )
                     )
