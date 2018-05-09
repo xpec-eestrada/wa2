@@ -46,6 +46,7 @@ define([
                     });
                     if (promotionViews.length) {
                         dataLayer.push({
+                            'event': 'promotionImpressions',
                             'ecommerce': {
                                 'promoView': {
                                     'promotions': promotionViews

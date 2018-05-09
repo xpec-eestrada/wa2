@@ -11,7 +11,7 @@
         />
         <add
                 id="WeltPixel_GoogleTagManager::GoogleTagManager"
-                title="Enhanced Ecommerce GTM Settings"
+                title="Google Analytics Enhanced Ecommerce"
                 module="WeltPixel_GoogleTagManager"
                 action="adminhtml/system_config/edit/section/weltpixel_googletagmanager/"
                 sortOrder="10"

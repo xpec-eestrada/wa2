@@ -58,9 +58,9 @@ class ShippingInformation
 
         /** @var \Magento\Quote\Model\Quote $quote */
         $quote = $this->quoteRepository->getActive($cartId);
-        $shippingDescription = $quote->getShippingAddress()->getShippingDescription();
+        $shippingDescription = 'Envio'; //$quote->getShippingAddress()->getShippingDescription();
 
-        $this->_checkoutSession->setCheckoutOptionsData($this->helper->addCheckoutStepPushData('2', $shippingDescription));
+        $this->_checkoutSession->setCheckoutOptionsData($this->helper->addCheckoutStepPushData('1', $shippingDescription));
 
         return $result;
     }

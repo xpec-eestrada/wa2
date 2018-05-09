@@ -3,19 +3,26 @@
 ?>
 <?php if ($this->isEnabled()) : ?>
     <?php $helper = $this->helper('WeltPixel\GoogleTagManager\Helper\Data'); ?>
-    <?php $product = $this->getCurrentProduct(); ?>
+    <?php $product = $helper->getCurrentProduct(); ?>    
     <?php if (isset($product)) : ?>
         <?php $productDetails = array(); ?>
         <?php
-        $productDetail = array();
+        $productDetail = array();        
+        $categoryPath = $helper->getGtmCategoryFromCategoryIds($product->getCategoryIds());
+        $list = $categoryPath . '/' . $helper->getCurrentPage();
+        $extraData = $helper->getPrice($product);
+        $price = $extraData['finalPrice'];
+        $color = $extraData['color'];
         $productDetail['name'] = html_entity_decode($product->getName());
         $productDetail['id'] = $helper->getGtmProductId($product);
-        $productDetail['price'] = number_format($product->getFinalPrice(), 2, '.', '');
+        $productDetail['price'] = $price;
         if ($helper->isBrandEnabled()) :
             $productDetail['brand'] = $helper->getGtmBrand($product);
         endif;
-        $productDetail['category'] = $helper->getGtmCategoryFromCategoryIds($product->getCategoryIds());
+        $productDetail['variant'] = $color;
+        $productDetail['category'] = $categoryPath;
         $productDetails['products'][] = $productDetail;
+        $productDetails['actionField'] = array('list' => ($list) ? $list : '');
         ?>
         <?php $this->setEcommerceData('detail', $productDetails); ?>
 

@@ -67,11 +67,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @var \WeltPixel\GoogleTagManager\Model\Storage
      */
     protected $storage;
-
+    
     /**
-     * \Magento\Cookie\Helper\Cookie
+     *
+     * @var \Magento\Catalog\Api\ProductRepositoryInterface
      */
-    protected $cookieHelper;
+    protected $productRepository;
 
     /**
      * Data constructor.
@@ -86,7 +87,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Sales\Api\OrderRepositoryInterface $orderRepository
      * @param \Magento\Checkout\Model\Session\SuccessValidator $checkoutSuccessValidator
      * @param \WeltPixel\GoogleTagManager\Model\Storage $storage
-     * @param \Magento\Cookie\Helper\Cookie $cookieHelper
+     * @param \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
      */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
@@ -100,7 +101,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
         \Magento\Checkout\Model\Session\SuccessValidator $checkoutSuccessValidator,
         \WeltPixel\GoogleTagManager\Model\Storage $storage,
-        \Magento\Cookie\Helper\Cookie $cookieHelper
+        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
     )
     {
         parent::__construct($context);
@@ -116,7 +117,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->orderRepository = $orderRepository;
         $this->checkoutSuccessValidator = $checkoutSuccessValidator;
         $this->storage = $storage;
-        $this->cookieHelper = $cookieHelper;
+        $this->productRepository = $productRepository;
         $this->_populateStoreCategories();
     }
 
@@ -144,7 +145,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function isEnabled()
     {
-        return !$this->cookieHelper->isUserNotAllowSaveCookie() && $this->_gtmOptions['general']['enable'];
+        return $this->_gtmOptions['general']['enable'];
     }
 
     /**
@@ -247,7 +248,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->addSearchResultPageInformation();
         $this->addProductPageInformation();
         $this->addCartPageInformation();
-        $this->addCheckoutInformation();
+        //$this->addCheckoutInformation();
         $this->addOrderInformation();
 
         $html = $block->toHtml();
@@ -419,7 +420,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             DIRECTORY_SEPARATOR . $this->_request->getControllerName() .
             DIRECTORY_SEPARATOR . $this->_request->getActionName();
 
-        if ($requestPath != 'checkout/onepage/success' || !$lastOrderId) {
+        if (($requestPath != 'checkout/onepage/success' &&
+                $requestPath != 'payu/payment/response') || !$lastOrderId) {
             return;
         }
 
@@ -459,7 +461,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $productData = [];
         $productData['name'] = html_entity_decode($product->getName());
         $productData['id'] = $this->getGtmProductId($product);
-        $productData['price'] = number_format($product->getFinalPrice(), 2, '.', '');
+        $productData['price'] = number_format($product->getFinalPrice(), 0, '', '');
         if ($this->isBrandEnabled()) {
             $productData['brand'] = $this->getGtmBrand($product);
         }
@@ -468,8 +470,45 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $productData['quantity'] = $qty;
 
         $result['ecommerce']['add']['products'][] = $productData;
+        
+        return $result;
+    }
+    
+    /**
+     * @param int $customerId     
+     * @return array
+     */
+    public function setUser($customerId)
+    {
+        $result['userID'] = (int)$customerId;
 
         return $result;
+    }
+    
+    /**
+     * Returns the product details for the purchase gtm event
+     * @return array
+     */
+    public function getProductsInCart() {
+        $quote = $this->checkoutSession->getQuote();
+        $products = [];
+
+        foreach ($quote->getAllVisibleItems() as $item) {
+            $product = $item->getProduct();
+            $productDetail = [];
+            $productDetail['name'] = html_entity_decode($item->getName());
+            $productDetail['id'] = $this->getGtmProductId($product);
+            $productDetail['price'] = number_format($item->getBasePrice(), 0, '', '');
+            if ($this->isBrandEnabled()) :
+                $productDetail['brand'] = $this->getGtmBrand($product);
+            endif;
+            $productDetail['category'] = $this->getGtmCategoryFromCategoryIds($product->getCategoryIds());
+            $productDetail['variant'] = $product->getData('codcolor');
+            $productDetail['quantity'] = (int)$item->getQty();
+            $products[] = $productDetail;
+        }
+        
+        return $products;
     }
 
     /**
@@ -572,12 +611,15 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getGtmCategoryFromCategoryIds($categoryIds)
     {
-        if (!count($categoryIds)) {
+        if (is_array($categoryIds) && count($categoryIds) > 0) {
+            $count = count($categoryIds);
+        } else {
             return '';
         }
-        $categoryId = $categoryIds[0];
+                
+        $categoryId = $categoryIds[$count-1];
         $categoryPath = $this->resourceCategory->getCategoryPathById($categoryId);
-
+        
         return $this->_buildCategoryPath($categoryPath);
     }
 
@@ -587,7 +629,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     private function _buildCategoryPath($categoryPath)
     {
-        /* first 2 categories can be ignored */
+        /* first 2 categories can be ignored */        
         $categoriIds = array_slice(explode('/', $categoryPath), 2);
         $categoriesWithNames = array();
 
@@ -611,7 +653,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         $result['event'] = 'removeFromCart';
         $result['ecommerce'] = [];
-        $result['ecommerce']['currencyCode'] = $this->getCurrencyCode();
         $result['ecommerce']['remove'] = [];
         $result['ecommerce']['remove']['products'] = [];
 
@@ -639,18 +680,17 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function addCheckoutStepPushData($step, $checkoutOption)
     {
         $result = [];
-
-        $result['event'] = 'checkoutOption';
+        
+        $result['event'] = 'checkout';
         $result['ecommerce'] = [];
-        $result['ecommerce']['currencyCode'] = $this->getCurrencyCode();
-        $result['ecommerce']['checkout_option'] = [];
+        $result['ecommerce']['checkout'] = [];
 
         $optionData = [];
         $optionData['step'] = $step;
         $optionData['option'] = $checkoutOption;
 
-        $result['ecommerce']['checkout_option']['actionField'] = $optionData;
-
+        $result['ecommerce']['checkout']['actionField'] = $optionData;
+        $result['ecommerce']['checkout']['products'] = $this->getProductsInCart();
         return $result;
     }
 
@@ -735,13 +775,34 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         if (!empty($html)) {
             $eventCallBack = ", 'eventCallback': function() { document.location = '" .
-                $this->escaper->escapeHtml($product->getUrlModel()->getUrl($product)) . "' }});";
+                $this->escaper->escapeHtml($this->getUrlProductParent($product)) . "' }});";
             $html = substr(rtrim($html, ");"), 0, -1);
             $html .= $eventCallBack;
             $html = 'onclick="' . $html . '"';
         }
 
         return $html;
+    }
+    
+    public function getUrlProductParent($product)
+    {
+        $productId = $product->getId();
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $parent = $objectManager->create('Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable')->getParentIdsByChild($productId);
+        
+        if (isset($parent[0])) {
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $productparent = $objectManager->create('Magento\Catalog\Model\Product')->load($parent[0]);
+            $color = $productparent->getData('color');
+            $param = (isset($color) && is_numeric($color)) ? '?color=' . $color : '';
+            
+            return $productparent->getProductUrl() . '' . $param;
+        } else {
+            $color = $product->getData('color');
+            $param = (isset($color) && is_numeric($color)) ? '?color=' . $color : '';
+            
+            return $product->getProductUrl() . '' . $param;
+        }
     }
 
     /**
@@ -750,9 +811,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @return string
      */
     public function getGtmCategory($category)
-    {
+    {        
         $categoryPath = $category->getData('path');
-
+        
         return $this->_buildCategoryPath($categoryPath);
     }
 
@@ -762,5 +823,85 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getDimensionsActionUrl()
     {
         return $this->storeManager->getStore()->getBaseUrl() . 'weltpixel_gtm/index/dimensions';
+    }
+    
+    /**
+     * @return int
+     */
+    public function getCurrentPage()
+    {
+        $page = (int) $this->_request->getParam('p');
+        if (!$page) {
+            return 1;
+        }
+
+        return $page;
+    }
+    
+    /**
+     * 
+     * @param \Magento\Catalog\Api\ProductRepositoryInterface $product
+     * @return array
+     */
+    public function getPrice($product)
+    {
+        try {
+            $finalPrice = 0;
+            $price = 0;
+            $skuChild = $product->getData('child_color_sku');
+            $result = array();
+            $color = '';
+            
+            if (!empty($skuChild)) {
+                $child = $this->productRepository->get($skuChild);
+                $finalPrice = number_format($child->getFinalPrice(), 0, '', '');
+                $price = number_format($child->getPrice(), 0, '', '');
+                $color = $child->getData('codcolor');
+                $result = array(
+                    'price' => $price, 
+                    'finalPrice' => $finalPrice,
+                    'color' => $color
+                );
+            } else {
+                $children = array();
+                if (method_exists($product->getTypeInstance(), 'getUsedProducts')) {
+                    $children = $product->getTypeInstance()->getUsedProducts($product);
+                }
+                
+                if (isset($children) && is_array($children) && (count($children) > 0)) {
+                    foreach ($children as $key => $child) {
+                        if ($product->getData('color') == $child->getData('color')) {
+                            $finalPrice = number_format($child->getFinalPrice(), 0, '', '');
+                            $price = number_format($child->getPrice(), 0, '', '');
+                            $color = $child->getData('codcolor');
+                            if ($finalPrice < $price) {
+                                break;
+                            }
+                        }
+                    }
+                    $result = array(
+                        'price' => $price , 
+                        'finalPrice' => $finalPrice,
+                        'color' => $color
+                    );
+                } else {
+                    $finalPrice = number_format($product->getFinalPrice(), 0, '', '');
+                    $price = number_format($product->getPrice(), 0, '', '');
+                    $color = $product->getData('codcolor');
+                    $result = array(
+                        'price' => $price ,
+                        'finalPrice' => $finalPrice,
+                        'color' => $color
+                    );
+                }
+            }
+        } catch(\Exception $e) {
+            die($e->getMessage());
+        }
+        catch(\Magento\Framework\Exception\NoSuchEntityException $e) {
+            die($e->getMessage());
+        }
+        
+        return $result;
     }
 }

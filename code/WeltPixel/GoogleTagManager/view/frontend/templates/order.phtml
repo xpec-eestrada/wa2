@@ -11,23 +11,22 @@
         $purchaseData['actionField'] = [
             'id' => $order->getIncrementId(),
             'affiliation' => $helper->getAffiliationName(),
-            'revenue' => $this->getOrderTotal(),
+            'revenue' => number_format($this->getOrderTotal(), 0, '', ''),
             'coupon' => (string)$order->getCouponCode()
         ];
 
         if (!$this->excludeTaxFromTransaction()) :
-            $purchaseData['actionField']['tax'] = $order->getBaseTaxAmount();
+            $purchaseData['actionField']['tax'] = number_format($order->getBaseTaxAmount(), 0, '', '');
         endif;
 
         if (!$this->excludeShippingFromTransaction()) :
-            $purchaseData['actionField']['shipping'] = $order->getBaseShippingAmount();
+            $purchaseData['actionField']['shipping'] = number_format($order->getBaseShippingAmount(), 0, '', '');
         endif;
 
 
         $purchaseData['products'] = $products;
 
         $this->setEcommerceData('purchase', $purchaseData);
-        $this->setEcommerceData('currencyCode', $this->getCurrencyCode());
 
         if ($helper->isAdWordConversionTrackingEnabled()) :
             $this->setDataLayerOption(\WeltPixel\GoogleTagManager\Model\Api\ConversionTracking::FIELD_CONVERSION_TRACKING_CONVERSION_VALUE, $this->getOrderTotal());
