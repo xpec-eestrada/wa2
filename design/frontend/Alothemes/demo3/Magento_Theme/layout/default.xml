@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
+        <meta name="google-site-verification" content="alHMNDISyGBnLDdFxURBdC2fz5Ee00HjXURIUDRTPXA" />
         <link src="Magento_Theme::js/xpec_header_top.js"/>
     </head>
 </page>
