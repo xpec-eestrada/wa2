@@ -126,6 +126,7 @@
 
 .swatch-option.disabled {
     cursor: default;
+    display: none;
 }
 
 .swatch-option.disabled:after {
@@ -304,4 +305,7 @@ div[class^="swatch-opt-"] {
 
 .swatch-option-loading {
     content: url("../images/loader-2.gif");
+}
+.swatch-input.super-attribute-select {
+    display: none;
 }
