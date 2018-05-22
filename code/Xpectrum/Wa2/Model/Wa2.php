@@ -171,7 +171,7 @@ class Wa2 implements Wa2Interface{
 
                 $indexerFactory = $objectManager->get('Magento\Indexer\Model\IndexerFactory');
                 $indexerIds = array('cataloginventory_stock');
-
+                /*
                 foreach($arrskus as $sku){
                     $sql        = 'SELECT entity_id FROM '.$tproduct.' WHERE sku=\''.$sku.'\'';
                     $rsp        = $connection->fetchAll($sql);
@@ -203,6 +203,10 @@ class Wa2 implements Wa2Interface{
                         }
                     }
                 }
+                */
+
+
+                //reindexList
             }catch(Exception $err){
                 $status='error';
                 $mensaje=$err->getMessage();
