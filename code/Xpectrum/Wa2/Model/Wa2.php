@@ -140,10 +140,12 @@ class Wa2 implements Wa2Interface{
             }catch(Exception $err){
                 $status='error';
                 $mensaje=$err->getMessage();
+                $this->loggerxpec->info('Error: 1'.$mensaje);
             }
         }else{
             $status='error';
             $mensaje='Se esperaba parametro comuniquece con el adminsitrador.';
+            $this->loggerxpec->info('Error: 2'.$mensaje);
         }
         $result='{"status":"'.$status.'","mensaje":"'.$mensaje.'"}';
         return $result;
