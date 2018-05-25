@@ -75,39 +75,6 @@ class Wa2 implements Wa2Interface{
             }
             $tproduct  = $resource->getTableName('catalog_product_entity');
             $ids=array();
-
-            $indexerFactory = $objectManager->get('Magento\Indexer\Model\IndexerFactory');
-            $indexerIds = array('cataloginventory_stock');
-
-            $sql        = 'SELECT entity_id FROM '.$tproduct.' WHERE sku=\''.$sku.'\'';
-            $rsp        = $connection->fetchAll($sql);
-            $id         = 0;
-            foreach($rsp as $item){
-                $id = $item['entity_id'];
-                foreach ($indexerIds as $indexerId) {
-                    $this->loggerxpec->info('Iniciando reindex sku: '.$sku);
-                    $indexer = $indexerFactory->create();
-                    $indexer->load($indexerId);
-                    //$indexer->reindexAll(); // hace todo reindex
-                    $indexer->reindexRow($id); // hace reindex por id
-                    $this->loggerxpec->info('Terminando reindex sku: '.$sku);
-                }
-                
-                $productId     = $id;
-                $parent        = $objectManager->create('Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable')->getParentIdsByChild($productId);
-                if(isset($parent[0])){
-                    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                    $productparent = $objectManager->create('Magento\Catalog\Model\Product')->load($parent[0]);
-                    $this->loggerxpec->info('Iniciando reindex (padre) sku: '.$productparent->getSku());
-                    foreach ($indexerIds as $indexerId) {
-                        $indexer = $indexerFactory->create();
-                        $indexer->load($indexerId);
-                        $idParent = $productparent->getId();
-                        $indexer->reindexRow($idParent); // hace reindex por id
-                        $this->loggerxpec->info('Termino reindex (padre) sku: '.$productparent->getSku());
-                    }
-                }
-            }
             
             $status='successful';
             $mensaje='';
@@ -166,50 +133,19 @@ class Wa2 implements Wa2Interface{
                     }
                     $i++;
                 }
-                $tproduct  = $resource->getTableName('catalog_product_entity');
-                $ids=array();
 
-                $indexerFactory = $objectManager->get('Magento\Indexer\Model\IndexerFactory');
-                $indexerIds = array('cataloginventory_stock');
+                $this->loggerxpec->info('Proceso de inventario finalizado');
 
-                foreach($arrskus as $sku){
-                    $sql        = 'SELECT entity_id FROM '.$tproduct.' WHERE sku=\''.$sku.'\'';
-                    $rsp        = $connection->fetchAll($sql);
-                    $id         = 0;
-                    foreach($rsp as $item){
-                        $id = $item['entity_id'];
-                        foreach ($indexerIds as $indexerId) {
-                            $this->loggerxpec->info('Iniciando reindex Sku: '.$sku);
-                            $indexer = $indexerFactory->create();
-                            $indexer->load($indexerId);
-                            //$indexer->reindexAll(); // hace todo reindex
-                            $indexer->reindexRow($id); // hace reindex por id
-                            $this->loggerxpec->info('Finalizando reindex Sku: '.$sku);
-                        }
-                        
-                        $productId     = $id;
-                        $parent        = $objectManager->create('Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable')->getParentIdsByChild($productId);
-                        if(isset($parent[0])){
-                            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                            $productparent = $objectManager->create('Magento\Catalog\Model\Product')->load($parent[0]);
-                            $this->loggerxpec->info('Iniciando reindex Sku(padre): '.$productparent->getSku());
-                            foreach ($indexerIds as $indexerId) {
-                                $indexer = $indexerFactory->create();
-                                $indexer->load($indexerId);
-                                $idParent = $productparent->getId();
-                                $indexer->reindexRow($idParent); // hace reindex por id
-                                $this->loggerxpec->info('Finalizando reindex Sku(padre): '.$productparent->getSku());
-                            }
-                        }
-                    }
-                }
+                //reindexList
             }catch(Exception $err){
                 $status='error';
                 $mensaje=$err->getMessage();
+                $this->loggerxpec->info('Error: 1'.$mensaje);
             }
         }else{
             $status='error';
             $mensaje='Se esperaba parametro comuniquece con el adminsitrador.';
+            $this->loggerxpec->info('Error: 2'.$mensaje);
         }
         $result='{"status":"'.$status.'","mensaje":"'.$mensaje.'"}';
         return $result;
