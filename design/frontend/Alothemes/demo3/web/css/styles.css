@@ -3400,7 +3400,7 @@ ul.nav-accordion li.xpec_menu_level1 a span{
 }
 .price-box.price-final_price .xpec-special-price{
     float: left;
-    margin-left: 30px;/*xpec_er*/
+    /*margin-left: 30px;*//*xpec_er*/
 }
 .price-box.price-final_price .old-price{
     float: right;
@@ -3408,7 +3408,7 @@ ul.nav-accordion li.xpec_menu_level1 a span{
 }
 .xpec-special-price .price-label,
 .xpec-price-normal .price-label{
-    display: none;
+    display: none !important;;
 }
 .xpec-special-price{
     padding-right: 10px;
