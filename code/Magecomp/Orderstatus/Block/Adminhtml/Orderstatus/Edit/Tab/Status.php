@@ -1,8 +1,6 @@
 <?php
 namespace Magecomp\Orderstatus\Block\Adminhtml\Orderstatus\Edit\Tab;
 
-use \Psr\Log\LoggerInterface;
-
 use Magecomp\Orderstatus\Model\OrderstatusemailFactory;
 
 class Status extends \Magento\Backend\Block\Widget\Form\Generic implements \Magento\Backend\Block\Widget\Tab\TabInterface
@@ -15,14 +13,12 @@ class Status extends \Magento\Backend\Block\Widget\Form\Generic implements \Mage
 		\Magento\Backend\Block\Template\Context $context, 
 		\Magento\Framework\Registry $registry, 
 		\Magento\Framework\Data\FormFactory $formFactory, 
-		\Magento\Store\Model\System\Store $systemStore, 
-		LoggerInterface $logger,
+		\Magento\Store\Model\System\Store $systemStore,
 		\Magento\Email\Model\ResourceModel\Template\CollectionFactory $emailcollection,
 		OrderstatusemailFactory $statusemailFactory,
 		array $data = []
 	) 
 	{
-		$this->logger = $logger;
 		$this->_systemStore = $systemStore;
 		$this->emailcollection = $emailcollection;
 		$this->statusemailFactory = $statusemailFactory;

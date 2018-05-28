@@ -3,27 +3,19 @@
 namespace Magecomp\Orderstatus\Helper;
 
 use Magecomp\Orderstatus\Model\OrderstatusFactory;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 
 class Data extends AbstractHelper
 {
     /**
-     * @var ScopeConfigInterface
-     */
-    protected $_configScopeConfigInterface;
-
-    /**
      * @var StatusFactory
      */
     protected $_modelStatusFactory;
 
-    public function __construct(Context $context, 
-        ScopeConfigInterface $configScopeConfigInterface, 
+    public function __construct(Context $context,
         OrderstatusFactory $modelStatusFactory)
     {
-        $this->_configScopeConfigInterface = $configScopeConfigInterface;
         $this->_modelStatusFactory = $modelStatusFactory;
 
         parent::__construct($context);
@@ -35,7 +27,7 @@ class Data extends AbstractHelper
 		$storeManager = $om->get('Psr\Log\LoggerInterface');
 		$storeManager->info('from Helper getSystemStatuses() called');
         $statusList = [];
-        $statuses = $this->_configScopeConfigInterface->getValue('global/sales/order/statuses', 'default')->asArray();
+        $statuses = $this->scopeConfig->getValue('global/sales/order/statuses', 'default')->asArray();
         foreach ($statuses as $alias => $data)
         {
             if (!isset($data['@']['status']))
