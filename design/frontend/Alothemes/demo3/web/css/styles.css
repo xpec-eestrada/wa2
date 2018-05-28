@@ -3520,6 +3520,10 @@ ul.nav-accordion li.xpec_menu_level1 a span{
     .customer-address-form .xpec-telefono{
         width: 78%;
     }
+    .nav-sections{
+        top: 103px !important;
+        z-index: 99;
+    }
 }
 @media screen and (max-width: 610px){
     .customer-address-form .xpec-prefix-telefono{
@@ -3527,6 +3531,11 @@ ul.nav-accordion li.xpec_menu_level1 a span{
     }
     .customer-address-form .xpec-telefono{
         width: 72%;
+    }
+}
+@media screen and (max-width: 480px){
+    .nav-open .header-sticker .nav-sections{
+        top: 103px !important;
     }
 }
 @media screen and (max-width: 417px){
