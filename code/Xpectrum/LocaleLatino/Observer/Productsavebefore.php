@@ -3,32 +3,14 @@
 namespace Xpectrum\LocaleLatino\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
-use Magento\Backend\Model\Auth\Session;
 
 class Productsavebefore implements ObserverInterface
 {
-    /**
-     * @var Session
-     */
-    protected $authSession;
-    
-    public function __construct(Session $authSession)
-    {
-        $this->authSession = $authSession;
-    }
-    
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
         $_product = $observer->getProduct();
-        $user = $this->authSession->getUser();
-        
-        if ($user->getInterfaceLocale() == 'en_US') {
-            $decimalSeparator = '.';
-            $thousandSeparator = ',';
-        } else {
-            $decimalSeparator = ',';
-            $thousandSeparator = '.';
-        }
+        $decimalSeparator = ',';
+        $thousandSeparator = '.';
         
         //Price
         $price = $_product->getPrice();

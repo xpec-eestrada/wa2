@@ -309,3 +309,18 @@ div[class^="swatch-opt-"] {
 .swatch-input.super-attribute-select {
     display: none;
 }
+.catalog-product-view .product-options-wrapper .swatch-opt{
+   display: flex;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-flex-direction: column;
+   -ms-flex-direction: column;
+   flex-direction: column;
+}
+.catalog-product-view .product-options-wrapper .swatch-opt .swatch-attribute.color{
+   order: 2;
+}
+.catalog-product-view .product-options-wrapper .swatch-opt .swatch-attribute.size{
+   order: 1;
+}
