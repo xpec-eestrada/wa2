@@ -3534,7 +3534,7 @@ ul.nav-accordion li.xpec_menu_level1 a span{
     }
 }
 @media screen and (max-width: 480px){
-    .nav-open .nav-sections{
+    .nav-open .header-sticker .nav-sections{
         top: 103px !important;
     }
 }
