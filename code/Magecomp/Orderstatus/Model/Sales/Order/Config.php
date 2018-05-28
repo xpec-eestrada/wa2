@@ -108,7 +108,7 @@ class Config extends \Magento\Sales\Model\Order\Config
 							}
 							if (!$parentStates || in_array(strtolower($state), $parentStates))
 							{
-								$elementName = strtolower($state) . '_' . $status->getId();
+								$elementName =  'orderstatus_' . $status->getId();
 								if ($addLabels)
 								{
 									$statuses[$elementName] = ( $hideState ? '' : $stateLabel . ': ' ) . __($status->getOrderStatus());
@@ -128,7 +128,6 @@ class Config extends \Magento\Sales\Model\Order\Config
         
 	public function getStatusLabel($code)
 	{
-		
 		$om = \Magento\Framework\App\ObjectManager::getInstance();
 		$this->scopeConfig = $om->get('Magento\Framework\App\Config\ScopeConfigInterface');
 		
@@ -142,6 +141,7 @@ class Config extends \Magento\Sales\Model\Order\Config
 		{
 			$this->_modelStatusFactory = $om->create('Magecomp\Orderstatus\Model\OrderstatusFactory');
 			$statusesCollection = $this->_modelStatusFactory->create()->getCollection();
+			
 			if ($statusesCollection->getSize() > 0)
 			{
 				foreach ($this->_getCollection() as $item)
@@ -159,18 +159,18 @@ class Config extends \Magento\Sales\Model\Order\Config
 						{
 							// checking if we should apply status to the current state
 							$parentStates = [];
+							
+							
 							if ($status->getOrderParentState())
 							{
 								$parentStates = explode(',', $status->getOrderParentState());
 							}
-							if (!$parentStates || in_array(strtolower($state), $parentStates))
+							$elementName = 'orderstatus_' . $status->getId();
+								
+							if ($code == $elementName)
 							{
-								$elementName = strtolower($state) . '_' . $status->getId();
-								if ($code == $elementName)
-								{
-									$statusLabel = ( $hideState ? '' : $stateLabel . ': ' ) . __($status->getOrderStatus());
-									break(2);
-								}
+								$statusLabel = ( $hideState ? '' : $stateLabel . ': ' ) . __($status->getOrderStatus());
+								break(2);
 							}
 						}
 					}

@@ -22,11 +22,25 @@ class Massstatus extends \Magento\Sales\Controller\Adminhtml\Order\AbstractMassA
 		
 		$countCancelOrder = 0;
 		
+		$om = \Magento\Framework\App\ObjectManager::getInstance();
+		$orderCommentSender = $om->get('Magento\Sales\Model\Order\Email\Sender\OrderCommentSender');
+		
 		foreach ($collection->getItems() as $order) 
 		{
+			$registrey = $om->get('Magento\Framework\Registry');
+			$registrey->unregister('current_order');
+			$registrey->register('current_order', $order);
+			
 			$order->setStatus($finalState);
 			$order->save();
-            $countCancelOrder++;
+			
+			$history = $order->addStatusHistoryComment('Order Status Change.',$finalState);
+			$history->setIsVisibleOnFront(true);
+			$history->setIsCustomerNotified(true);
+			$history->save();
+			
+			$orderCommentSender->send($order, true, 'Order Status Change.');
+			$countCancelOrder++;
         }
 	
         if ($countCancelOrder) {

@@ -62,6 +62,7 @@ class Order extends ModelOrder
             {
                 // this is it!
 				$this->_frameworkRegistry = $om->get('Magento\Framework\Registry');
+				$this->_frameworkRegistry->unregister('magecomp_history_status');
                 $this->_frameworkRegistry->register('magecomp_history_status',$statusModel->getId()); //$statusModel); //, true	
             }
         }
