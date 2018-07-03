@@ -299,6 +299,6 @@ a.meanmenu-reveal,.nav-mobile{display:none}
 .navigation .level0 .submenu {background: #ffffff none repeat scroll 0 0;border: 1px solid #cccccc;box-shadow: 0 5px 5px rgba(0, 0, 0, 0.19);display: none;font-weight: 400;left: 0; margin: 0 !important;min-width: 230px;padding: 0;position: absolute;z-index: 1;}
 .navigation .level0:hover .submenu{display: block;}
 
-.magicmenu>ul>li:last-child>a{
+.magicmenu>ul>li.level0.nav-5.cat>a{
 	color: #ba0c2f;
 }
