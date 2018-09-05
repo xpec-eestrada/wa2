@@ -177,9 +177,13 @@ class SaveFieldReport implements ObserverInterface
         foreach( $items as $item ){
             if( $item->getProductType() == Type::TYPE_SIMPLE || $item->getProductType() == Type::TYPE_VIRTUAL ){
                 $product    = $item->getProduct();
-                $qty        = (empty($qty))?(int)$item->getQtyOrdered():$qty.','.(int)$item->getQtyOrdered();
-                $sku        = (empty($sku))?$product->getSku():$sku.','.$product->getSku();
-                $name       = (empty($name))?$product->getName():$name.','.$product->getName();
+		if(is_object($product)){
+		   if($product->getSku() != null){
+                        $sku = (empty($sku))?$product->getSku():$sku.','.$product->getSku();
+                   }
+                   $qty        = (empty($qty))?(int)$item->getQtyOrdered():$qty.','.(int)$item->getQtyOrdered();
+                   $name       = (empty($name))?$product->getName():$name.','.$product->getName();
+		}
             }
         }
         $data       = array('sku'=>$sku,'name'=>$name,'qty'=>$qty);
