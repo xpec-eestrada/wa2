@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <container name="advancedOrderStatusGrid">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Xtento_AdvancedOrderStatus/js/advancedOrderStatusGrid.min</item>
+            </item>
+        </argument>
+    </container>
+    <columns name="sales_order_columns">
+        <column name="status_color" class="Xtento\AdvancedOrderStatus\Ui\Component\Listing\Column\StatusColor">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Status Color</item>
+                    <item name="componentDisabled" xsi:type="boolean">true</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>
+<!--
+/**
+ * Product:       Xtento_AdvancedOrderStatus (2.1.4)
+ * ID:            %!uniqueid!%
+ * Packaged:      %!packaged!%
+ * Last Modified: 2017-09-01T14:40:55+00:00
+ * File:          view/adminhtml/ui_component/sales_order_grid.xml
+ * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_sales_order_status_save">
+        <observer name="sales_order_status_save_after" instance="Xtento\AdvancedOrderStatus\Observer\SalesOrderStatusSaveAfterObserver"/>
+    </event>
+</config>
+<!--
+/**
+ * Product:       Xtento_AdvancedOrderStatus (2.1.4)
+ * ID:            %!uniqueid!%
+ * Packaged:      %!packaged!%
+ * Last Modified: 2016-02-25T18:52:16+00:00
+ * File:          etc/adminhtml/events.xml
+ * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->
