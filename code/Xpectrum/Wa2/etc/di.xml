@@ -8,4 +8,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Xpectrum\Wa2\Api\Wa2Interface"
                 type="Xpectrum\Wa2\Model\Wa2" />
+    
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="customorderproducts" type="Xpectrum\Wa2\Plugin\Toolbar" sortOrder="99" />
+    </type>
 </config>
